@@ -1,7 +1,11 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import dotenv from "dotenv";
+
+// Load the .env file and make its content available to Vite
+dotenv.config();
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
-})
+    plugins: [vue()],
+});

@@ -27,9 +27,8 @@
             </div>
         </div>
         <GoogleMap data-testid="selection-map" :fullscreen-control="false" :street-view-control="false"
-            :zoom-control="false" map-type-id="roadmap" :map-type-control="false"
-            api-key="AIzaSyB0M8MjdeBfrP3ODrpffvMV2kU_ono4e0w" class="map" :center="{ lat: 48, lng: 11 }" :zoom="2"
-            @click="setMarker" :styles="minimal">
+            :zoom-control="false" map-type-id="roadmap" :map-type-control="false" :api-key="apiKey" class="map"
+            :center="{ lat: 48, lng: 11 }" :zoom="2" @click="setMarker" :styles="minimal">
             <template #default="{ ready }">
                 <Marker v-if="location&&ready" data-testid="selection-map-marker"
                     :options="{ position: location, icon: markerIcon() }" />
@@ -54,6 +53,7 @@ interface Location {
     lng: number
 }
 let location=ref<Location|null>(null);
+const apiKey=import.meta.env.VITE_API_KEY;
 
 const props=defineProps<{
     roundId: number

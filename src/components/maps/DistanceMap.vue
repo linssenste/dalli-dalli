@@ -1,7 +1,6 @@
 <template>
     <GoogleMap ref="mapRef" :fullscreen-control="false" :street-view-control="false" :zoom-control="false"
-        :map-type-control="false" api-key="AIzaSyB0M8MjdeBfrP3ODrpffvMV2kU_ono4e0w" class="map" :zoom="16"
-        @ready="fitBounds">
+        :map-type-control="false" :api-key="apiKey" class="map" :zoom="16" @ready="fitBounds">
         <template #default="{ ready }">
             <Polyline v-if="ready" :options="path" />
             <!-- <Circle v-if="ready" :options="circle" /> -->
@@ -15,7 +14,7 @@
 <script lang="ts" setup>
 import { onMounted, watch, computed, ref } from 'vue';
 import { GoogleMap, Marker, Polyline, Circle } from 'vue3-google-map';
-
+const apiKey=import.meta.env.VITE_API_KEY;
 
 
 const locationMarkerIcon=() => ({

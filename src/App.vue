@@ -235,7 +235,7 @@ const checkStreetView=async (lat: string, lng: string) => {
         const heading=Math.floor(Math.random()*360);
 
         const pitch=15
-        const response=await axios.get(`https://maps.googleapis.com/maps/api/streetview?size=1240x800&location=${lat},${lng}&heading=${heading}&pitch=${pitch}&return_error_code=true&key=AIzaSyB0M8MjdeBfrP3ODrpffvMV2kU_ono4e0w`, { responseType: 'blob' })
+        const response=await axios.get(`https://maps.googleapis.com/maps/api/streetview?size=1240x800&location=${lat},${lng}&heading=${heading}&pitch=${pitch}&return_error_code=true&key=${import.meta.env.VITE_API_KEY}`, { responseType: 'blob' })
 
         if (response.status===200) {
             return {
