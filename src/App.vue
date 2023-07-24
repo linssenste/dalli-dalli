@@ -3,7 +3,8 @@
         style="padding: 20px; padding-top: 50px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
         <img draggable="false" class="logo" src="./assets/game-logo.webp" width="300" height="112" />
 
-        <div style="font-size: 18px; font-weight: 500; max-width: 500px; margin-top: 30px;">Sorry, this game is designed for
+        <div style="font-size: 18px; color: black!important; font-weight: 500; max-width: 500px; margin-top: 30px;">Sorry,
+            this game is designed for
             Desktop
             computers. But I'm working on it!
         </div>
