@@ -178,7 +178,7 @@ function startGame(): void {
     removeShape()
     autoTimer.value=setInterval(() => {
         removeShape()
-    }, props.preview===true? 50:store.state.settings.time)
+    }, store.state.settings.time)
 
 
 
@@ -294,7 +294,8 @@ function drawShapes() {
     });
 }
 function removeShape(manual=false) {
-    if (props.preview!=true&&manual==true&&hasInterval.value==true) return;
+
+    if (manual==true&&hasInterval.value==true) return;
     if (shapes.value.length>0&&!isPaused.value) {
         const randomIndex=Math.floor(Math.random()*shapes.value.length);
 
@@ -309,10 +310,10 @@ function removeShape(manual=false) {
             visiblePercentage.value=100;
 
 
-            if (props.preview===true) {
-                generateShapes();
-                startGame()
-            }
+            // if (props.preview===true) {
+            //     generateShapes();
+            //     startGame()
+            // }
         }
 
         drawShapes();

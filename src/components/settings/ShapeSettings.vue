@@ -10,7 +10,7 @@
                 Shapes
             </div>
         </div>
-        <DalliKlick v-else :key="gameDifficulty" :preview="true" :pause="false" style="height: 310px; "
+        <DalliKlick v-else :key="`${gameDifficulty}-${gameInterval}`" :preview="true" :pause="false" style="height: 310px; "
             image="https://assets.deutschlandfunk.de/FILE_6737e0eb35da9e37b9fcdda7955fb9df/1280x720.jpg?t=1621173620045" />
 
         <div class="triangle-range">
@@ -34,6 +34,7 @@ const updatePreview=ref(false);
 
 
 const gameDifficulty=computed(() => store.state.settings.difficulty);
+const gameInterval=computed(() => store.state.settings.time);
 
 
 watch(gameDifficulty, () => {
