@@ -1,4 +1,4 @@
-# Geo Dalli-Dalli
+# 🌍 Dalli-Dalli
 
 A geography game inspired by GeoGuessr and Dalli-Klick, an old German TV game. This project was built with Vue3 and Vite and is currently deployed on Vercel.
 
