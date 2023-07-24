@@ -11,7 +11,7 @@
             </div>
         </div>
         <DalliKlick v-else :key="gameDifficulty" :preview="true" :pause="false" style="height: 310px; "
-            :image="gameDifficulty===3? 'previews/rainbolt_meme.png':'previews/dalli_meme.jpg'" />
+            image="https://assets.deutschlandfunk.de/FILE_6737e0eb35da9e37b9fcdda7955fb9df/1280x720.jpg?t=1621173620045" />
 
         <div class="triangle-range">
             <input type="range" step="10" min="10" :max="gameDifficulty===3? 1000:250" v-model="numTriangles" />

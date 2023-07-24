@@ -2,7 +2,7 @@
     <div class="game-info-text">
 
         <div class="logo-container">
-            <img draggable="false" class="logo" src="game-logo.webp" width="300" height="112" />
+            <img draggable="false" class="logo" src="../../assets/game-logo.webp" width="300" height="112" />
         </div>
 
 

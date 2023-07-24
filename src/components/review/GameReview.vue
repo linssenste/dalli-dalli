@@ -14,8 +14,8 @@
 
                 <ConfettiExplosion class="hidden-confetti" v-if="showConfetti" />
 
-                <img draggable="false" style="margin-bottom: 15px; margin-top: 12px;" class="logo" src="game-logo.webp"
-                    width="275" height="102" />
+                <img draggable="false" style="margin-bottom: 15px; margin-top: 12px;" class="logo"
+                    src="../../assets/game-logo.webp" width="275" height="102" />
 
                 <div id="value" style="font-size: 100px; color: #BB2D1B;  height: 125px; font-weight: 700; z-index: 100">
                     {{store.state.score}}

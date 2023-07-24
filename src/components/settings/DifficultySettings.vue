@@ -34,7 +34,7 @@
                 class="difficulty-button" @click="gameDifficulty=3">
 
                 <img style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"
-                    src="rainbolt_smiley.png" width="20" />
+                    src="../../assets/rainbolt_smiley.png" width="20" />
             </button>
         </div>
 

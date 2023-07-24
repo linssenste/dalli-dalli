@@ -3,7 +3,7 @@
         <div class="info-text">
             <div>
                 <img v-if="difficultyMode===3" style="position: absolute; top: 50%; transform: translateY(-50%);"
-                    src="rainbolt_smiley.png" width="20" />
+                    src="../../assets/rainbolt_smiley.png" width="20" />
                 <div v-else>
                     <i class="fa-solid fa-star"></i>
                     <i v-if="difficultyMode>=1" class="fa-solid fa-star"></i>
