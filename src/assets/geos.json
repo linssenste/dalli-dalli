@@ -1,0 +1,857 @@
+{
+    "places": [
+        {
+            "name": "Eiffel Tower",
+            "difficulty": 0,
+            "countryId": "FR",
+            "latitude": "48.8584",
+            "longitude": "2.2945",
+            "shortDescription": "A wrought-iron lattice tower located on the Champ de Mars in Paris. It's one of the most recognized structures in the world.",
+            "funFact": "Did you know the Eiffel Tower grows in the summer? Heat causes the metal to expand, so the tower can grow by up to 15 cm!",
+            "id": "lkcqk45h"
+        },
+        {
+            "name": "Pyramids of Giza",
+            "difficulty": 0,
+            "countryId": "EG",
+            "latitude": "29.9792",
+            "longitude": "31.1342",
+            "shortDescription": "The last of the Seven Wonders of the Ancient World. They have stood for over 4,000 years on the Giza Plateau.",
+            "funFact": "The Great Pyramid was the tallest man-made structure in the world for over 3,800 years—until the Lincoln Cathedral was built in England in 1311!",
+            "id": "lkcqk45i"
+        },
+        {
+            "name": "Taj Mahal",
+            "difficulty": 0,
+            "countryId": "IN",
+            "latitude": "27.1751",
+            "longitude": "78.0421",
+            "shortDescription": "An ivory-white marble mausoleum on the right bank of the Yamuna river in Agra. It's widely considered a masterpiece of world heritage.",
+            "funFact": "It's said that Emperor Shah Jahan intended to build a second Taj Mahal in black marble as a mirror image, but was imprisoned by his son before he could start!",
+            "id": "lkcqk45j"
+        },
+        {
+            "name": "Sydney Opera House",
+            "difficulty": 0,
+            "countryId": "AU",
+            "latitude": "-33.8568",
+            "longitude": "151.2153",
+            "shortDescription": "A multi-venue performing arts center at Sydney Harbour. Its distinctive roof structure resembles a fleet of sailboats.",
+            "funFact": "Despite its name, the Sydney Opera House hosts more than just opera—it also offers theater, symphony, ballet, and film!",
+            "id": "lkcqk45k"
+        },
+        {
+            "name": "Christ the Redeemer",
+            "difficulty": 0,
+            "countryId": "BR",
+            "latitude": "-22.9519",
+            "longitude": "-43.2105",
+            "shortDescription": "A colossal statue of Jesus Christ at the peak of the Corcovado mountain in the Tijuca Forest National Park, Rio de Janeiro.",
+            "funFact": "The statue is struck by lightning several times a year due to its position. It has its own lightning rod installed in the statue's head!",
+            "id": "lkcqk45l"
+        },
+        {
+            "name": "Stonehenge",
+            "difficulty": 0,
+            "countryId": "GB",
+            "latitude": "51.1789",
+            "longitude": "-1.8262",
+            "shortDescription": "A prehistoric monument in Wiltshire, England. It consists of a ring of standing stones, each around 13 feet high.",
+            "funFact": "Despite its age, Stonehenge still doesn't have a confirmed purpose. Some believe it could have been an ancient alien landing pad!",
+            "id": "lkcqk45m"
+        },
+        {
+            "name": "Machu Picchu",
+            "difficulty": 0,
+            "countryId": "PE",
+            "latitude": "-13.1631",
+            "longitude": "-72.5450",
+            "shortDescription": "An ancient Incan city perched high in the Andes Mountains. Often referred to as the 'Lost City of the Incas'.",
+            "funFact": "Machu Picchu wasn't discovered by the outside world until 1911, but locals knew about it all along. It's still a mystery why the Incas abandoned this architectural masterpiece.",
+            "id": "lkcqk45n"
+        },
+        {
+            "name": "Louvre Museum",
+            "difficulty": 0,
+            "countryId": "FR",
+            "latitude": "48.8606",
+            "longitude": "2.3376",
+            "shortDescription": "The world's largest art museum and a historic monument in Paris. It's home to thousands of works of art, including the Mona Lisa.",
+            "funFact": "With nearly 10 million visitors each year, the Louvre is the world's most visited museum. Yet, if you spent 60 seconds looking at each item, it would take you over 100 days to see everything!",
+            "id": "lkcqk45o"
+        },
+        {
+            "name": "Chichen Itza",
+            "difficulty": 0,
+            "countryId": "MX",
+            "latitude": "20.6843",
+            "longitude": "-88.5678",
+            "shortDescription": "One of the largest Maya cities and it was likely to have been one of the mythical great cities. It features the colossal pyramid El Castillo.",
+            "funFact": "During the spring and autumn equinoxes, a shadow falls on the pyramid in the shape of a serpent. As the day progresses, the serpent slithers down the steps!",
+            "id": "lkcqk45q"
+        },
+        {
+            "name": "Santorini",
+            "difficulty": 1,
+            "countryId": "GR",
+            "latitude": "36.3932",
+            "longitude": "25.4615",
+            "shortDescription": "An island in the southern Aegean Sea, about 200 km southeast from Greece's mainland. Known for its stunning sunsets and blue-domed churches.",
+            "funFact": "The whole complex of Santorini islands is still an active volcano, and probably the only volcano in the world with its crater in the sea!",
+            "id": "lkcqk45r"
+        },
+        {
+            "name": "Angkor Wat",
+            "difficulty": 0,
+            "countryId": "KH",
+            "latitude": "13.4125",
+            "longitude": "103.8670",
+            "shortDescription": "A massive temple complex in Cambodia. Originally constructed as a Hindu temple, it was transformed into a Buddhist temple in the 14th century.",
+            "funFact": "Angkor Wat is the largest religious monument in the world, and it appears on Cambodia's national flag, making it the only flag in the world to feature a building!",
+            "id": "lkcqk45t"
+        },
+        {
+            "name": "Niagara Falls",
+            "difficulty": 0,
+            "countryId": "CA",
+            "latitude": "43.1065",
+            "longitude": "-79.0652",
+            "shortDescription": "A group of three waterfalls at the southern end of Niagara Gorge, spanning the border between the province of Ontario in Canada and the state of New York in the United States.",
+            "funFact": "Over six million cubic feet of water goes over the crest of the falls every minute during peak daytime hours. Talk about water pressure!",
+            "id": "lkcqk45u"
+        },
+        {
+            "name": "Petra",
+            "difficulty": 1,
+            "countryId": "JO",
+            "latitude": "30.3285",
+            "longitude": "35.4444",
+            "shortDescription": "Historically and archaeologically city in southern Jordan. It's famous for its rock-cut architecture and water conduit system.",
+            "funFact": "In the popular film 'Indiana Jones and the Last Crusade', Petra's Al Khazneh ('The Treasury') was depicted as the entrance to the final resting place of the Holy Grail!",
+            "id": "lkcqk45v"
+        },
+        {
+            "name": "Acropolis of Athens",
+            "difficulty": 0,
+            "countryId": "GR",
+            "latitude": "37.9715",
+            "longitude": "23.7257",
+            "shortDescription": "An ancient citadel located on a rocky outcrop above the city of Athens. It's home to several ancient buildings of great architectural and historical significance, including the Parthenon.",
+            "funFact": "The term 'acropolis' actually means 'high city' in Greek. While the Athens Acropolis is the most famous, there are many other cities in Greece with their own acropolis!",
+            "id": "lkcqk45y"
+        },
+        {
+            "name": "Sagrada Familia",
+            "difficulty": 1,
+            "countryId": "ES",
+            "latitude": "41.4036",
+            "longitude": "2.1744",
+            "shortDescription": "A large unfinished Roman Catholic minor basilica in Barcelona, Spain. Designed by Catalan architect Antoni Gaudí, its unique style combines Gothic and curvilinear Art Nouveau forms.",
+            "funFact": "The construction of Sagrada Familia started in 1882 and it's still not finished! The current target for completion is 2026—the centenary of Gaudí's death.",
+            "id": "lkcqk45z"
+        },
+        {
+            "name": "Moai Statues",
+            "difficulty": 0,
+            "countryId": "CL",
+            "latitude": "-27.1127",
+            "longitude": "-109.3497",
+            "shortDescription": "Mysterious large stone statues (Moai) on Easter Island in Polynesia. The island is one of the most isolated inhabited islands in the world.",
+            "funFact": "There are nearly 900 moai statues on Easter Island, but did you know they have bodies too? Excavations have revealed that the heads are attached to bodies buried beneath the earth.",
+            "id": "lkcqk460"
+        },
+        {
+            "name": "Pompeii",
+            "difficulty": 1,
+            "countryId": "IT",
+            "latitude": "40.7462",
+            "longitude": "14.4989",
+            "shortDescription": "An ancient Roman city near modern Naples, it was buried under 4 to 6 m of volcanic ash and pumice in the eruption of Mount Vesuvius in AD 79.",
+            "funFact": "Although a disastrous event, the eruption that buried Pompeii preserved daily life items like furniture, artwork, and even food. It's like looking at a snapshot of Roman life!",
+            "id": "lkcqk461"
+        },
+        {
+            "name": "Statue of Liberty",
+            "difficulty": 0,
+            "countryId": "US",
+            "latitude": "40.6892",
+            "longitude": "-74.0445",
+            "shortDescription": "A colossal neoclassical sculpture on Liberty Island in New York Harbor. The statue, a gift from France, is of a robed female figure representing Libertas, the Roman goddess of freedom.",
+            "funFact": "The seven spikes on the Statue of Liberty's crown represent the seven oceans and the seven continents of the world, indicating the universal concept of freedom.",
+            "id": "lkcqk462"
+        },
+        {
+            "name": "Uluru (Ayers Rock)",
+            "difficulty": 0,
+            "countryId": "AU",
+            "latitude": "-25.3444",
+            "longitude": "131.0369",
+            "shortDescription": "A massive sandstone monolith in the heart of the Northern Territory’s Red Centre desert. Uluru is sacred to indigenous Australians and is thought to have started forming around 550 million years ago.",
+            "funFact": "Uluru is like an iceberg - most of it is below ground. The visible part is about 348 meters high, but it extends about 2.5 kilometers below the earth's surface!",
+            "id": "lkcqk463"
+        },
+        {
+            "name": "Buckingham Palace",
+            "difficulty": 0,
+            "countryId": "GB",
+            "latitude": "51.5014",
+            "longitude": "-0.1419",
+            "shortDescription": "Located in the City of Westminster, the palace is the London residence and administrative headquarters of the monarch of the United Kingdom.",
+            "funFact": "Buckingham Palace has 775 rooms, including 19 state rooms, 52 royal and guest bedrooms, 188 staff bedrooms, 92 offices, and 78 bathrooms!",
+            "id": "lkcqk464"
+        },
+        {
+            "name": "Colosseum",
+            "difficulty": 0,
+            "countryId": "IT",
+            "latitude": "41.8902",
+            "longitude": "12.4922",
+            "shortDescription": "An oval amphitheatre in the centre of the city of Rome, Italy. It is the largest ancient amphitheatre ever built and is still the largest standing amphitheater in the world today.",
+            "funFact": "The Colosseum could hold an estimated 50,000 to 80,000 spectators at its maximum capacity. It was used for gladiatorial contests, public spectacles, and even mock sea battles!",
+            "id": "lkcqk465"
+        },
+        {
+            "name": "Matterhorn",
+            "difficulty": 2,
+            "countryId": "CH",
+            "latitude": "45.9763",
+            "longitude": "7.6586",
+            "shortDescription": "A mountain of the Alps, straddling the main watershed and border between Switzerland and Italy. Its distinctive, pyramid shape makes it one of the world's most famous mountains.",
+            "funFact": "Because of its shape, the Matterhorn was one of the last great Alpine peaks to be climbed. Also, the iconic Toblerone chocolate bar was modeled after it!",
+            "id": "lkcqk466"
+        },
+        {
+            "name": "Lake Bled",
+            "difficulty": 1,
+            "countryId": "SI",
+            "latitude": "46.3636",
+            "longitude": "14.0938",
+            "shortDescription": "A lake in the Julian Alps of Slovenia, renowned for its distinctive island church and medieval castle perched on a hill. The surrounding mountains and forests add to its enchanting beauty.",
+            "funFact": "The tradition at the island church is for a groom to carry his bride up the 99 steps to ensure a long and happy marriage. That's a workout with a reward!",
+            "id": "lkcqk46a"
+        },
+        {
+            "name": "Pena Palace",
+            "difficulty": 0,
+            "countryId": "PT",
+            "latitude": "38.7875",
+            "longitude": "-9.3900",
+            "shortDescription": "A Romanticist castle located in São Pedro de Penaferrim, in the municipality of Sintra, Portugal. The palace stands on the top of a hill in the Sintra Mountains.",
+            "funFact": "The Pena Palace was intentionally built to be visible from any point in the park, which is filled with exotic trees and has a system of secret paths and hidden tunnels.",
+            "id": "lkcqk46b"
+        },
+        {
+            "name": "Lake Baikal",
+            "difficulty": 1,
+            "countryId": "RU",
+            "latitude": "53.4129",
+            "longitude": "108.0346",
+            "shortDescription": "Situated in Siberia, Lake Baikal is the largest freshwater lake by volume in the world, containing about 23% of the world's fresh surface water. It's also considered the world's deepest and oldest lake.",
+            "funFact": "Lake Baikal is so large that it is often mistaken for a sea. It contains more water than all of the Great Lakes in North America combined!",
+            "id": "lkcqk46j"
+        },
+        {
+            "name": "Casa Batlló",
+            "difficulty": 1,
+            "countryId": "ES",
+            "latitude": "41.3917",
+            "longitude": "2.1650",
+            "shortDescription": "A renowned building in the heart of Barcelona, Spain, designed by Catalan architect Antoni Gaudí. Its unique design and vibrant colors make it a standout piece of architecture.",
+            "funFact": "Casa Batlló is locally known as Casa dels ossos (House of Bones), due to its skeletal, organic quality. It's a prime example of Gaudí's famous modernist style!",
+            "id": "lkcqk46l"
+        },
+        {
+            "name": "Meteora",
+            "difficulty": 1,
+            "countryId": "GR",
+            "latitude": "39.7217",
+            "longitude": "21.6306",
+            "shortDescription": "A rock formation in central Greece hosting one of the largest and most precipitously built complexes of Eastern Orthodox monasteries. It is a remarkable example of the post-Byzantine era.",
+            "funFact": "The name 'Meteora' means 'suspended in the air' or 'in the heavens above'. This is quite fitting, given the monasteries perch atop these gravity-defying rock formations!",
+            "id": "lkcqk46o"
+        },
+        {
+            "name": "Pena de Bernal",
+            "difficulty": 2,
+            "countryId": "MX",
+            "latitude": "20.7419",
+            "longitude": "-99.9458",
+            "shortDescription": "Located in the Mexican state of Querétaro, it's one of the tallest monoliths in the world. The town of Bernal at its foot is designated a 'Pueblo Mágico' (Magical Town) for its cultural significance.",
+            "funFact": "According to local lore, the monolith is believed to have mystical powers, and each spring equinox, people gather at its base to 'receive energy'. The climbing to the top also offers stunning views of the surrounding landscape!",
+            "id": "lkcqk46p"
+        },
+        {
+            "name": "Mount Bromo",
+            "difficulty": 2,
+            "countryId": "ID",
+            "latitude": "-7.9411",
+            "longitude": "112.9538",
+            "shortDescription": "An active volcano and part of the Tengger massif, in East Java, Indonesia. At 2,329 meters, it is not the highest peak of the massif, but is the most well known.",
+            "funFact": "The volcano belongs to the Bromo Tengger Semeru National Park. The name of Bromo derived from Javanese pronunciation of Brahma, the Hindu creator god.",
+            "id": "lkcqk46r"
+        },
+        {
+            "name": "Rainbow Mountain",
+            "difficulty": 2,
+            "countryId": "PE",
+            "latitude": "-13.8699",
+            "longitude": "-71.3025",
+            "shortDescription": "Also known as Vinicunca, is a mountain in the Andes of Peru with an altitude of 5,200 meters above sea level. It's renowned for its natural, rainbow-colored strata.",
+            "funFact": "This magnificent geological feature is said to have only recently emerged due to climate change and the melting of surrounding snow. Its rich colors are the result of sedimentary mineral layers exposed by erosion.",
+            "id": "lkcqk46v"
+        },
+        {
+            "name": "Museum Island",
+            "difficulty": 1,
+            "countryId": "DE",
+            "latitude": "52.5169",
+            "longitude": "13.4012",
+            "shortDescription": "An island in the Spree river in the central Mitte district of Berlin, Germany, home to five world-renowned museums. It is a significant complex of museums that was awarded UNESCO World Heritage status.",
+            "funFact": "During World War II, many of the museums' items were stored for safety, and the buildings were heavily damaged, some even destroyed. They have since been reconstructed and restored to their former glory.",
+            "id": "lkcqk46y"
+        },
+        {
+            "name": "Golden Gate Bridge",
+            "difficulty": 0,
+            "countryId": "US",
+            "latitude": "37.8199",
+            "longitude": "-122.4783",
+            "shortDescription": "A suspension bridge spanning the Golden Gate, the one-mile-wide strait connecting San Francisco Bay and the Pacific Ocean.",
+            "funFact": "Despite its name, the Golden Gate Bridge is actually painted 'international orange', not gold.",
+            "id": "lkdkwftd"
+        },
+        {
+            "name": "Mount Fuji",
+            "difficulty": 1,
+            "countryId": "JP",
+            "latitude": "35.3606",
+            "longitude": "138.7274",
+            "shortDescription": "Active stratovolcano and the highest peak in Japan, renowned for its symmetry and natural beauty.",
+            "funFact": "Mt. Fuji has an exceptionally symmetrical cone, which is snow-capped for about 5 months a year.",
+            "id": "lkdkwftf"
+        },
+        {
+            "name": "Tower of Pisa",
+            "difficulty": 0,
+            "countryId": "IT",
+            "latitude": "43.7230",
+            "longitude": "10.3966",
+            "shortDescription": "Bell tower of the cathedral of the Italian city of Pisa, known worldwide for its nearly four-degree lean.",
+            "funFact": "The tower began to lean during construction in the 12th century, due to soft ground which could not properly support the structure's weight.",
+            "id": "lkdkwfto"
+        },
+        {
+            "name": "Sphinx",
+            "difficulty": 0,
+            "countryId": "EG",
+            "latitude": "29.9753",
+            "longitude": "31.1376",
+            "shortDescription": "Limestone statue of a reclining sphinx, a mythical creature. It stands on the Giza Plateau on the west bank of the Nile in Giza, Egypt.",
+            "funFact": "The Great Sphinx is one of the world's largest monuments, it is also one of the most recognizable, yet its origins and early history are still debated.",
+            "id": "lkdkwftq"
+        },
+        {
+            "name": "Rakotzbrücke (Devil's Bridge)",
+            "difficulty": 2,
+            "countryId": "DE",
+            "latitude": "51.5361",
+            "longitude": "14.6345",
+            "shortDescription": "A unique and remarkable 19th-century bridge in Kromlau Park, Saxony, Germany. Its reflection when the water is still creates a stunning perfect circle.",
+            "funFact": "Rakotzbrücke is also known as the 'Devil's Bridge' due to a myth that such bridges were so miraculous they must have been built by Satan.",
+            "id": "lkdkwfu7"
+        },
+
+        {
+            "name": "Cappadocia",
+            "difficulty": 2,
+            "countryId": "TR",
+            "latitude": "38.6496",
+            "longitude": "34.8345",
+            "shortDescription": "An area in Central Anatolia in Turkey known for its unique moon-like landscape, underground cities, cave churches, and houses carved in the rocks.",
+            "funFact": "The 'Fairy Chimneys', a strange geological feature, were formed by erosion of the volcanic tuff of Cappadocia and are one of the most iconic images of the area.",
+            "id": "lkdkwfub"
+        },
+        {
+            "name": "Chefchaouen",
+            "difficulty": 2,
+            "countryId": "MA",
+            "latitude": "35.1688",
+            "longitude": "-5.2687",
+            "shortDescription": "A small town in the Rif Mountains of northwest Morocco, it’s known for its blue-washed buildings in its old town.",
+            "funFact": "The tradition of painting the walls blue is said to have been introduced by Jewish refugees in the 1930s, and is maintained today because it keeps mosquitos away.",
+            "id": "lkdkwfue"
+        },
+        {
+            "name": "Mont Saint-Michel",
+            "difficulty": 2,
+            "countryId": "FR",
+            "latitude": "48.6360",
+            "longitude": "-1.5115",
+            "shortDescription": "A small rocky island in Normandy, France, it's best known for its stunning medieval architecture, and the Abbey of Mont Saint-Michel.",
+            "funFact": "Due to varying tides surrounding the island, Mont Saint-Michel can be both a peninsula and an island in a single day.",
+            "id": "lkdkwfuf"
+        },
+        {
+            "name": "Eilean Donan Castle",
+            "difficulty": 2,
+            "countryId": "GB",
+            "latitude": "57.2736",
+            "longitude": "-5.5160",
+            "shortDescription": "One of the most recognized castles in Scotland, it's located on its own little island overlooking the Isle of Skye at the point where three great sea-lochs meet.",
+            "funFact": "The castle has appeared in numerous films and TV shows including 'Highlander', 'The World Is Not Enough', and 'Outlander'.",
+            "id": "lkdkwfug"
+        },
+        {
+            "name": "Schönbrunn Palace",
+            "difficulty": 1,
+            "countryId": "AT",
+            "latitude": "48.1848",
+            "longitude": "16.3122",
+            "shortDescription": "A former imperial summer residence located in Vienna, Austria. The 1,441-room Baroque palace is one of the most important architectural, cultural, and historical monuments in the country.",
+            "funFact": "The palace's gardens are a UNESCO World Heritage Site and have been open to the public since 1779.",
+            "id": "lkdkwfuh"
+        },
+        {
+            "name": "Château de Chambord",
+            "difficulty": 2,
+            "countryId": "FR",
+            "latitude": "47.6162",
+            "longitude": "1.5175",
+            "shortDescription": "One of the most recognizable châteaux in the world because of its very distinctive French Renaissance architecture. It's a grand country house in Chambord, France.",
+            "funFact": "The château features 426 rooms, 282 fireplaces, and 77 staircases. It is surrounded by a 20 square mile wooded park and game reserve maintained with red deer.",
+            "id": "lkdkwfuj"
+        },
+        {
+            "name": "Wat Rong Khun",
+            "difficulty": 2,
+            "countryId": "TH",
+            "latitude": "19.8245",
+            "longitude": "99.7631",
+            "shortDescription": "Better known as the White Temple, it's a privately owned, art exhibit in the style of a Buddhist temple in Chiang Rai Province, Thailand.",
+            "funFact": "The White Temple is actually a work in progress. Although it was started in 1997, the whole project won’t be completed until 2070.",
+            "id": "lkdkwfuo"
+        },
+        {
+            "name": "Salina Turda",
+            "difficulty": 2,
+            "countryId": "RO",
+            "latitude": "46.5764",
+            "longitude": "23.7872",
+            "shortDescription": "An impressive salt mine located in Durgău, Transylvania, Romania. Now turned into a futuristic theme park, it's a subterranean wonderland with a ferris wheel, mini-golf, and row boats.",
+            "funFact": "In use since the 17th century, the mine is often considered one of the coolest underground places in the world.",
+            "id": "lkdkwfuu"
+        },
+        {
+            "name": "Vernazza",
+            "difficulty": 2,
+            "countryId": "IT",
+            "latitude": "44.1349",
+            "longitude": "9.6830",
+            "shortDescription": "One of the 5 centuries-old villages that make up the Cinque Terre, on northwest Italy’s rugged Ligurian coast. Colorful houses surround its small marina.",
+            "funFact": "The Santa Margherita d'Antiochia Church with its unique octagonal tower is a signature sight in Vernazza.",
+            "id": "lkdkwfv2"
+        },
+        {
+            "name": "Huacachina",
+            "difficulty": 2,
+            "countryId": "PE",
+            "latitude": "-14.0872",
+            "longitude": "-75.7631",
+            "shortDescription": "A tiny oasis village in southwestern Peru. Called the 'Oasis of America,' it serves as a resort for local families and increasingly as an attraction for tourists drawn by the sport of sandboarding.",
+            "funFact": "According to legend, the lagoon was created when a beautiful princess removed her clothes to bathe, but a young hunter startled her and she fled, leaving the pool of water she had been bathing in to become the lagoon.",
+            "id": "lkdkwfv6"
+        },
+        {
+            "name": "Neuschwanstein Castle",
+            "difficulty": 1,
+            "countryId": "DE",
+            "latitude": "47.5576",
+            "longitude": "10.7498",
+            "shortDescription": "A 19th-century Romanesque Revival palace on a rugged hill above the village of Hohenschwangau near Füssen in southwest Bavaria, Germany. The palace was commissioned by Ludwig II of Bavaria as a retreat and in honour of Richard Wagner.",
+            "funFact": "The castle has appeared prominently in several movies and was the inspiration for Disneyland's Sleeping Beauty Castle.",
+            "id": "lkdm0xxx"
+        },
+        {
+            "name": "European Parliament",
+            "difficulty": 1,
+            "countryId": "BE",
+            "latitude": "50.8369",
+            "longitude": "4.3754",
+            "shortDescription": "The legislative branch of the European Union and one of its seven institutions. This important modern building is located in Brussels, Belgium.",
+            "funFact": "The European Parliament is the only parliamentary institution of the EU that is directly elected by EU citizens every 5 years.",
+            "id": "lkdm0xxy"
+        },
+        {
+            "name": "Great Ocean Road",
+            "difficulty": 2,
+            "countryId": "AU",
+            "latitude": "-38.6805",
+            "longitude": "143.3915",
+            "shortDescription": "An Australian National Heritage–listed stretch of road along the south-eastern coast of Australia. It's renowned for its stunning vistas of the Southern Ocean and dramatic limestone formations, like the Twelve Apostles.",
+            "funFact": "The Great Ocean Road is the world's largest war memorial, built by returned soldiers between 1919 and 1932, and is dedicated to those killed during World War I.",
+            "id": "lkdm0xy0"
+        },
+        {
+            "name": "Sigiriya",
+            "difficulty": 2,
+            "countryId": "LK",
+            "latitude": "7.9570",
+            "longitude": "80.7600",
+            "shortDescription": "An ancient rock fortress located in the northern Matale District near the town of Dambulla in the Central Province, Sri Lanka. It is often regarded as one of the oldest examples of ancient urban planning.",
+            "funFact": "On a small plateau about halfway up the side of Sigiriya rock, a gateway in the form of an enormous lion was constructed. Today, only the lion's paws remain, giving the rock its name, 'Lion's Rock'.",
+            "id": "lkdm0xy2"
+        },
+        {
+            "name": "Red Square",
+            "difficulty": 0,
+            "countryId": "RU",
+            "latitude": "55.7539",
+            "longitude": "37.6208",
+            "shortDescription": "A city square in Moscow, Russia. It separates the Kremlin, the former royal citadel and currently the official residence of the President of Russia, from a historic merchant quarter known as Kitai-gorod.",
+            "funFact": "Despite its name, the square is not named for the red bricks of the buildings around it. In Russian, 'red' (krasnaya) used to mean 'beautiful', so it's actually 'Beautiful Square'.",
+            "id": "lkdm0xy4"
+        },
+        {
+            "name": "Alesund",
+            "difficulty": 2,
+            "countryId": "NO",
+            "latitude": "62.4722",
+            "longitude": "6.1549",
+            "shortDescription": "A sea port, and is noted for its unique concentration of Art Nouveau architecture. The town of Ålesund is the administrative centre of Ålesund Municipality, as well as the principal shipping town of the Sunnmøre district.",
+            "funFact": "A devastating fire in 1904 destroyed much of Ålesund, but it was rebuilt in the Art Nouveau style, leading to its current unique aesthetic.",
+            "id": "lkdm0xya"
+        },
+        {
+            "name": "Pont des Arts",
+            "difficulty": 1,
+            "countryId": "FR",
+            "latitude": "48.8578",
+            "longitude": "2.3376",
+            "shortDescription": "A pedestrian bridge in Paris which crosses the River Seine. Known for its 'love locks', it has become a symbol of romance.",
+            "funFact": "Due to safety concerns from the weight of the 'love locks', the city of Paris started removing them in 2015, but people continue to place locks on the nearby street light posts.",
+            "id": "lkdm0xyi"
+        },
+        {
+            "name": "Ponte Vecchio",
+            "difficulty": 1,
+            "countryId": "IT",
+            "latitude": "43.7679",
+            "longitude": "11.2531",
+            "shortDescription": "A medieval stone closed-spandrel segmental arch bridge over the Arno River, in Florence, Italy. Noted for still having shops built along it, as was once common.",
+            "funFact": "Ponte Vecchio was the only bridge across the Arno that the retreating Germans did not destroy during the World War II. Instead they blocked access by demolishing the medieval buildings at each end.",
+            "id": "lkdm0xyp"
+        },
+        {
+            "name": "Ronda",
+            "difficulty": 2,
+            "countryId": "ES",
+            "latitude": "36.7407",
+            "longitude": "-5.1661",
+            "shortDescription": "A mountaintop city in Spain's Malaga province that's set dramatically above a deep gorge. This gorge (El Tajo) separates the city’s circa-15th-century new town from its old town, dating to Moorish rule.",
+            "funFact": "The Puente Nuevo ('New Bridge') over El Tajo gorge took 34 years to build and claimed the lives of 50 builders.",
+            "id": "lkdm0xys"
+        },
+        {
+            "name": "Mostar",
+            "difficulty": 2,
+            "countryId": "BA",
+            "latitude": "43.3438",
+            "longitude": "17.8081",
+            "shortDescription": "A city in southern Bosnia and Herzegovina, known for the iconic Stari Most (Old Bridge), a reconstructed medieval arched bridge.",
+            "funFact": "Diving off the Stari Most bridge is a 450-year-old tradition in Mostar. If you're brave enough, you can join local divers to plunge into the Neretva River below.",
+            "id": "lkdm0xyt"
+        },
+        {
+            "name": "Alcatraz Island",
+            "difficulty": 1,
+            "countryId": "US",
+            "latitude": "37.8267",
+            "longitude": "-122.4230",
+            "shortDescription": "Located in San Francisco Bay, Alcatraz Island is home to the abandoned prison, the site of the oldest operating lighthouse on the West Coast of the United States, early military fortifications, and natural features such as rock pools.",
+            "funFact": "During the 29 years it was in use, the jail held some of the most notorious criminals in American history such as Al Capone and Robert Franklin Stroud, the Birdman of Alcatraz.",
+            "id": "lkdm0xz0"
+        },
+        {
+            "name": "Bixby Creek Bridge",
+            "difficulty": 2,
+            "countryId": "US",
+            "latitude": "36.3739",
+            "longitude": "-121.9018",
+            "shortDescription": "Located in California on the Big Sur coast, Bixby Creek Bridge is one of the most photographed bridges in California due to its aesthetic design and location.",
+            "funFact": "The bridge was built in 1932 and is one of the tallest single-span concrete bridges in the world.",
+            "id": "lkdmhyn3"
+        },
+        {
+            "name": "Trevi Fountain",
+            "difficulty": 0,
+            "countryId": "IT",
+            "latitude": "41.9011",
+            "longitude": "12.4833",
+            "shortDescription": "The Trevi Fountain is the largest Baroque fountain in Rome and one of the most famous fountains in the world, noted for its stunning and grandiose design.",
+            "funFact": "It's tradition to throw a coin into the fountain to ensure a return trip to Rome.",
+            "id": "lkdmhyn4"
+        },
+        {
+            "name": "Moulin Rouge",
+            "difficulty": 1,
+            "countryId": "FR",
+            "latitude": "48.8826",
+            "longitude": "2.3325",
+            "shortDescription": "A famous cabaret built in 1889, located in the Paris red-light district of Pigalle. Known as the spiritual birthplace of the modern form of the can-can dance.",
+            "funFact": "The Moulin Rouge is a symbol of the Bohemian lifestyle and remains a popular tourist destination, offering musical dance entertainment for visitors from around the world.",
+            "id": "lkdmhyn9"
+        },
+        {
+            "name": "Cinque Terre",
+            "difficulty": 1,
+            "countryId": "IT",
+            "latitude": "44.1461",
+            "longitude": "9.6439",
+            "shortDescription": "A string of centuries-old seaside villages on the rugged Italian Riviera coastline. In each of the five towns, colorful houses and vineyards cling to steep terraces, harbors are filled with fishing boats and trattorias turn out seafood specialties along with the Liguria region’s famous sauce, pesto.",
+            "funFact": "The Cinque Terre area is a very popular tourist destination and has been a UNESCO World Heritage Site since 1997.",
+            "id": "lkdmhync"
+        },
+        {
+            "name": "Hagia Sophia",
+            "difficulty": 0,
+            "countryId": "TR",
+            "latitude": "41.0086",
+            "longitude": "28.9802",
+            "shortDescription": "A large museum and former cathedral, in Istanbul, Turkey. Famous in particular for its massive dome, it is considered the epitome of Byzantine architecture and is said to have changed the history of architecture.",
+            "funFact": "The Hagia Sophia was built in 537 AD at the beginning of the Middle Ages and served as an Eastern Orthodox cathedral and seat of the Patriarch of Constantinople for nearly a thousand years.",
+            "id": "lkdmhyng"
+        },
+        {
+            "name": "Montmartre",
+            "difficulty": 1,
+            "countryId": "FR",
+            "latitude": "48.8867",
+            "longitude": "2.3386",
+            "shortDescription": "A large hill in Paris's 18th arrondissement, Montmartre is primarily known for its artistic history, the white-domed Basilica of the Sacré-Cœur on its summit, and as a nightclub district.",
+            "funFact": "Many artists, including Salvador Dalí, Claude Monet, Pablo Picasso and Vincent van Gogh, had studios or worked around the community of Montmartre.",
+            "id": "lkdmhynk"
+        },
+        {
+            "name": "Notre-Dame de Paris",
+            "difficulty": 0,
+            "countryId": "FR",
+            "latitude": "48.8530",
+            "longitude": "2.3499",
+            "shortDescription": "A medieval Catholic cathedral on the Île de la Cité in the 4th arrondissement of Paris. It is considered to be one of the finest examples of French Gothic architecture.",
+            "funFact": "Notre-Dame suffered severe damage during a fire in 2019, but restoration plans are underway and the cathedral remains one of Paris' most iconic sights.",
+            "id": "lkdmhynm"
+        },
+        {
+            "name": "Rijksmuseum",
+            "difficulty": 1,
+            "countryId": "NL",
+            "latitude": "52.3599",
+            "longitude": "4.8852",
+            "shortDescription": "A Dutch national museum dedicated to arts and history in Amsterdam. It is located at the Museum Square in the borough Amsterdam South, close to the Van Gogh Museum.",
+            "funFact": "The museum has on display 8,000 objects of art and history, from their total collection of 1 million objects from the years 1200–2000, among which are some masterpieces by Rembrandt, Frans Hals, and Johannes Vermeer.",
+            "id": "lkdmhynn"
+        },
+        {
+            "name": "Fisherman's Bastion",
+            "difficulty": 2,
+            "countryId": "HU",
+            "latitude": "47.5025",
+            "longitude": "19.0344",
+            "shortDescription": "Located in Budapest, it's a terrace in neo-Gothic and neo-Romanesque style. It was designed and built between 1895 and 1902 on the plans of Frigyes Schulek.",
+            "funFact": "Its seven towers represent the seven Magyar tribes that settled in the Carpathian Basin in 895.",
+            "id": "lkdmhyns"
+        },
+        {
+            "name": "Hallgrímskirkja",
+            "difficulty": 2,
+            "countryId": "IS",
+            "latitude": "64.1417",
+            "longitude": "-21.9266",
+            "shortDescription": "A Lutheran (Church of Iceland) parish church in Reykjavík, Iceland. At 74.5 meters high, it is the largest church in Iceland and among the tallest structures in the country.",
+            "funFact": "The church is named after the Icelandic poet and clergyman Hallgrímur Pétursson.",
+            "id": "lkdmhynz"
+        },
+
+        {
+            "name": "Edinburgh Castle",
+            "difficulty": 2,
+            "countryId": "GB",
+            "latitude": "55.9486",
+            "longitude": "-3.2009",
+            "shortDescription": "A historic fortress which dominates the skyline of the city of Edinburgh from its position on the Castle Rock. Archaeologists have established human occupation of the rock since at least the Iron Age (2nd century AD).",
+            "funFact": "It was a royal residence until 1633 and is now one of Scotland's most popular tourist attractions.",
+            "id": "lkdmu78p"
+        },
+        {
+            "name": "Atomium",
+            "difficulty": 1,
+            "countryId": "BE",
+            "latitude": "50.8949",
+            "longitude": "4.3415",
+            "shortDescription": "A landmark building in Brussels, originally constructed for the 1958 Brussels World Expo (Expo 58). It stands 102 m (335 ft) tall and has nine 18 m (60 ft) diameter stainless steel clad spheres are connected so that the whole forms the shape of a unit cell of an iron crystal magnified 165 billion times.",
+            "funFact": "Tubes connect the spheres along the 12 edges of the cube and all eight vertices to the centre. They enclose escalators connecting the spheres containing exhibit halls and other public spaces.",
+            "id": "lkdmu78q"
+        },
+        {
+            "name": "Cloud Gate (The Bean)",
+            "difficulty": 1,
+            "countryId": "US",
+            "latitude": "41.8826",
+            "longitude": "-87.6233",
+            "shortDescription": "A public sculpture by Indian-born British artist Sir Anish Kapoor, that is the centerpiece of AT&T Plaza at Millennium Park in the Loop community area of Chicago.",
+            "funFact": "The sculpture was selected during a design competition. Its highly reflective, curved surface distorts the reflections of people and buildings, creating unique perspectives and photographic opportunities.",
+            "id": "lkdmu78z"
+        },
+        {
+            "name": "One World Trade Center",
+            "difficulty": 0,
+            "countryId": "US",
+            "latitude": "40.7130",
+            "longitude": "-74.0131",
+            "shortDescription": "The main building of the rebuilt World Trade Center complex in Lower Manhattan, New York City. It is the tallest building in the Western Hemisphere, and the sixth-tallest in the world.",
+            "funFact": "The building, including its antenna, reaches a total height of 1,776 feet (541 m) - a deliberate reference to the year of the United States Declaration of Independence.",
+            "id": "lkdmu790"
+        },
+        {
+            "name": "St. Basil's Cathedral",
+            "difficulty": 0,
+            "countryId": "RU",
+            "latitude": "55.7525",
+            "longitude": "37.6230",
+            "shortDescription": "An iconic Russian Orthodox cathedral located on the Red Square in Moscow. Known for its vibrant colors and unique onion-shaped domes.",
+            "funFact": "The building, now a museum, is officially known as the Cathedral of the Intercession of the Most Holy Theotokos on the Moat, or Pokrovsky Cathedral.",
+            "id": "lkdmu792"
+        },
+
+        {
+            "name": "Marienplatz",
+            "difficulty": 1,
+            "countryId": "DE",
+            "latitude": "48.1372",
+            "longitude": "11.5755",
+            "shortDescription": "Marienplatz is the central square in the city center of Munich, Germany. It has been the city's main square since 1158.",
+            "funFact": "The square is dominated by the New City Hall (Neues Rathaus). The monumental, 79 meters (259 ft) high city hall was built between 1867 and 1908 by Georg von Hauberrisser in a Gothic Revival architecture style.",
+            "id": "lkdr6ook"
+        },
+        {
+            "name": "Alexanderplatz",
+            "difficulty": 1,
+            "countryId": "DE",
+            "latitude": "52.5219",
+            "longitude": "13.4132",
+            "shortDescription": "A large public square and transport hub in the central Mitte district of Berlin. The square is named after the Russian Tsar Alexander I.",
+            "funFact": "Alexanderplatz is still one of Berlin's major commercial areas, housing various shopping malls, department stores and other large retail locations.",
+            "id": "lkdr6ool"
+        },
+        {
+            "name": "Charles Bridge",
+            "difficulty": 1,
+            "countryId": "CZ",
+            "latitude": "50.0865",
+            "longitude": "14.4114",
+            "shortDescription": "Historic bridge that crosses the Vltava river in Prague, Czech Republic. The bridge is decorated by a continuous alley of 30 statues and statuaries, most of them baroque-style.",
+            "funFact": "The bridge is 621 meters long and nearly 10 meters wide, resting on 16 arches shielded by ice guards. It was the only means of crossing the river Vltava until 1841.",
+            "id": "lkdr6oom"
+        },
+        {
+            "name": "The Shard",
+            "difficulty": 1,
+            "countryId": "GB",
+            "latitude": "51.5045",
+            "longitude": "-0.0865",
+            "shortDescription": "A 95-story supertall skyscraper, designed by the Italian architect Renzo Piano, in Southwark, London. Standing 309.6 meters (1,016 ft) high, the Shard is currently the tallest building in the United Kingdom.",
+            "funFact": "Its construction began in March 2009 and was completed in November 2012. The Shard was developed to have multiple uses, described on the building plan as 'a vertical city where people can live, work and relax'.",
+            "id": "lkdr6oon"
+        },
+        {
+            "name": "Royal Palace of Madrid",
+            "difficulty": 2,
+            "countryId": "ES",
+            "latitude": "40.4179",
+            "longitude": "-3.7142",
+            "shortDescription": "The official residence of the Spanish royal family at the city of Madrid, although now only used for state ceremonies.",
+            "funFact": "The palace has 135,000 square metres (1,450,000 sq ft) of floor space and contains 3,418 rooms. It is the largest functioning royal palace and the largest by floor area in Europe.",
+            "id": "lkdr6oop"
+        },
+        {
+            "name": "Rialto Bridge",
+            "difficulty": 1,
+            "countryId": "IT",
+            "latitude": "45.4379",
+            "longitude": "12.3359",
+            "shortDescription": "The oldest of the four bridges spanning the Grand Canal in Venice, Italy. Connecting the sestieri (districts) of San Marco and San Polo, it has been rebuilt several times since its first construction as a pontoon bridge in 1173.",
+            "funFact": "The present stone bridge, a single span designed by Antonio da Ponte, was completed in 1591 and was used to replace a wooden bridge that collapsed in 1524.",
+            "id": "lkdr6ooq"
+        },
+        {
+            "name": "Bundestag",
+            "difficulty": 0,
+            "countryId": "DE",
+            "latitude": "52.5186",
+            "longitude": "13.3762",
+            "shortDescription": "The German federal parliament. It's the place where Germany's political decisions are made, debated and passed into law.",
+            "funFact": "The Bundestag is housed in the Reichstag building in Berlin. The dome of the Reichstag is made of glass, symbolizing transparency in government.",
+            "id": "lkdr6oou"
+        },
+        {
+            "name": "Palace of Westminster",
+            "difficulty": 0,
+            "countryId": "GB",
+            "latitude": "51.4995",
+            "longitude": "-0.1248",
+            "shortDescription": "The meeting place of the House of Commons and the House of Lords, the two houses of the Parliament of the United Kingdom. The Palace lies on the north bank of the River Thames in the City of Westminster.",
+            "funFact": "One of the most prominent features of the Palace of Westminster is the iconic clock tower, which houses the bell known as Big Ben.",
+            "id": "lkdr6oox"
+        },
+        {
+            "name": "United States Capitol",
+            "difficulty": 0,
+            "countryId": "US",
+            "latitude": "38.8899",
+            "longitude": "-77.0091",
+            "shortDescription": "The home of the United States Congress and the seat of the legislative branch of the U.S. federal government.",
+            "funFact": "The Capitol was completed in the year 1800 and has been extended multiple times since then. The Capitol dome is an iconic feature of the Washington D.C. skyline.",
+            "id": "lkdr6ooy"
+        },
+        {
+            "name": "Scott Monument",
+            "difficulty": 2,
+            "countryId": "GB",
+            "latitude": "55.9524",
+            "longitude": "-3.1933",
+            "shortDescription": "A Victorian Gothic monument to Scottish author Sir Walter Scott. It's located in Princes Street Gardens in Edinburgh.",
+            "funFact": "Completed in 1844, the Scott Monument stands 200 feet tall, and visitors can climb the 287 steps to the top for views over Edinburgh.",
+            "id": "lkdr6ooz"
+        },
+        {
+            "name": "Nyhavn",
+            "difficulty": 2,
+            "countryId": "DK",
+            "latitude": "55.6761",
+            "longitude": "12.5695",
+            "shortDescription": "A 17th-century waterfront, canal and entertainment district in Copenhagen, Denmark. It is lined by brightly coloured 17th and early 18th century townhouses and bars, cafes and restaurants.",
+            "funFact": "The canal harbours many historical wooden ships, and it's one of the most iconic places in Denmark.",
+            "id": "lkdr6op0"
+        },
+        {
+            "name": "Belém Tower",
+            "difficulty": 2,
+            "countryId": "PT",
+            "latitude": "38.6916",
+            "longitude": "-9.2160",
+            "shortDescription": "A UNESCO World Heritage Site, this fortified tower located in the civil parish of Santa Maria de Belém was part of a defence system at the mouth of the Tagus river and a ceremonial gateway to Lisbon.",
+            "funFact": "The tower was commissioned by King John II to be part of a defence system at the mouth of the Tagus river and a ceremonial gateway to Lisbon.",
+            "id": "lkdr6op1"
+        },
+        {
+            "name": "Colmar",
+            "difficulty": 2,
+            "countryId": "FR",
+            "latitude": "48.0794",
+            "longitude": "7.3585",
+            "shortDescription": "A town in the Grand Est region of northeastern France, near the border with Germany. Its old town has cobblestone streets lined with half-timbered medieval and early Renaissance buildings.",
+            "funFact": "Colmar is renowned for its well-preserved old town and its numerous architectural landmarks. It's also known as the 'Capital of Alsatian Wine' - an area that is said to be the driest in France.",
+            "id": "lkdrlgcg"
+        }
+    ]
+}
