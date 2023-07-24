@@ -79,11 +79,9 @@ function calculateArea(vertices: Triangle): number {
 onMounted(async () => {
 
 
-    console.log("ON MOUNTED", props.image)
     await nextTick()
     const canvas=canvasRef.value;
 
-    console.log("ON MOUNTED!!", canvas)
     if (!canvas) return;
     context=canvas.getContext('2d');
 
@@ -154,7 +152,7 @@ function pauseKeyboardEvent(e: KeyboardEvent): void {
 
 const isPaused=ref(false)
 function toggleTimer(): void {
-    console.log("PAUSE")
+
     isPaused.value=!isPaused.value;
 }
 
@@ -171,7 +169,7 @@ function startGame(): void {
 
     visiblePercentage.value=0; // reset the visible percentage to 0
 
-    console.log("INTERVAL", hasInterval.value)
+
     if (props.preview!=true&&!hasInterval.value) return;
 
 
@@ -310,7 +308,7 @@ function removeShape(manual=false) {
         if (shapes.value.length===0) {
             visiblePercentage.value=100;
 
-            console.log("JHSJS")
+
             if (props.preview===true) {
                 generateShapes();
                 startGame()

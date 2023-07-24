@@ -45,7 +45,7 @@ const props=defineProps<{
 }>();
 
 function selectPointsEvent(roundId: number) {
-    console.log("M")
+
     emit('selected', roundId);
 }
 props.roundId;

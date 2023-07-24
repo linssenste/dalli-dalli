@@ -1,5 +1,6 @@
 <template>
     <div class="map-area" data-testid="selection-area" @mouseenter="mapFocusEvent(true)" @mouseleave="mapFocusEvent(false)">
+
         <div class="info-text">
             <div>
                 <img v-if="difficultyMode===3" style="position: absolute; top: 50%; transform: translateY(-50%);"
@@ -12,10 +13,16 @@
                     <i v-else class="fa-regular fa-star"></i>
                 </div>
             </div>
-            <div>
-                <span style="margin-left: 10px;">1/5</span>
 
-                <span style="color: #BB2D1B; margin-left: 10px;"><b>
+
+
+
+            <div>
+
+                <span style="margin-right: 10px; font-weight: 500;">{{roundId+1}} / 5</span>
+
+                <span style="color: #BB2D1B; margin-left: 10px;"><span
+                        style="margin-right: 10px; font-weight: 500;">SCORE:</span><b>
                         {{store.state.score}}</b></span>
             </div>
         </div>
@@ -48,6 +55,10 @@ interface Location {
 }
 let location=ref<Location|null>(null);
 
+const props=defineProps<{
+    roundId: number
+}>();
+props.roundId;
 const markerIcon=() => ({
     path: google.maps.SymbolPath.CIRCLE,
     fillColor: '#BB2D1B',
@@ -67,7 +78,7 @@ function mapFocusEvent(isHovering: boolean): void {
 function submitData(e: MouseEvent): void {
     e.stopImmediatePropagation();
     e.preventDefault()
-    console.log("MOIS", location.value)
+
     emit('submit', location.value);
 }
 function setMarker(event: any) {

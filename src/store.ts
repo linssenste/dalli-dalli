@@ -25,7 +25,6 @@ export const store = createStore({
         },
 
         setGameSettings(state, data) {
-            console.log("SJS");
             state.settings = { ...state.settings, ...data };
         },
     },

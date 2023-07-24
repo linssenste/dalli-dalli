@@ -61,7 +61,7 @@ const gameDifficulty=ref(1);
 
 // updae diffictulty in store on change
 watch(gameDifficulty, () => {
-    console.log("UPDATE", store.state.settings.difficulty, gameDifficulty.value)
+
     store.commit('setGameSettings', {
         difficulty: gameDifficulty.value
     });

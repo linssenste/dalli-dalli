@@ -30,8 +30,8 @@
                 v-on:loaded="imageLoaded=true" v-on:update="visibilityPercentage=$event" v-bind:image="dalliImage" />
 
             <!-- map for guessing location -->
-            <MapSelector v-if="places[currentIndex]!=null" class="game-map" data-testid="game-map-area"
-                v-on:submit="submitEvent" />
+            <MapSelector v-if="places[currentIndex]!=null" :roundId="currentIndex" class="game-map"
+                data-testid="game-map-area" v-on:submit="submitEvent" />
 
         </div>
 
