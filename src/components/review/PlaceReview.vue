@@ -354,7 +354,7 @@ const distanceMi=computed(() => {
 
 
 .selected-overlay {
-    background-color: #F0F0F0AA;
+    background-color: #FFFFFFAA;
     transition: all 50ms ease-in-out;
 
 }
