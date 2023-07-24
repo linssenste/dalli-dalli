@@ -1,5 +1,15 @@
 <template>
-    <div class="geo-dalli-area">
+    <div v-if="isIncompatible"
+        style="padding: 20px; padding-top: 50px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <img draggable="false" class="logo" src="./assets/game-logo.webp" width="300" height="112" />
+
+        <div style="font-size: 18px; font-weight: 500; max-width: 500px; margin-top: 30px;">Sorry, this game is designed for
+            Desktop
+            computers. But I'm working on it!
+        </div>
+
+    </div>
+    <div v-else class="geo-dalli-area">
 
         <!-- game settings if new game and not configures -->
         <div v-if="mode===0&&!isConfigured" class="game-settings-overlay" data-testid="game-settings-area">
@@ -81,6 +91,9 @@ const imageId=computed(() => {
 })
 
 
+const isIncompatible=computed(() => {
+    return !(window.innerWidth>window.innerHeight&&window.innerWidth>1000)
+})
 
 const dalliImage=computed(() => {
     return store.state.settings.difficulty===3? places.value[currentIndex.value].image:places.value[currentIndex.value].images[imageId.value].src.original+'?auto=compress&cs=tinysrgb&h=1250';
