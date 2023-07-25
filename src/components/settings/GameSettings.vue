@@ -1,31 +1,30 @@
 <template>
-    <div class="settings-area">
+    <!-- <div class="settings-area"> -->
 
-        <div class="game-settings">
+    <div class="game-settings">
 
-            <DifficultySettings />
-            <ShapeSettings />
-            <RemovalSettings />
+        <DifficultySettings v-on:change="updateSettingsEvent" />
+        <ShapeSettings />
+        <RemovalSettings />
 
-            <!-- start game button -->
-            <button class="start-button" @click="startGame()">
-                <i class="fa-solid fa-play "></i>
-                <div>Start Game</div>
-            </button>
+        <!-- start game button -->
+        <button class="start-button" @click="startGame()">
+            <i class="fa-solid fa-play "></i>
+            <div>Start Game</div>
+        </button>
 
 
-        </div>
+    </div>
 
-        <GameInformation />
-        <a class="copyright-link" href="https://linssenste.com">
-            <!-- <img src="heart.webp" width="30" style="margin-bottom: 10px; margin-right: 4px; transform: rotate(-4deg);" /> -->
+    <!-- <GameInformation /> -->
+    <!-- <a class="copyright-link" href="https://linssenste.com">
             <span
                 style="font-family: 'biro_script_standardregular'; font-size: 35px; margin-top: 25px; margin-right: 10px">©
             </span>
             <span style="font-family: 'biro_script_standardregular'; font-size: 25px;">Steffen Linßen</span>
-        </a>
+        </a> -->
 
-    </div>
+    <!-- </div> -->
 </template>
 
 
@@ -47,6 +46,10 @@ onMounted(() => {
     document.title=`GEODALLI`;
 })
 
+
+function updateSettingsEvent(data: any) {
+    store.commit('setGameSettings', data)
+}
 function startGame(): void {
     store.commit('setGameSettings', {
         configured: true
@@ -80,8 +83,10 @@ function startGame(): void {
 .game-settings {
     position: relative;
     display: flex;
+    padding: 5px;
     flex-direction: column;
-    width: 500px;
+    width: 100%;
+    max-width: 450px;
 }
 
 .start-button {

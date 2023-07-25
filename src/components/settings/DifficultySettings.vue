@@ -1,5 +1,18 @@
 <template>
     <div>
+
+        <!-- info text about the level -->
+        <div data-testid="difficulty-button-info-text" class="level-info">
+            <i class="fa-solid fa-star" style="font-size: 19px; color: #F8DA5F;" />
+            <span data-testid="difficulty-level-text" class="level-text"><b>Level
+                    {{gameDifficulty+1}}:</b></span>
+            <span data-testid="difficulty-description-text" class="description-text">
+                <span v-if="gameDifficulty==0">tourist destinations</span>
+                <span v-else-if="gameDifficulty==1">well-known places</span>
+                <span v-else-if="gameDifficulty==2">hidden gems</span>
+                <span v-else>Street-View snapshots</span>
+            </span>
+        </div>
         <div class="button-row">
 
             <!-- level 3: easy mode button -->
@@ -35,34 +48,26 @@
 
                 <img style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"
                     src="../../assets/rainbolt_smiley.png" width="20" />
+
             </button>
         </div>
 
-        <!-- info text about the level -->
-        <div data-testid="difficulty-button-info-text" class="level-info">
-            <i class="fa-solid fa-star" style="font-size: 19px; color: #F8DA5F;" />
-            <span data-testid="difficulty-level-text" class="level-text"><b v-if="gameDifficulty!=3">Level
-                    {{gameDifficulty+1}}:</b><b v-else>Madness:</b></span>
-            <span data-testid="difficulty-description-text" class="description-text">
-                <span v-if="gameDifficulty==0">iconic tourist destinations</span>
-                <span v-else-if="gameDifficulty==1">well-known places</span>
-                <span v-else-if="gameDifficulty==2">hidden gems</span>
-                <span v-else>random Street-View snapshots</span>
-            </span>
-        </div>
+
     </div>
 </template>
 
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
-import { store } from '../../store';
+
+const emit=defineEmits(['change'])
+
 const gameDifficulty=ref(1);
 
-// updae diffictulty in store on change
+
 watch(gameDifficulty, () => {
 
-    store.commit('setGameSettings', {
+    emit('change', {
         difficulty: gameDifficulty.value
     });
 })
@@ -73,65 +78,58 @@ watch(gameDifficulty, () => {
 <style scoped>
 .button-row {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    margin: 10px 0;
 }
 
 .level-info {
     height: 60px;
-    margin: 5px;
-    margin-bottom: 20px;
-    background-color: #F0F0F0;
+    background-color: #f0f0f0;
     padding-left: 20px;
     border-radius: 12px;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: start;
     font-size: 17px;
 }
 
-
 .difficulty-button {
-    margin: 5px;
     position: relative;
-    height: 50px;
-    min-width: 50px;
-    border-radius: 50px;
-    color: #F8DA5F;
-    background-color: #F0F0F0;
-    transition: all 200ms;
-    border: 2px solid transparent
+    height: 48px;
+    min-width: 48px;
+    border-radius: 24px;
+    color: #f8da5f;
+    background-color: #f0f0f0;
+    transition: border-color 200ms;
+    padding: 0 13px;
+    border: 2px solid transparent;
 }
 
 .difficulty-button i {
     margin: 1px;
     margin-top: 2px;
-    font-size: 18px;
+    font-size: 19px;
 }
 
 .difficulty-button:hover {
-
-    transition: all 200ms;
-    border: 2px solid #BABABA
+    border-color: #bababa;
 }
 
 .selected-difficulty {
-    background-color: #F8DA5F;
+    background-color: #f8da5f;
     color: white;
-    transition: all 200ms;
-
 }
 
-.description-text {
-    margin-left: 10px;
-    letter-spacing: .5px;
-    text-transform: uppercase;
-}
-
+.description-text,
 .level-text {
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.description-text {
+    margin-left: 6px;
+}
+
+.level-text {
     margin-left: 15px;
 }
 </style>

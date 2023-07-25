@@ -1,16 +1,14 @@
 <template>
     <div class="shape-settings-area">
 
-        <div class="shape-type-settings">
-            <i class="fa-solid fa-image" />Dalli Settings:
-        </div>
+
         <div v-if="updatePreview" class="shape-overlay">
             <div class="shape-count-overlay">
                 <b>{{numTriangles}}</b>
                 Shapes
             </div>
         </div>
-        <DalliKlick v-else :key="`${gameDifficulty}-${gameInterval}`" :preview="true" :pause="false" style="height: 310px; "
+        <DalliKlick v-else :key="`${gameDifficulty}-${gameInterval}`" :preview="true" :pause="false" class="dalli-preview"
             image="https://assets.deutschlandfunk.de/FILE_6737e0eb35da9e37b9fcdda7955fb9df/1280x720.jpg?t=1621173620045" />
 
         <div class="triangle-range">
@@ -72,23 +70,25 @@ watch(numTriangles, () => {
 
 
 <style scoped>
-.shape-settings-area {
-    width: 485px;
-    margin: 5px;
-    margin-top: 10px;
-    height: 360px;
+.dalli-preview {
     position: relative;
-    border-radius: 12px;
+    width: 100%;
+    aspect-ratio: 16/9 !important;
+    background-color: red;
+    margin-bottom: 50px;
+}
+
+.shape-settings-area {
+    width: 100%;
+    position: relative;
     overflow: hidden;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-    background-color: #F0F0F0
+
 }
 
 
 .shape-type-settings {
-    position: absolute;
-    top: 13px;
+    position: relative;
+
     font-size: 17px;
     font-weight: 600;
     text-transform: uppercase;

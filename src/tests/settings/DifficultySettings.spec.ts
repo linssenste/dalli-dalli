@@ -28,24 +28,7 @@ describe("difficulty level selector buttons + info text", () => {
         expect(descriptionText.text()).toContain("hidden gems");
     });
 
-    it("renders 'Madness' difficulty correctly", async () => {
-        const wrapper = mount(DifficultySettings);
-
-        const button = wrapper.find('[data-testid="difficulty-button-4"]');
-        await button.trigger("click");
-
-        const levelText = wrapper.find('[data-testid="difficulty-level-text"]');
-        const descriptionText = wrapper.find(
-            '[data-testid="difficulty-description-text"]'
-        );
-
-        expect(levelText.text()).toContain("Madness");
-        expect(descriptionText.text()).toContain(
-            "random Street-View snapshots"
-        );
-    });
-
-    it("renders 'Level 1: iconic tourist destinations' when gameDifficulty is 0", async () => {
+    it("renders 'Level 1: tourist destinations' when gameDifficulty is 0", async () => {
         const wrapper = mount(DifficultySettings);
 
         const button = wrapper.find('[data-testid="difficulty-button-1"]');
@@ -57,7 +40,7 @@ describe("difficulty level selector buttons + info text", () => {
         );
 
         expect(levelText.text()).toContain("Level 1");
-        expect(descriptionText.text()).toContain("iconic tourist destinations");
+        expect(descriptionText.text()).toContain("tourist destinations");
     });
 
     it("renders 'Level 3: hidden gems' when gameDifficulty is 2", async () => {
@@ -144,5 +127,41 @@ describe("difficulty level selector buttons + info text", () => {
         // Click the button again
         await button.trigger("click");
         expect(button.classes()).toContain("selected-difficulty");
+    });
+
+    it("emits 'change' event with the correct data when difficulty level is updated", async () => {
+        const wrapper = mount(DifficultySettings);
+
+        // Click the first button to update difficulty level to 0
+        const button1 = wrapper.find('[data-testid="difficulty-button-1"]');
+        await button1.trigger("click");
+        let emittedEvent = wrapper.emitted("change");
+        expect(emittedEvent).toBeDefined();
+        expect(emittedEvent?.length).toBe(1);
+        expect(emittedEvent![0]).toEqual([{ difficulty: 0 }]);
+
+        // Click the second button to update difficulty level to 1
+        const button2 = wrapper.find('[data-testid="difficulty-button-2"]');
+        await button2.trigger("click");
+        emittedEvent = wrapper.emitted("change");
+        expect(emittedEvent).toBeDefined();
+        expect(emittedEvent?.length).toBe(2);
+        expect(emittedEvent![1]).toEqual([{ difficulty: 1 }]);
+
+        // Click the third button to update difficulty level to 2
+        const button3 = wrapper.find('[data-testid="difficulty-button-3"]');
+        await button3.trigger("click");
+        emittedEvent = wrapper.emitted("change");
+        expect(emittedEvent).toBeDefined();
+        expect(emittedEvent?.length).toBe(3);
+        expect(emittedEvent![2]).toEqual([{ difficulty: 2 }]);
+
+        // Click the fourth button to update difficulty level to 3 (Madness)
+        const button4 = wrapper.find('[data-testid="difficulty-button-4"]');
+        await button4.trigger("click");
+        emittedEvent = wrapper.emitted("change");
+        expect(emittedEvent).toBeDefined();
+        expect(emittedEvent?.length).toBe(4);
+        expect(emittedEvent![3]).toEqual([{ difficulty: 3 }]);
     });
 });

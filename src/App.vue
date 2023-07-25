@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isIncompatible"
+    <!-- <div v-if="isIncompatible"
         style="padding: 20px; padding-top: 50px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
         <img draggable="false" class="logo" src="./assets/game-logo.webp" width="300" height="112" />
 
@@ -9,8 +9,8 @@
             computers. But I'm working on it!
         </div>
 
-    </div>
-    <div v-else class="geo-dalli-area">
+    </div> -->
+    <div class="geo-dalli-area">
 
         <!-- game settings if new game and not configures -->
         <div v-if="mode===0&&!isConfigured" class="game-settings-overlay" data-testid="game-settings-area">
@@ -292,6 +292,7 @@ async function loadGamePlaces(): Promise<void> {
 }
 
 .game-settings-overlay {
+    overflow-x: hidden;
     position: absolute;
     top: 0;
     left: 0;

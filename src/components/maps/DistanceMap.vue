@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 import { onMounted, watch, computed, ref } from 'vue';
-import { GoogleMap, Marker, Polyline, Circle } from 'vue3-google-map';
+import { GoogleMap, Marker, Polyline } from 'vue3-google-map';
 const apiKey=import.meta.env.VITE_API_KEY;
 
 
@@ -88,15 +88,4 @@ const path=computed(() => {
     };
 });
 
-const circle=computed(() => {
-    return {
-        center: props.location,
-        radius: 500,
-        strokeColor: "#CC2029",
-        strokeOpacity: 1.0,
-        strokeWeight: 4,
-        fillColor: "#CC2029",
-        fillOpacity: 0.35,
-    }
-})
 </script>
