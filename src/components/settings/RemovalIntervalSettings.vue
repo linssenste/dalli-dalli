@@ -1,15 +1,11 @@
 <template>
     <div>
 
-        <div class="shape-removal-settings">
-            <i class="fa-solid fa-stopwatch" />
-
-            Triangle Removal interval:
-        </div>
         <div class="time-range">
-            <input type="range" step="250" min="0" style="width: calc(100% - 100px); margin-left: 2px; " max="10000"
-                v-model="removeTiming" />
-            <div class="time-text"> <span v-if="removeTiming>0">{{removalTimeText}}</span> <span v-else>MANUAL</span></div>
+
+            <input data-testid="input-range" type="range" step="1000" min="0" max="10000" v-model="removeTiming" />
+            <div data-testid="time-text" class="time-text"> <span v-if="removeTiming>0">{{removalTimeText}}</span> <span
+                    v-else>MANUAL</span></div>
         </div>
     </div>
 </template>
@@ -17,16 +13,14 @@
 
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue';
-import { store } from '../../store';
-const removeTiming=ref(1000);
+
+const emit=defineEmits(['update'])
+const removeTiming=ref(0);
 
 
 
 watch(removeTiming, () => {
-    store.commit('setGameSettings', {
-        interval: removeTiming.value>0? true:false,
-        time: removeTiming.value
-    });
+    emit('update', removeTiming.value)
 })
 
 
@@ -40,23 +34,25 @@ const removalTimeText=computed(() => {
 
 <style scoped>
 .time-text {
-    color: #808080;
+    color: #505050;
     letter-spacing: 1px;
+    font-weight: 500 !important;
     padding-top: 15px
 }
 
 .shape-removal-settings {
 
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 17px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: .5px;
+    letter-spacing: 1px;
     margin-left: 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
     z-index: 10;
+    color: #303030;
     width: 100%;
     text-align: start;
 }
@@ -72,7 +68,8 @@ const removalTimeText=computed(() => {
     margin-left: 5px;
 
     margin-bottom: 15px;
-    width: calc(100% - 20px);
+
+    margin-left: 2px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -83,14 +80,29 @@ const removalTimeText=computed(() => {
 
 /* Custom styles for the slider */
 .time-range input[type="range"] {
+
     -webkit-appearance: none;
-    width: 100%;
+    width: calc(100% - 90px);
     margin-top: 17px;
     height: 8px;
     border-radius: 5px;
-    background-color: #e0e0e0;
-    outline: none;
+    transition: all 100ms;
+    background-color: #f0f0f0;
     /* Remove the default focus outline */
+}
+
+.time-range input[type="range"]:active {
+
+    background-color: #e0e0e0;
+    transition: all 100ms;
+
+}
+
+.time-range input[type="range"]:hover {
+
+    background-color: #e0e0e0;
+    transition: all 100ms;
+
 }
 
 /* Styling for the slider thumb (WebKit-based browsers) */
@@ -98,12 +110,13 @@ const removalTimeText=computed(() => {
     -webkit-appearance: none;
     width: 20px;
     height: 20px;
-    background-color: #A0A0A0;
+    background-color: #505050;
     /* Default unselected color */
     border-radius: 50%;
     cursor: pointer;
-    border: none;
 
+
+    border: 2px solid white;
     transition: all 200ms;
     /* Remove the border */
 }
@@ -111,7 +124,7 @@ const removalTimeText=computed(() => {
 /* Styling for the slider thumb when active/hovering (WebKit-based browsers) */
 .time-range input[type="range"]:active::-webkit-slider-thumb,
 .time-range input[type="range"]:hover::-webkit-slider-thumb {
-    background-color: #BB2D1B;
+    background-color: #303030;
 
     /* border: 2px solid #BABABA; */
     transition: all 200ms;
@@ -122,20 +135,22 @@ const removalTimeText=computed(() => {
 .time-range input[type="range"]::-moz-range-thumb {
     width: 20px;
     height: 20px;
-    background-color: #A0A0A0;
+    border: 2px solid white;
+    background-color: #505050;
     /* Default unselected color */
     border-radius: 50%;
     cursor: pointer;
 
     transition: all 200ms;
-    border: none;
+
     /* Remove the border */
 }
 
 /* Styling for the slider thumb when active/hovering (Firefox) */
 .time-range input[type="range"]:active::-moz-range-thumb,
 .time-range input[type="range"]:hover::-moz-range-thumb {
-    background-color: #BB2D1B;
+    background-color: #303030;
+
     /* border: 2px solid #BABABA; */
     transition: all 200ms;
     /* Color when holding/sliding */

@@ -4,8 +4,7 @@
     <div class="game-settings">
 
         <DifficultySettings v-on:change="updateSettingsEvent" />
-        <ShapeSettings />
-        <RemovalSettings />
+        <ShapeSettings v-on:update="updateSettingsEvent" />
 
         <!-- start game button -->
         <button class="start-button" @click="startGame()">
@@ -31,12 +30,10 @@
 
 <script lang="ts" setup>
 
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import ShapeSettings from './ShapeSettings.vue';
 import DifficultySettings from './DifficultySettings.vue';
-import RemovalSettings from './RemovalSettings.vue';
 import { store } from '../../store';
-import GameInformation from './GameInformation.vue';
 
 const emit=defineEmits(['start'])
 
@@ -47,12 +44,14 @@ onMounted(() => {
 })
 
 
+const settings=ref(store.state.settings)
 function updateSettingsEvent(data: any) {
-    store.commit('setGameSettings', data)
+    settings.value={ ...settings.value, ...data }
 }
 function startGame(): void {
     store.commit('setGameSettings', {
-        configured: true
+        configured: true,
+        ...settings.value
     })
 
     emit('start')

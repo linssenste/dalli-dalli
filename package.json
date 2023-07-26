@@ -12,13 +12,16 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.4.0",
         "axios": "^1.4.0",
+        "d3-delaunay": "^6.0.4",
         "delaunator": "^5.0.0",
         "geolib": "^3.3.4",
+        "konva": "^9.2.0",
         "ts-exif-parser": "^0.2.2",
         "uniqid": "^5.4.0",
         "vue": "^3.3.4",
         "vue-confetti-explosion": "^1.0.2",
         "vue-image-zoomer": "^2.2.3",
+        "vue-router": "^4.0.13",
         "vue3-google-map": "^0.15.0",
         "vuex": "^4.0.2"
     },

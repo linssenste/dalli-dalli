@@ -4,11 +4,10 @@ export const store = createStore({
     state() {
         return {
             settings: {
-                configured: false,
                 difficulty: 1,
-                interval: true,
-                triangles: 50,
-                time: 1000,
+                interval: 0,
+                shapes: 50,
+                type: "voronoi",
             },
             score: 0,
             scoreList: [],
@@ -25,6 +24,7 @@ export const store = createStore({
         },
 
         setGameSettings(state, data) {
+            console.log("SET");
             state.settings = { ...state.settings, ...data };
         },
     },
