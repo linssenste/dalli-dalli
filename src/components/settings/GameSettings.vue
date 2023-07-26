@@ -1,8 +1,12 @@
 <template>
     <!-- <div class="settings-area"> -->
 
+
     <div class="game-settings">
 
+        <!-- <div class="logo-container" style="padding-bottom: 50px; padding-top: 50px!important">
+            <img draggable="false" class="logo" src="../../assets/game-logo.webp" width="300" height="112" />
+        </div> -->
         <DifficultySettings v-on:change="updateSettingsEvent" />
         <ShapeSettings v-on:update="updateSettingsEvent" />
 
@@ -84,6 +88,7 @@ function startGame(): void {
     display: flex;
     padding: 5px;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     max-width: 450px;
 }

@@ -12,6 +12,7 @@
                 <span v-else-if="gameDifficulty==2">hidden gems</span>
                 <span v-else>Street-View snapshots</span>
             </span>
+
         </div>
         <div class="button-row">
 
@@ -46,13 +47,30 @@
             <button data-testid="difficulty-button-4" :class="{ 'selected-difficulty': gameDifficulty==3 }"
                 class="difficulty-button" @click="gameDifficulty=3">
 
-                <img style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"
-                    src="../../assets/rainbolt_smiley.png" width="20" />
+                <i class="fa-solid fa-street-view"
+                    style="color: #505050; position: absolute; top: calc(50% - 2px); left: calc(50% - .5px); transform: translate(-50%, -50%);" />
 
             </button>
         </div>
 
 
+        <div v-if="gameDifficulty===3"
+            style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+            <span
+                style="font-size: 17px; text-transform: uppercase; letter-spacing: .5px; color: #303030; font-weight: 500;">Street
+                view difficulty:</span>
+            <div>
+                <button class="icon-button" :style="streetViewDifficulty!==1? 'color: #30303040':''"
+                    v-on:click="streetViewDifficulty=1" style="margin: 5px;"><i
+                        class="fa-solid fa-landmark-dome" /></button>
+                <button class="icon-button" :style="streetViewDifficulty!==2? 'color: #30303040':''"
+                    v-on:click="streetViewDifficulty=2" style="margin: 5px;"><i class="fa-solid fa-city" /></button>
+
+                <button class="icon-button" :style="streetViewDifficulty!==3? 'color: #30303040':''"
+                    v-on:click="streetViewDifficulty=3" style="margin: 5px; margin-right: 0px;"><i
+                        class="fa-solid fa-mountain" /></button>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -63,7 +81,7 @@ import { ref, watch } from 'vue';
 const emit=defineEmits(['change'])
 
 const gameDifficulty=ref(1);
-
+const streetViewDifficulty=ref(1);
 
 watch(gameDifficulty, () => {
 

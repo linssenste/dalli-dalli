@@ -137,8 +137,8 @@ watch(numTriangles, () => {
 .triangle-range {
 
 
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-top: 25px;
+    margin-bottom: 15px;
     align-items: center;
     justify-content: center;
 

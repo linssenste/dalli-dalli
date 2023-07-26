@@ -30,6 +30,7 @@ watch(shapeType, () => {
 <style scoped>
 .button-row {
     position: relative;
+    margin-top: 5px;
     margin-bottom: 20px;
     display: flex;
     flex-direction: row;
