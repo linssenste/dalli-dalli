@@ -30,7 +30,7 @@
 
         </div>
         <div style="height: 30px; ">
-            <TimerProgress data-testid="image-timer" v-if="settings.interval!=0&&!updatePreview"
+            <TimerProgress :preview="true" data-testid="image-timer" v-if="settings.interval!=0&&!updatePreview"
                 v-on:update="toggleShapeReveal=!toggleShapeReveal" :interval="parseInt(String(settings.interval))"
                 style="border-bottom-left-radius: 7px; border-bottom-right-radius: 7px; overflow: hidden;" />
             <div v-else-if="!updatePreview" data-testid="image-manual-text"

@@ -1,7 +1,7 @@
 <template>
-    <div class="points-progress-container">
+    <div class="points-progress-container" data-testid="progress-base">
 
-        <div class="points-progress-bar"
+        <div class="points-progress-bar" data-testid="progress-bar"
             :style="`width: calc(${score/5000}*100% + 50px); justify-content: ${score>=500? 'start; padding-left: 20px':'center'}`">
 
 

@@ -5,9 +5,9 @@
         <div class="score-map-area" :id="reviewIndex==-1? 'honeycomb':''">
 
             <!-- round map review (distance between points) -->
-            <DistanceMap v-if="places!=null&&reviewIndex>=0&&reviewIndex<5" class="round-map"
-                :location="{ lat: parseFloat(places[reviewIndex].latitude), lng: parseFloat(places[reviewIndex].longitude) }"
-                :guess="places[reviewIndex].guess" />
+            <DistanceMap v-if="data.places!=null&&reviewIndex>=0&&reviewIndex<5" class="round-map"
+                :location="{ lat: parseFloat(data.places[reviewIndex].lat), lng: parseFloat(data.places[reviewIndex].lng) }"
+                :guess="data.places[reviewIndex].guess" />
 
             <!-- score counter/landing view -->
             <div v-else class="overview-text">
@@ -18,7 +18,7 @@
                     src="../../assets/game-logo.webp" width="275" height="102" />
 
                 <div id="value" style="font-size: 100px; color: #BB2D1B;  height: 125px; font-weight: 700; z-index: 100">
-                    {{store.state.score}}
+                    {{totalScore}}
                 </div>
                 <div
                     style="font-size: 20px;text-transform: uppercase; z-index: 10000; letter-spacing: 1px; font-weight: 500; color: black">
@@ -29,12 +29,12 @@
                 </div>
             </div>
 
-            <button v-on:click.stop.prevent="newGameEvent()" class="new-game-button">
+            <button v-on:click.stop.prevent="newGameEvent()" class="new-game-button action-button">
 
                 <i class="fa-solid fa-arrow-rotate-left" />Play again
             </button>
 
-            <button v-if="reviewIndex!=-1" v-on:click.stop.prevent="reviewIndex=-1" class="close-button"><i
+            <button v-if="reviewIndex!=-1" v-on:click.stop.prevent="reviewIndex=-1" class="icon-button close-button"><i
                     class="fa-solid fa-xmark" /></button>
 
         </div>
@@ -42,25 +42,28 @@
 
 
         <div
-            style="display: flex;  height: 50px; flex-direction: row; justify-content: space-between; align-items: center; margin: 30px; margin-top: 20px; margin-bottom: 20px;">
-            <div style="font-size: 25px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
-                <span v-if="reviewIndex==-1">Game Breakdown:</span>
-                <span v-else>ROUND {{reviewIndex+1}}:</span>
-            </div>
+            style="display: flex;  height: 50px; flex-direction: row; justify-content: space-between; align-items: center;  margin: 30px; margin-top: 20px; margin-bottom: 20px;">
+            <div style="font-size: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                <span v-if="reviewIndex==-1" style="margin: 0 auto">Game Breakdown</span>
 
-            <RoundStatsCards v-if="places!=null&&reviewIndex>=0&&reviewIndex<5" :score="store.state.scoreList[reviewIndex]"
-                :place="places[reviewIndex]" />
+
+                <span v-else>Round {{reviewIndex+1}}</span>
+            </div>
+            <span v-if="reviewIndex==-1"
+                style="font-family: 'biro_script_standardregular'; font-size: 30px;">{{gamePhrase}}</span>
+
+            <RoundStats v-else-if="data.places!=null&&reviewIndex>=0&&reviewIndex<5" :score="data.places[reviewIndex].score"
+                :place="data.places[reviewIndex]" style="gap: 20px" />
 
 
         </div>
 
-        <PointsBreakdownChart :roundId="reviewIndex" v-on:selected="reviewIndex=$event" />
+        <PointsBreakdownChart :data="data" :roundId="reviewIndex" v-on:selected="reviewIndex=$event" />
 
-        <div v-if="places!=null" class="image-review">
-            <div v-for="(place, index) in places" class="image-area">
+        <div v-if="data.places!=null" class="image-review">
+            <div v-for="(place, index) in data.places" class="image-area">
                 <!-- {{place}} -->
-                <div v-on:click.stop.prevent="reviewIndex!=index? reviewIndex=index:reviewIndex=-1"
-                    :style="reviewIndex==index? 'color: #BB2D1B; font-weight: 700':''"
+                <div :style="reviewIndex==index? 'color: #303030!important; font-weight: 600;':''"
                     style="position: relative;height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
 
                     <!-- <div
@@ -70,9 +73,13 @@
                             place.longitude}}</span><span v-else>{{place.name}}</span>
                     </div> -->
 
-                    <img draggable="false" :width="reviewIndex==index? 290:195" style="transition: all 150ms linear;"
-                        :src="store.state.settings.difficulty===3? place.image:place.images[place.imageId].src.original+'?auto=compress&cs=tinysrgb&h=350'" />
-
+                    <img v-on:click.stop.prevent="reviewIndex!=index? reviewIndex=index:reviewIndex=-1" draggable="false"
+                        :width="reviewIndex==index? 240:150" style="transition: all 150ms linear;"
+                        :src="data.settings.difficulty===3? place.image:place.images[place.imageId].src+'?auto=compress&cs=tinysrgb&h=300'" />
+                    <div :style="`opacity: ${reviewIndex==index? 1:0}; width: ${reviewIndex==index? 200:120};`"
+                        class="place-name"><span v-if="place.name!=null">{{place.name}}
+                        </span><span v-else>ROUND {{index+1
+                        }}</span></div>
                 </div>
             </div>
 
@@ -84,16 +91,19 @@
 
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 
 import DistanceMap from '../maps/DistanceMap.vue';
-import { store } from '../../store';
 import PointsBreakdownChart from './PointsBreakdownChart.vue';
-import RoundStatsCards from './RoundStatsCards.vue';
+import RoundStats from './RoundStats.vue';
 import ConfettiExplosion from "vue-confetti-explosion";
-
+import { GameLocation, GameSettings } from '../settings/GameSetup.vue';
+import { perfectScorePhrases, highScorePhrases, midScorePhrases, lowScorePhrases, minScorePhrases } from '../../plugins/handwork';
 const props=defineProps<{
-    places: any[],
+    data: {
+        places: GameLocation[],
+        settings: GameSettings
+    },
 }>()
 
 
@@ -115,7 +125,18 @@ function animateValue(obj, start, end, duration) {
     };
     window.requestAnimationFrame(step);
 }
+const totalScore=computed(() => {
+    let score=0;
+    for (let i=0; i<props.data.places.length; i++) {
+        score+=props.data.places[i].score;
+    }
+    return score;
+});
+
+const gamePhrase=ref('Good job!')
 onMounted(() => {
+    gamePhrase.value=generatePhrase(totalScore.value);
+
     const obj=document.getElementById("value");
 
 
@@ -123,8 +144,8 @@ onMounted(() => {
 
 
 
-    animateValue(obj, 0, store.state.score, 1500);
-    if (store.state.score>=20000) {
+    animateValue(obj, 0, totalScore.value, 1500);
+    if (totalScore.value>=20000) {
 
 
         setTimeout(() => {
@@ -137,10 +158,30 @@ onMounted(() => {
 })
 
 
+function generatePhrase(score: number): string {
+
+    let phrases;
+
+    if (score>=25000) {
+        phrases=perfectScorePhrases;
+    } else if (score>=20000) {
+        phrases=highScorePhrases;
+    } else if (score>=15000) {
+        phrases=midScorePhrases;
+    } else if (score>=5000) {
+        phrases=lowScorePhrases;
+    } else {
+        phrases=minScorePhrases;
+    }
+
+    const randomIndex=Math.floor(Math.random()*phrases.length);
+    return phrases[randomIndex];
+}
 
 
 
-props.places;
+
+props.data;
 </script>
 
 
@@ -162,7 +203,7 @@ props.places;
 
 .score-map-area {
     width: 100%;
-    height: 300px !important;
+    height: 320px !important;
     position: relative;
 }
 
@@ -170,35 +211,7 @@ props.places;
     position: absolute;
     top: 15px;
     left: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    background-color: #BB2D1BEE;
-    padding: 10px;
-    border-radius: 25px;
-
-    width: 40px;
-    height: 40px;
-    display: flex;
-    color: white;
-    flex-direction: row;
-    align-items: center;
-    transition: all 200ms;
-    box-shadow: 2px 2px 15px 2px #00000033;
-    border: none !important
-}
-
-.close-button i {
-    position: absolute;
-    top: 50%;
-    font-size: 20px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.close-button:hover {
-    background-color: #BB2D1B;
-    transition: all 200ms;
-
+    z-index: 100
 }
 
 .new-game-button {
@@ -206,26 +219,12 @@ props.places;
     position: absolute;
     top: 15px;
     right: 15px;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    background-color: #BB2D1BEE;
-    padding: 10px;
-    border-radius: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    transition: all 200ms;
-    border: none !important;
+
     z-index: 100;
 
 }
 
 .new-game-button:hover {
-    background-color: #BB2D1B;
-    transition: all 200ms;
     transform: scale(1.01);
 }
 
@@ -234,8 +233,13 @@ props.places;
     transition: all 750ms;
 }
 
-.new-game-button i {
-    margin-right: 10px;
+.place-name {
+    color: #505050;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    user-select: none;
+
 }
 
 .fade-border {
@@ -308,10 +312,9 @@ props.places;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
-    align-items: center;
-    align-content: center;
+    align-items: start;
 
-    width: 100%;
+    // width: 100%;
     /* background-color: red; */
     height: 100%;
 
@@ -319,7 +322,7 @@ props.places;
     overflow-x: auto;
     padding: 0;
     margin: 0;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .image-review img {
@@ -332,8 +335,12 @@ props.places;
 .image-area {
     position: relative;
 
-    font-weight: 500;
-    height: 300px;
+    font-weight: 500 !important;
+    // height: 280px;
+    transition: all 100ms ease-in-out;
+}
+
+.image-area:hover div {
     transition: all 100ms ease-in-out;
 }
 
@@ -341,7 +348,12 @@ props.places;
     color: #BB2D1B
 }
 
-.image-area:hover img {
+.image-area img {
+    cursor: pointer;
+}
+
+.image-area:hover img:hover {
+    opacity: 1 !important;
     transform: scale(1.02);
     transition: all 100ms ease-in-out;
 }

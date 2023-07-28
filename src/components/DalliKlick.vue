@@ -1,8 +1,6 @@
 <template>
     <div class="game-wrapper">
-        <div v-if="!imageLoaded" class="loading-overlay">
-            <LoadingAnimation />
-        </div>
+
         <div class="header" v-if="imageLoaded">
             <div class="difficulty-info">
                 <i v-if="data.settings.difficulty===3"
@@ -65,13 +63,12 @@ import { computed, onMounted, watch, ref } from 'vue';
 import { GameLocation, GameSettings } from '../components/settings/GameSettings.vue';
 import ShapeCanvas from './dalli/ShapeCanvas.vue';
 import TimerProgress from './dalli/TimerProgress.vue';
-import LoadingAnimation from './LoadingAnimation.vue';
-
 const props=defineProps<{
     data: { places: GameLocation[], settings: GameSettings },
     roundId: number
 }>();
 
+const emit=defineEmits(['loading'])
 const hasRemoved=ref(false)
 const imageLoaded=ref(false)
 const revealToggle=ref(false);
@@ -96,6 +93,10 @@ onMounted(() => {
 watch(revealToggle, () => {
     hasRemoved.value=true;
 })
+
+watch(imageLoaded, () => {
+    emit('loading', !imageLoaded.value)
+}, { immediate: true })
 function pauseEvent(): void {
     document.activeElement?.blur();
     pauseToggle.value=!pauseToggle.value;
@@ -147,19 +148,6 @@ props.data;
     /* Hide any overflow from child elements */
 }
 
-.loading-overlay {
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .game-wrapper {
     overflow-x: hidden;

@@ -1,30 +1,30 @@
 <template>
-    <div class="preview-image">
+    <div class="preview-image" v-if="locationImages!=null&&locationImages.length>0">
 
-        <a class="photo-info-link pexels-link"><img
+        <a class="photo-info-link pexels-link" data-testid="pexels-link"><img
                 src="https://help.pexels.com/hc/en-us/article_attachments/900006864786/Logo_on_Transparent.png"
                 width="100" /></a>
 
-        <a :href="locationImages[currentImageIndex].photographer_url" target="_blank"
+        <a data-testid="photographer-link" :href="locationImages[currentImageIndex].photographer_url" target="_blank"
             class="photo-info-link photographer-link"><i class="fa-solid fa-image"
                 style="margin-right: 10px;" />{{locationImages[currentImageIndex].photographer}}</a>
 
 
-        <div class="photo-info-link place-name">
+        <div class="photo-info-link place-name" data-testid="static-place-name">
             <img draggable="false" alt="United States"
                 :src="`http://purecatamphetamine.github.io/country-flag-icons/3x2/${place.countryId}.svg`" />
 
             <b>{{place.name}}</b>
         </div>
         <div class="container">
-            <div v-if="!zoomImageLoaded" class="loading-overlay">
+            <div v-if="!zoomImageLoaded" class="loading-overlay" data-testid="loading-overlay">
                 <LoadingAnimation />
             </div>
 
-            <vue-image-zoomer v-on:regular-loaded="loadedImageEvent" :show-message="false" :click-zoom="true"
-                img-class="height" :regular="(locationImages[currentImageIndex].src)" />
+            <vue-image-zoomer data-testid="image-zoom" v-on:regular-loaded="loadedImageEvent" :show-message="false"
+                :click-zoom="true" img-class="height" :regular="(locationImages[currentImageIndex].src)" />
         </div>
-        <div class="preview-scroll-area">
+        <div class="preview-scroll-area" data-testid="preview-images">
             <div v-for="(image, index) in locationImages" v-on:click="currentImageIndex=index" class="other-image"
                 style="scroll-margin-right: 20px;" :id="`preview-image-${index}`">
                 <div class="overlay" :class="{ 'selected-overlay': index===currentImageIndex }"><i
@@ -64,10 +64,11 @@ watch(currentImageIndex, () => {
 
 const locationImages=computed(() => {
     let images=props.place.images;
+    if (images==null||images.length==0) return [];
 
 
     // Remove the image from its current location
-    let [imageIdSrc]=images.splice(props.place.imageId, 1);
+    let [imageIdSrc]=images.splice(props.place.imageId||0, 1);
     // Add the image back to the start of the array
     images.unshift(imageIdSrc);
 

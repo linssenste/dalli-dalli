@@ -1,16 +1,21 @@
 <template>
-    <div class="game-settings">
-
-        <DifficultySettings v-on:change="updateSettingsEvent" />
-        <ShapeSettings v-on:update="updateSettingsEvent" />
-
-        <!-- start game button -->
-        <button class="start-button action-button" @click="startGame()">
-            <i class="fa-solid fa-play "></i>
-            <div>Start Game</div>
-        </button>
+    <div class="settings-area">
 
 
+        <GameInformation />
+        <div class="game-settings">
+
+            <DifficultySettings v-on:change="updateSettingsEvent" />
+            <ShapeSettings v-on:update="updateSettingsEvent" />
+
+            <!-- start game button -->
+            <button class="start-button action-button" @click="startGame()">
+                <i class="fa-solid fa-play "></i>
+                <div>Start Game</div>
+            </button>
+
+
+        </div>
     </div>
 </template>
 
@@ -21,6 +26,7 @@ import { onMounted, ref } from 'vue';
 import ShapeSettings from './ShapeSettings.vue';
 import DifficultySettings from './DifficultySettings.vue';
 import axios from 'axios'
+import GameInformation from './GameInformation.vue';
 
 export interface LocationImage {
     alt?: string,
@@ -51,8 +57,8 @@ export interface GameSettings {
 }
 
 
-const emit=defineEmits(['start'])
-const loadingOverlay=ref(false)
+const emit=defineEmits(['start', 'loading'])
+
 
 onMounted(() => {
     document.title=`GEODALLI`;
@@ -128,7 +134,7 @@ const checkStreetView=async (lat: string, lng: string) => {
 
         const pitch=Math.floor(Math.random()*(20-10+1)+10)
 
-        const response=await axios.get(`https://maps.googleapis.com/maps/api/streetview?size=640x380&fov=100&location=${lat},${lng}&heading=${heading}&pitch=${pitch}&key=${import.meta.env.VITE_API_KEY}`, { responseType: 'blob' })
+        const response=await axios.get(`https://maps.googleapis.com/maps/api/streetview?size=640x640&fov=100&location=${lat},${lng}&heading=${heading}&pitch=${pitch}&key=${import.meta.env.VITE_API_KEY}`, { responseType: 'blob' })
 
         if (response.status===200) {
             return {
@@ -185,7 +191,7 @@ async function randomPlaces(places: any[], count: number, difficulty: number): P
 
 async function startGame(): Promise<void> {
     console.log(settings.value.terrain);
-    loadingOverlay.value=true
+    emit('loading', true)
 
     try {
         let randomPlaces=[]
@@ -193,7 +199,7 @@ async function startGame(): Promise<void> {
 
         else randomPlaces=await loadPhotographyGame(settings.value.difficulty);
         setTimeout(() => {
-            loadingOverlay.value=false
+            // emit('loading', false)
 
             emit('start', { places: randomPlaces.map((p) => ({ ...p, hint: false, visibility: 0, guess: { lat: null, lng: null } })), settings: settings.value })
 
@@ -235,7 +241,9 @@ async function startGame(): Promise<void> {
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    max-width: 430px;
+    max-width: 450px;
+
+    margin-top: 30px !important;
 }
 
 .start-button {
@@ -250,9 +258,9 @@ async function startGame(): Promise<void> {
     user-select: none;
     flex-direction: row;
     position: relative;
-    align-items: center;
+    align-items: start;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     justify-content: space-evenly;
 }
 </style>

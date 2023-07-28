@@ -14,7 +14,8 @@ import { ref, watch, onBeforeUnmount } from 'vue'
 
 const props=defineProps<{
     interval: number,
-    pause: boolean
+    pause: boolean,
+    preview?: boolean
 }>();
 
 
@@ -35,7 +36,7 @@ watch(() => props.interval, () => {
     }
     if (props.interval==0) return
     else {
-        // emit('update')
+        // if (!props.preview) emit('update')
         intervalHandler.value=setInterval(() => {
 
             if (props.pause===true) return;

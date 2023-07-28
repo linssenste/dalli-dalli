@@ -15,7 +15,7 @@
 import { computed, ref, watch } from 'vue';
 
 const emit=defineEmits(['update'])
-const removeTiming=ref(0);
+const removeTiming=ref(2000);
 
 
 
@@ -34,7 +34,7 @@ const removalTimeText=computed(() => {
 
 <style scoped>
 .time-text {
-    color: #505050;
+    color: #303030;
     letter-spacing: 1px;
     font-weight: 500 !important;
     padding-top: 15px
@@ -110,7 +110,7 @@ const removalTimeText=computed(() => {
     -webkit-appearance: none;
     width: 20px;
     height: 20px;
-    background-color: #505050;
+    background-color: #303030;
     /* Default unselected color */
     border-radius: 50%;
     cursor: pointer;
@@ -136,7 +136,7 @@ const removalTimeText=computed(() => {
     width: 20px;
     height: 20px;
     border: 2px solid white;
-    background-color: #505050;
+    background-color: #303030;
     /* Default unselected color */
     border-radius: 50%;
     cursor: pointer;

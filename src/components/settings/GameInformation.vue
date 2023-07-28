@@ -9,28 +9,21 @@
         <div style="text-align: justify; padding: 20px;  font-size: 16px;">
 
             <p>
-                This is a little game that combines the nostalgic charm of Dalli-Klick, a gem from the 1970's German
-                TV show <a href="https://de.wikipedia.org/wiki/Dalli_Dalli" target="_blank">Dalli-Dalli</a>, with the
-                modern thrill of <a href="https://geoguessr.com" target="_blank">Geoguessr</a>. <br>In this game,
-                players
-                are challenged with
-                high
-                quality photos of various locations around the world, from famous landmarks to
-                enchanting hidden spots.
-                The
-                interesting twist is that these images are initially hidden behind a layer of triangles, which are then
-                removed at random to reveal the location.
+                In this game, a famous landmark from around the world is carefully under a mosaic of shapes. As each
+                shape is gradually removed, bits and pieces of the hidden image begin to peek out, challenging your
+                geographical skills. Can you recognise the location before the full picture is revealed?
             </p>
-
+            <p>
+                Scoring in Dalli Dalli is easy, but requires a strategic approach. The earlier you guess while the picture
+                is still largely hidden, and the closer your guess is to the actual location, the higher your score will be.
+            </p>
 
             <p>
-                Similar to Geoguessr, a score is calculated for each of the 5 rounds. The score combines your
-                geographical
-                instincts and keen observation. The closer your guess gets to the actual location, while the image is
-                more
-                hidden, the higher your score.
+                Caught in a guessing deadlock? The Flag hint will come to the rescue and (maybe) gives you a crucial hint to
+                steer
+                you in the right direction.
             </p>
-            <b>Good guessing & have fun!</b>
+
 
 
             <a draggable="false" class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/linssenste"><img
@@ -66,7 +59,7 @@
     padding-right: 20px;
     font-size: 28px !important;
     letter-spacing: 1px !important;
-    margin-top: 40px;
+    margin-top: 30px;
     /* text-transform: uppercase !important; */
     align-items: center;
     width: fit-content;
@@ -100,27 +93,14 @@
 
 
 .game-info-text {
-    width: 500px;
+    width: 550px;
     /* height: 600px; */
     background-color: transparent;
     position: relative;
+
+    margin-top: 30px !important;
     border-radius: 10px;
     overflow: hidden;
 
-}
-
-
-
-
-
-
-.logo {
-    fill: red;
-    margin-top: 20px;
-}
-
-.logo:hover {
-    fill: blue;
-    /* Change to the color you want on hover */
 }
 </style>

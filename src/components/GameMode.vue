@@ -1,16 +1,17 @@
 <template>
     <div v-if="gameMode===0" class="game-area">
 
-        <DalliKlick class="dalli-area" :data="data" :roundId="currentRoundId" v-on:guess="userGuessEvent" />
+        <DalliKlick class="dalli-area" :data="data" :roundId="currentRoundId" v-on:loading="loadingEvent"
+            v-on:guess="userGuessEvent" />
         <MapSelector :data="data" :roundId="currentRoundId" v-on:submit="userGuessEvent" />
     </div>
 
     <div v-else-if="gameMode===1" style="height: 100%; width: 100%; position: relative;;">
-        <PlaceReview :data="data" :roundId="currentRoundId" v-on:continue="continueGameEvent" />
+        <PlaceReview :data="data" :roundId="currentRoundId" v-on:continue="nextRoundEvent" />
     </div>
 
     <div v-else-if="gameMode===2">
-        <h1>Game Over</h1>
+        <GameReview :data="data" />
     </div>
 </template>
 <script lang="ts" setup>
@@ -19,6 +20,7 @@ import { GameLocation, GameSettings } from '../components/settings/GameSettings.
 import DalliKlick from './DalliKlick.vue';
 import MapSelector from './maps/MapSelector.vue';
 import PlaceReview from './review/PlaceReview.vue';
+import GameReview from './review/GameReview.vue';
 
 
 const gameMode=ref(0)
@@ -27,16 +29,16 @@ const props=defineProps<{
     data: { places: GameLocation[], settings: GameSettings }
 }>();
 
+const emit=defineEmits(['loading'])
+function loadingEvent(loadingStatus: boolean): void {
+    emit('loading', loadingStatus)
+}
 function userGuessEvent(guessPosition: { lat: number, lng: number }): void {
     props.data.places[currentRoundId.value].guess=guessPosition;
     gameMode.value=1;
 
 }
 
-function continueGameEvent(): void {
-    console.log("CON");
-    nextRoundEvent();
-}
 function nextRoundEvent(): void {
     if (currentRoundId.value>=props.data.places.length-1) {
         currentRoundId.value=0;

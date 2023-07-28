@@ -2,26 +2,24 @@
     <div class="review-area">
         <div class="image-wrapper">
 
-            <StreetViewReview v-if="data.settings.difficulty==3" class="image-area"
+            <StreetViewReview v-if="data.settings.difficulty==3" class="image-area" data-testid="street-view-review"
                 :config="{ ...data.places[roundId].pov, lat: data.places[roundId].lat, lng: data.places[roundId].lng }" />
-            <ImageReview v-else :place="data.places[roundId]" />
+            <ImageReview v-else :place="data.places[roundId]" data-testid="image-review" />
 
         </div>
         <div class="round-info-column">
 
             <div class="round-stats">
-                <PointsRoundChart :score="data.places[roundId].score" />
-                <RoundStats class="round-stats-cards" :place="data.places[roundId]" />
+                <PointsRoundChart :score="data.places[roundId].score" data-testid="chart-stat" />
+                <RoundStats class="round-stats-cards" :place="data.places[roundId]" data-testid="card-stats" />
             </div>
 
-            <DistanceMap class="round-distance-map"
+            <DistanceMap class="round-distance-map" data-testid="guess-distance-map"
                 :location="{ lat: parseFloat(data.places[roundId].lat), lng: parseFloat(data.places[roundId].lng) }"
                 :guess="data.places[roundId].guess" />
 
-
-
             <!-- next button -->
-            <button class="next-button action-button" v-on:click="nextRound()">
+            <button class="next-button action-button" v-on:click="nextRound()" data-testid="next-round-button">
                 <span v-if="roundId<4">Play Round {{roundId+2}}</span>
                 <span v-else>Game Overview</span><i class="fa-solid fa-arrow-right" />
             </button>
