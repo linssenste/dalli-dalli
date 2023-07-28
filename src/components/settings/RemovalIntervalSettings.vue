@@ -21,7 +21,7 @@ const removeTiming=ref(0);
 
 watch(removeTiming, () => {
     emit('update', removeTiming.value)
-})
+}, { immediate: true })
 
 
 const removalTimeText=computed(() => {

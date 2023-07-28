@@ -23,7 +23,7 @@ const emit=defineEmits(['update'])
 
 watch(shapeType, () => {
     emit('update', shapeType.value)
-})
+}, { immediate: true })
 </script>
 
 

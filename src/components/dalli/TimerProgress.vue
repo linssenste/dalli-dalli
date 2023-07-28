@@ -13,8 +13,10 @@
 import { ref, watch, onBeforeUnmount } from 'vue'
 
 const props=defineProps<{
-    interval: number
+    interval: number,
+    pause: boolean
 }>();
+
 
 props.interval;
 const emit=defineEmits(['update']);
@@ -36,6 +38,7 @@ watch(() => props.interval, () => {
         // emit('update')
         intervalHandler.value=setInterval(() => {
 
+            if (props.pause===true) return;
             if (counter.value<=0) {
 
                 emit('update')

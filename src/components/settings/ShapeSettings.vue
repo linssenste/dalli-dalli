@@ -72,8 +72,8 @@ const settings=ref({
 
 
 watch(settings, () => {
-    emit('update', settings)
-}, { deep: true })
+    emit('update', settings.value)
+}, { deep: true, immediate: true })
 
 watch(numTriangles, () => {
 

@@ -71,15 +71,18 @@ watch(() => props.remove, removeShape);  // watch the remove prop
 watch(() => props.shapes, generateShapes)  // watch the triangles prop
 watch(() => props.manual, drawShapes);
 watch(() => props.type, generateShapes);
-watch(shapes, () => {
-    if (shapes.value.length===0&&props.repeat) {
-        generateShapes();
-        drawShapes()
-    }
-}, { deep: true })
-onMounted(async () => {
-    window.addEventListener('resize', handleResize);
+watch(visiblePercentage, () => {
 
+    if (!props.repeat) emit('update', visiblePercentage.value)
+
+})
+function handleKeyboard(e: KeyboardEvent): void {
+    if (totalImageArea.value===0) return;
+    if (e.code=='Space'&&props.manual==true) removeShape();
+}
+onMounted(async () => {
+
+    window.addEventListener('resize', handleResize);
     // Initially, no image is loaded
     background.src=props.image;
     background.onload=function () {
@@ -113,11 +116,14 @@ onMounted(async () => {
         visiblePercentage.value=0; // reset the visible percentage to 0
 
         generateShapes();
+
+        window.addEventListener('keydown', handleKeyboard)
     }
 });
 
 
 function handleResize() {
+    if (!stage||!layer) return;
     // Get parent dimensions
     const parent=document.getElementById('container');
     const parentWidth=parent? parent.offsetWidth:0;
@@ -143,13 +149,14 @@ function handleResize() {
 onUnmounted(() => {
     // Remove event listener when component is unmounted
     window.removeEventListener('resize', handleResize);
+    window.removeEventListener('keydown', handleKeyboard)
+
 });
 
 
 function generateShapes() {
 
     if (!stage||!layer) return;
-
 
     shapes.value=[]; // clear current shapes
 
@@ -177,6 +184,15 @@ function generateShapes() {
         shape.percentage=area/totalImageArea.value*100;  // calculate the area of the shape as a percentage of the total image area
     });
 
+    let sumOfPercentages=shapes.value.reduce((sum, shape) => sum+shape.percentage, 0);
+
+    shapes.value.forEach(shape => {
+        shape.percentage=shape.percentage/sumOfPercentages*100;
+    });
+
+    visiblePercentage.value=0;
+
+
     drawShapes();
 
 
@@ -201,7 +217,7 @@ function drawShapes() {
     const scaleX=stage.width()/imageWidth;
     const scaleY=stage.height()/imageHeight;
 
-    shapes.value.forEach(({ data }, index) => {
+    shapes.value.forEach(({ data, percentage }, index) => {
         let polygon=null;
         if (props.type==='hexagon') {
             polygon=new Konva.Line({
@@ -246,6 +262,9 @@ function drawShapes() {
 
 
         polygon.index=index;
+        polygon.percentage=percentage
+
+        // polygon.percentage = data
 
 
         polygon.on('mouseover', function (this: Konva.Line) {
@@ -256,13 +275,26 @@ function drawShapes() {
         });
 
 
-        polygon.on('click', function (this: Konva.Line) {
+        polygon.on('click', function (this: any) {
             if (props.manual!==true) return;
+
+            visiblePercentage.value+=this.percentage;
+            if (visiblePercentage.value>=100) {
+                visiblePercentage.value=100;
+            }
+
+            // Remove the shape from the shapes array
+            shapes.value.splice(this.index, 1);
+
+            if (layer.children.length<2&&props.repeat==true) {
+                generateShapes();
+                drawShapes()
+            }
 
             this.remove();
             layer.draw();
-
         });
+
         polygon.on('mouseout', function (this: Konva.Line) {
             if (props.manual!=true) return
 
@@ -276,12 +308,24 @@ function drawShapes() {
     layer.draw();
 }
 
-
 function removeShape() {
-    if (layer.children.length>0) {
+
+    if (layer.children.length>1) {
+
+        if (!props.repeat) visiblePercentage.value+=layer.children[layer.children.length-1].percentage;
+
         // destroy shape & redraw layer
         layer.children[layer.children.length-1].destroy();
+
         layer.draw();
+    } else {
+
+        if (props.repeat==true) {
+
+            generateShapes();
+            drawShapes()
+
+        }
     }
 }
 
@@ -297,7 +341,7 @@ function removeShape() {
 <style scoped>
 .dalli-area {
     position: relative;
-
+    border: none !important;
 
 }
 </style>

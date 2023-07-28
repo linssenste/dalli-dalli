@@ -69,8 +69,11 @@ watch(() => props.location, () => {
 
 const fitBounds=() => {
 
+    if (mapRef.value==null||mapRef.value.api==undefined) return;
     const gmap=mapRef.value.map;
     const api=mapRef.value.api;
+
+    if (api==null) return;
     const bounds=new api.LatLngBounds();
     bounds.extend(props.location);
     bounds.extend(props.guess);

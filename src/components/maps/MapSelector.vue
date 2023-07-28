@@ -1,52 +1,42 @@
 <template>
     <div class="map-area" data-testid="selection-area" @mouseenter="mapFocusEvent(true)" @mouseleave="mapFocusEvent(false)">
 
-        <div class="info-text">
-            <div>
-                <img v-if="difficultyMode===3" style="position: absolute; top: 50%; transform: translateY(-50%);"
-                    src="../../assets/rainbolt_smiley.png" width="20" />
-                <div v-else>
-                    <i class="fa-solid fa-star"></i>
-                    <i v-if="difficultyMode>=1" class="fa-solid fa-star"></i>
-                    <i v-else class="fa-regular fa-star"></i>
-                    <i v-if="difficultyMode>=2" class="fa-solid fa-star"></i>
-                    <i v-else class="fa-regular fa-star"></i>
-                </div>
-            </div>
 
-
-
-
-            <div>
-
-                <span style="margin-right: 10px; font-weight: 500;">{{roundId+1}} / 5</span>
-
-                <span style="color: #BB2D1B; margin-left: 10px;"><span
-                        style="margin-right: 10px; font-weight: 500;">SCORE:</span><b>
-                        {{store.state.score}}</b></span>
+        <!-- Country hint button -->
+        <div v-on:click="data.places[roundId].hint=true" class="country-hint-button" data-testid="country-hint-button"
+            :class="{ 'country-hint-button-active': data.places[roundId].hint }">
+            <span v-if="data.places[roundId].hint==false">
+                <i class="fa-solid fa-flag"></i>Reveal
+                country flag </span>
+            <div v-else class="country-flag"><span> Country:</span><img preload draggable="false"
+                    :src="`http://purecatamphetamine.github.io/country-flag-icons/3x2/${data.places[roundId].countryId}.svg`" />
             </div>
         </div>
+
+
+
         <GoogleMap data-testid="selection-map" :fullscreen-control="false" :street-view-control="false"
             :zoom-control="false" map-type-id="roadmap" :map-type-control="false" :api-key="apiKey" class="map"
-            :center="{ lat: 48, lng: 11 }" :zoom="2" @click="setMarker" :styles="minimal">
+            :center="{ lat: 0, lng: 0 }" :zoom="2" @click="setMarker" :styles="minimal">
             <template #default="{ ready }">
                 <Marker v-if="location&&ready" data-testid="selection-map-marker"
                     :options="{ position: location, icon: markerIcon() }" />
             </template>
         </GoogleMap>
 
+        <!-- submit guess button -->
         <button data-testid="guess-button" v-on:click="submitData" :class="{ 'disabled-button': location===null }"
-            class="submit-button">
+            class="submit-button action-button">
             <i class="fa-solid fa-check" />Submit Guess
         </button>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { GoogleMap, Marker } from 'vue3-google-map';
 import { minimal } from "vue3-google-map/themes";
-import { store } from '../../store';
+
 
 interface Location {
     lat: number,
@@ -56,7 +46,8 @@ let location=ref<Location|null>(null);
 const apiKey=import.meta.env.VITE_API_KEY;
 
 const props=defineProps<{
-    roundId: number
+    roundId: number,
+    data: any
 }>();
 props.roundId;
 const markerIcon=() => ({
@@ -67,7 +58,6 @@ const markerIcon=() => ({
     scale: 8   // Adjust the scale to change the size of the circle
 });
 
-const difficultyMode=computed(() => store.state.settings.difficulty);
 
 const emit=defineEmits(['focus', 'submit'])
 
@@ -76,6 +66,7 @@ function mapFocusEvent(isHovering: boolean): void {
 }
 
 function submitData(e: MouseEvent): void {
+    if (location.value===null) return;
     e.stopImmediatePropagation();
     e.preventDefault()
 
@@ -95,35 +86,6 @@ function setMarker(event: any) {
 </script>
 
 <style scoped>
-.info-text {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    padding-left: 20px;
-    border-radius: 12px;
-    padding-right: 20px;
-    background-color: #FAFAFACC;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    min-width: 300px;
-    height: 50px;
-    z-index: 10;
-
-    /* Add the backdrop filter */
-    backdrop-filter: blur(10px);
-    /* Adjust the blur radius as needed */
-    -webkit-backdrop-filter: blur(10px);
-    /* For compatibility with some browsers */
-}
-
-.info-text i {
-    font-size: 20px;
-    margin: 2px;
-    color: #F8DA5F;
-}
-
 .map {
     width: 100%;
     height: 100%;
@@ -146,44 +108,97 @@ function setMarker(event: any) {
     width: calc(100% - 60px);
     left: 50%;
     transform: translateX(-50%);
-    height: 50px;
-    background-color: #BB2D1BCC;
-    border: none;
-    margin: 2px;
-    color: white;
-    font-weight: 700;
 
-    border-radius: 25px;
-    height: 50px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    border: none !important
 }
 
-.submit-button i {
-    margin-right: 10px;
-    font-size: 18px;
-    border: none !important
-}
-
-.submit-button:hover {
-    background-color: #BB2D1B;
-    cursor: pointer;
-}
 
 .disabled-button {
-    opacity: 0.5;
-    background-color: #C0C0C0;
+    opacity: 11;
+    backdrop-filter: blur(5px) !important;
+    /* Adjust the blur radius as needed */
+    -webkit-backdrop-filter: blur(5px) !important;
+    background-color: #C0C0C0aa;
     /* pointer-events: none !important; */
     z-index: 50
 }
 
 .disabled-button:hover {
-    background-color: #C0C0C0 !important;
+    background-color: #C0C0C0aa;
     cursor: not-allowed;
+}
+
+
+
+
+.country-hint-button-active {
+    backdrop-filter: blur(10px);
+    /* Adjust the blur radius as needed */
+    -webkit-backdrop-filter: blur(10px);
+    color: #303030;
+    cursor: default !important;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+.country-hint-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1;
+
+
+    height: 50px;
+    width: 350px;
+    letter-spacing: .5px;
+    background-color: #F0F0F0AA;
+    backdrop-filter: blur(5px);
+    /* Adjust the blur radius as needed */
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 25px;
+    color: #303030;
+    font-weight: 500;
+    font-size: 17px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+
+    /* box-shadow: 2px 2px 15px 2px #00000022; */
+    transition: all 0.2s ease-in-out;
+}
+
+.country-hint-button i {
+    margin-right: 10px;
+    font-size: 17px;
+}
+
+.country-hint-button:hover {
+    background-color: #F0F0F0CC;
+    /* box-shadow: 2px 2px 15px 2px #00000022; */
+
+    color: #303030;
+    transition: all 0.2s ease-in-out;
+}
+
+.country-hint-button:hover i {
+    color: #BB2D1B;
+    transition: all 0.2s ease-in-out;
+}
+
+.country-flag {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.country-flag img {
+    margin-left: 15px;
+    aspect-ratio: 3/2;
+    background-color: #e0e0e0;
+    width: 40px;
+    border-radius: 4px;
 }
 </style>

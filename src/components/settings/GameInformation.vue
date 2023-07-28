@@ -59,7 +59,7 @@
     display: flex !important;
     color: black !important;
     background-color: #F8DA5F !important;
-    border-radius: 12px !important;
+    border-radius: 10px !important;
 
 
     padding-left: 20px;
@@ -104,7 +104,7 @@
     /* height: 600px; */
     background-color: transparent;
     position: relative;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
 
 }

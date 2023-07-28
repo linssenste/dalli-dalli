@@ -52,9 +52,9 @@ button {
 .icon-button-selected:hover {
     color: white!important;
     background-color: #BB2D1BCC!important;
-
-    ;
 }
+
+
 
 .button-disabled {
     opacity: .35;
@@ -129,10 +129,38 @@ button:focus-visible {
 
 
 
-.text-yellow {
-    color: #F8DA5F;
+
+
+.action-button {
+  
+    background-color: #BB2D1BEE;
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: white;
+    font-weight: 700;
+
+    border-radius: 25px;
+    height: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: none !important
 }
 
-.background-yellow {
-    background-color: #F8DA5F;
+.action-button i {
+    margin-left: 10px;
+    font-size: 18px;
+    border: none !important
+}
+
+
+
+
+.next-button:hover {
+    background-color: #BB2D1B;
+    transition: all 100ms ease-in-out;
 }

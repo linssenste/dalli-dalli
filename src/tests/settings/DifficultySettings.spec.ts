@@ -164,4 +164,90 @@ describe("difficulty level selector buttons + info text", () => {
         expect(emittedEvent?.length).toBe(4);
         expect(emittedEvent![3]).toEqual([{ difficulty: 3 }]);
     });
+
+    it("emits 'change' event with the correct data when streetViewDifficulty is updated", async () => {
+        const wrapper = mount(DifficultySettings);
+
+        // Click the streetViewDifficulty mountain button to update terrain to 3
+        const buttonMountain = wrapper.find(
+            '[data-testid="streetview-terrain-3"]'
+        );
+        await buttonMountain.trigger("click");
+        let emittedEvent = wrapper.emitted("change");
+        expect(emittedEvent).toBeDefined();
+        expect(emittedEvent?.length).toBe(1);
+        expect(emittedEvent![0]).toEqual([{ difficulty: 1, terrain: 3 }]);
+
+        // Click the streetViewDifficulty city button to update terrain to 2
+        const buttonCity = wrapper.find('[data-testid="streetview-terrain-2"]');
+        await buttonCity.trigger("click");
+        emittedEvent = wrapper.emitted("change");
+        expect(emittedEvent).toBeDefined();
+        expect(emittedEvent?.length).toBe(2);
+        expect(emittedEvent![1]).toEqual([{ difficulty: 1, terrain: 2 }]);
+
+        // Click the streetViewDifficulty landmark-dome button to update terrain to 1
+        const buttonLandmarkDome = wrapper.find(
+            '[data-testid="streetview-terrain-1"]'
+        );
+        await buttonLandmarkDome.trigger("click");
+        emittedEvent = wrapper.emitted("change");
+        expect(emittedEvent).toBeDefined();
+        expect(emittedEvent?.length).toBe(3);
+        expect(emittedEvent![2]).toEqual([{ difficulty: 1, terrain: 1 }]);
+    });
+
+    it("does not emit 'change' event when the same streetViewDifficulty button is clicked", async () => {
+        const wrapper = mount(DifficultySettings);
+
+        // Click the streetViewDifficulty mountain button to update terrain to 3
+        const buttonMountain = wrapper.find(
+            '[data-testid="streetview-terrain-3"]'
+        );
+        await buttonMountain.trigger("click");
+        let emittedEvent = wrapper.emitted("change");
+        expect(emittedEvent).toBeDefined();
+        expect(emittedEvent?.length).toBe(1);
+        expect(emittedEvent![0]).toEqual([{ difficulty: 1, terrain: 3 }]);
+
+        // Click the same streetViewDifficulty mountain button again
+        await buttonMountain.trigger("click");
+
+        // The emitted event should not have changed
+        emittedEvent = wrapper.emitted("change");
+        expect(emittedEvent).toBeDefined();
+        expect(emittedEvent?.length).toBe(1);
+        expect(emittedEvent![0]).toEqual([{ difficulty: 1, terrain: 3 }]);
+    });
+
+    it("does not emit 'change' event when gameDifficulty is not 3 (Madness)", async () => {
+        const wrapper = mount(DifficultySettings);
+
+        // Click the streetViewDifficulty mountain button to update terrain to 3
+        const buttonMountain = wrapper.find(
+            '[data-testid="streetview-terrain-3"]'
+        );
+        await buttonMountain.trigger("click");
+        let emittedEvent = wrapper.emitted("change");
+        expect(emittedEvent).toBeDefined();
+        expect(emittedEvent?.length).toBe(1);
+        expect(emittedEvent![0]).toEqual([{ difficulty: 1, terrain: 3 }]);
+
+        // Click the streetViewDifficulty mountain button again
+        await buttonMountain.trigger("click");
+
+        // Change the gameDifficulty to a value other than 3 (Madness)
+        const buttonHard = wrapper.find('[data-testid="difficulty-button-3"]');
+        await buttonHard.trigger("click");
+
+        // Click the streetViewDifficulty city button to update terrain to 2
+        const buttonCity = wrapper.find('[data-testid="streetview-terrain-2"]');
+        await buttonCity.trigger("click");
+
+        // The emitted event should not have changed, as the gameDifficulty is not 3
+        emittedEvent = wrapper.emitted("change");
+        expect(emittedEvent).toBeDefined();
+        expect(emittedEvent?.length).toBe(1);
+        expect(emittedEvent![0]).toEqual([{ difficulty: 1, terrain: 3 }]);
+    });
 });

@@ -211,7 +211,7 @@ props.places;
     letter-spacing: 1px;
     background-color: #BB2D1BEE;
     padding: 10px;
-    border-radius: 12px;
+    border-radius: 10px;
     padding-left: 20px;
     padding-right: 20px;
     display: flex;

@@ -1,181 +1,218 @@
 <template>
-    <div style="position: relative; width: 100%; height: 100%; overflow: hidden; user-select: none; background-color: #F0F0F0;"
-        :style="!hasInterval? 'cursor: pointer':''" v-on:click="removeShape(true)">
+    <div class="game-wrapper">
+        <div v-if="!imageLoaded" class="loading-overlay">
+            <LoadingAnimation />
+        </div>
+        <div class="header" v-if="imageLoaded">
+            <div class="difficulty-info">
+                <i v-if="data.settings.difficulty===3"
+                    style="font-size: 24px; color: #303030;  padding: 4px; border-radius: 50%;"
+                    class="fa-solid fa-street-view" />
+                <div v-else class="difficulty-icons">
+                    <i class="fa-solid fa-star"></i>
+                    <i v-if="data.settings.difficulty>=1" class="fa-solid fa-star"></i>
+                    <i v-else class="fa-regular fa-star"></i>
+                    <i v-if="data.settings.difficulty>=2" class="fa-solid fa-star"></i>
+                    <i v-else class="fa-regular fa-star"></i>
+                </div>
 
-        <div class="control-area">
 
-            <span>{{visiblePercentage.toFixed(2)}}
-                %</span>
+                <span style="font-weight: 500!important;"> Round <b>{{roundId+1}}</b> of {{data.places.length}}</span>
+                <span style="color: #BB2D1B!important">{{totalScore}} POINTS</span>
 
-            <div style="display: flex; flex-direction: row; align-items: center;">
-                <span v-if="isPaused&&hasInterval"
-                    style="color: #A0A0A0; font-size: 14px; text-transform: uppercase; letter-spacing: .5px;">Press Space to
-                    continue</span>
-                <i v-if="hasInterval" class="pause-button" :style="isPaused? 'color: #BB2D1B':''" @click="toggleTimer"
-                    :class="`fa-solid fa-circle-${!isPaused? 'pause':'play'}`" />
-                <span v-else style="color: #A0A0A0; font-size: 14px; text-transform: uppercase; letter-spacing: .5px;">
-                    Click anywhere to remove Triangle
+            </div>
 
-                </span>
+            <div class="difficulty-info">
+                <span>
+                    {{data.places[roundId].visibility.toFixed(2)}} %</span>
+
+                <button style="width: 48px!important; height: 48px!important; margin-left: 25px;"
+                    v-if="data.settings.interval>0" v-on:click="pauseEvent()" class="icon-button"><i
+                        :style="pauseToggle? 'margin-left: 1px':''"
+                        :class="`fa-solid fa-${!pauseToggle? 'pause':'play'}`" />
+
+                </button>
+
+
+
 
 
             </div>
 
-        </div>
-
-
-
-        <div
-            style="position: relative; ; position: absolute; top: calc(50% + 25px); left: 50%; transform: translate(-50%, -50%); width: 100%; ">
-
-            <ShapeCanvas :remove="removeTrigger" :image="image" />
-
-            <div v-if="visiblePercentage==0&&!preview&&store.state.settings.interval==false"
-                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #A0A0A0; font-size: 14px; text-transform: uppercase; letter-spacing: .5px;">
-                Click anywhere or Press Space to
-                start</div>
 
         </div>
+        <div class="image">
+            <div class="canvas-timer">
+                <!-- Modify the ShapeCanvas component's width -->
+                <ShapeCanvas v-on:click="hasRemoved=true" v-on:update="data.places[roundId].visibility=$event"
+                    v-on:loaded="imageLoaded=true" :shapes="data.settings.shapes" :manual="data.settings.interval==0"
+                    :type="data.settings.type" :image="image" :remove="revealToggle" :preview="false"
+                    style="width: 100%;" />
+                <TimerProgress v-if="imageLoaded&&data.settings.interval>0" :pause="pauseToggle"
+                    style="width: calc(100% + 1px);" :interval="data.settings.interval"
+                    v-on:update="revealToggle=!revealToggle" />
+                <div v-else-if="!hasRemoved" class="manual-hint">
+                    Click on any shape or press space to remove shape</div>
+            </div>
 
-
+        </div>
 
     </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
-import { store } from '../store';
+<script lang="ts" setup>
+import { computed, onMounted, watch, ref } from 'vue';
+import { GameLocation, GameSettings } from '../components/settings/GameSettings.vue';
 import ShapeCanvas from './dalli/ShapeCanvas.vue';
+import TimerProgress from './dalli/TimerProgress.vue';
+import LoadingAnimation from './LoadingAnimation.vue';
 
-
-const visiblePercentage=ref<number>(0);  // New: The visible percentage of the image
-
-const removeTrigger=ref(false)
-
-// const emit=defineEmits(['update', 'loaded'])
 const props=defineProps<{
-    image: string,
-    preview?: boolean
+    data: { places: GameLocation[], settings: GameSettings },
+    roundId: number
 }>();
-props.preview
 
-
-
-
-onMounted(async () => {
-
-    startGame()
-    window.addEventListener('keydown', pauseKeyboardEvent)
-
-    // Attach resize event listener to update the canvas size when window is resized
-
-});
-onBeforeUnmount(() => {
-    // Clean up event listener
-    window.removeEventListener('keydown', pauseKeyboardEvent)
-
-
-});
-
-
-function pauseKeyboardEvent(e: KeyboardEvent): void {
-
-    if (e.code==='Space') {
-        if (!hasInterval.value) removeShape(true)
-        else toggleTimer();
-    }
-
-}
-
-const isPaused=ref(false)
-function toggleTimer(): void {
-
-    isPaused.value=!isPaused.value;
-}
-
-const autoTimer=ref<any>(null);
-
-
-const hasInterval=computed(() => store.state.settings.interval)
-
-
-function startGame(): void {
-
-
-    isPaused.value=false;
-
-    visiblePercentage.value=0; // reset the visible percentage to 0
-
-
-    if (props.preview!=true&&!hasInterval.value) return;
-
-
-    if (autoTimer.value!=null) clearInterval(autoTimer.value);
-
-    removeShape()
-    autoTimer.value=setInterval(() => {
-        removeShape()
-    }, store.state.settings.time)
-
-
-
-}
-
-
-onBeforeUnmount(() => {
-    clearInterval(autoTimer.value)
+const hasRemoved=ref(false)
+const imageLoaded=ref(false)
+const revealToggle=ref(false);
+const pauseToggle=ref(false);
+const image=computed(() => {
+    return props.data.places[props.roundId].type===0? props.data.places[props.roundId].images[props.data.places[props.roundId].imageId].src+'?auto=compress&cs=tinysrgb&h=1250':props.data.places[props.roundId].image;
 })
 
+const totalScore=computed(() => {
+    let score=0;
+    for (let i=0; i<props.roundId; i++) {
+        score+=props.data.places[i].score;
+    }
+    return score;
+});
 
-function removeShape(manual=false) {
-    console.log(manual)
-    removeTrigger.value=!removeTrigger.value
+onMounted(() => {
+
+    window.addEventListener('keydown', handleKeyboard)
+})
+
+watch(revealToggle, () => {
+    hasRemoved.value=true;
+})
+function pauseEvent(): void {
+    document.activeElement?.blur();
+    pauseToggle.value=!pauseToggle.value;
+}
+function handleKeyboard(e: KeyboardEvent): void {
+    hasRemoved.value=true
+    if (imageLoaded.value&&e.code=='Space') pauseEvent()
 }
 
+props.data;
 </script>
 
+
 <style scoped>
-canvas {
-    max-width: 100%;
-    max-height: 100%;
-    background-color: #F0F0F0;
-    border: 0px solid black;
-
+.difficulty-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 500;
+    color: #303030;
+    margin-right: 10px;
 }
 
-.pause-button {
+.difficulty-info span {
     margin-left: 20px;
-    font-size: 40px;
-    border-radius: 20px;
-    color: black;
-    transition: all 100ms ease-in-out;
-    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 17px;
+    color: #505050 !important;
 }
 
-.pause-button:hover {
-    color: #BB2D1B;
-    transition: all 100ms ease-in-out;
+.difficulty-icons {
+    color: #F8DA5F;
+    font-size: 20px;
 }
 
+.difficulty-icons i {
+    margin: 2px;
+}
 
+.canvas-timer {
+    width: 100%;
+    position: relative;
+    display: flex;
+    padding-bottom: 50px;
+    flex-direction: column;
+    overflow: hidden;
+    /* Hide any overflow from child elements */
+}
 
+.loading-overlay {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.control-area {
-    position: absolute;
-    top: 0px;
-    width: calc(100% - 40px);
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 75px;
-    margin: 0 auto;
+.game-wrapper {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    position: relative;
+    height: 100%;
+}
+
+.header {
+    height: 70px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding-right: 5px;
+    padding-left: 15px;
 }
 
-.control-area span {
+.header span {
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 500;
+    color: #303030;
+}
+
+.image {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Hide any overflow from child elements */
+}
+
+
+
+.manual-hint {
+    position: absolute;
+    top: calc(50% - 25px);
+    cursor: pointer;
+    pointer-events: none;
+    letter-spacing: .5px;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    padding: 5px;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #303030;
+    font-weight: 500;
 }
 </style>

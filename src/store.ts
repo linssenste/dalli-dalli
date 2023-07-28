@@ -8,6 +8,7 @@ export const store = createStore({
                 interval: 0,
                 shapes: 50,
                 type: "voronoi",
+                terrain: 0,
             },
             score: 0,
             scoreList: [],
@@ -23,9 +24,10 @@ export const store = createStore({
             state.scoreList.push(score);
         },
 
-        setGameSettings(state, data) {
-            console.log("SET");
-            state.settings = { ...state.settings, ...data };
+        setGameSettings(state, settings) {
+            console.log("SET", settings);
+            state.settings = { ...settings };
+            console.log(state.settings);
         },
     },
 });

@@ -54,21 +54,21 @@
         </div>
 
 
-        <div v-if="gameDifficulty===3"
-            style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+        <div v-if="gameDifficulty===3" class="street-view-visibility">
             <span
                 style="font-size: 17px; text-transform: uppercase; letter-spacing: .5px; color: #303030; font-weight: 500;">Street
                 view difficulty:</span>
             <div>
                 <button class="icon-button" :style="streetViewDifficulty!==1? 'color: #30303040':''"
-                    v-on:click="streetViewDifficulty=1" style="margin: 5px;"><i
+                    v-on:click="streetViewDifficulty=1" style="margin: 5px;" data-testid="streetview-terrain-1"><i
                         class="fa-solid fa-landmark-dome" /></button>
                 <button class="icon-button" :style="streetViewDifficulty!==2? 'color: #30303040':''"
-                    v-on:click="streetViewDifficulty=2" style="margin: 5px;"><i class="fa-solid fa-city" /></button>
+                    v-on:click="streetViewDifficulty=2" style="margin: 5px;" data-testid="streetview-terrain-2"><i
+                        class="fa-solid fa-city" /></button>
 
                 <button class="icon-button" :style="streetViewDifficulty!==3? 'color: #30303040':''"
-                    v-on:click="streetViewDifficulty=3" style="margin: 5px; margin-right: 0px;"><i
-                        class="fa-solid fa-mountain" /></button>
+                    v-on:click="streetViewDifficulty=3" style="margin: 5px; margin-right: 0px;"
+                    data-testid="streetview-terrain-3"><i class="fa-solid fa-mountain" /></button>
             </div>
         </div>
     </div>
@@ -83,12 +83,21 @@ const emit=defineEmits(['change'])
 const gameDifficulty=ref(1);
 const streetViewDifficulty=ref(1);
 
+watch(streetViewDifficulty, () => {
+    emit('change', {
+        difficulty: gameDifficulty.value,
+        terrain: streetViewDifficulty.value
+    });
+}, { immediate: true })
+
+
 watch(gameDifficulty, () => {
 
     emit('change', {
-        difficulty: gameDifficulty.value
+        difficulty: gameDifficulty.value,
+        terrain: streetViewDifficulty.value
     });
-})
+}, { immediate: true })
 
 </script>
 
@@ -104,7 +113,7 @@ watch(gameDifficulty, () => {
     height: 60px;
     background-color: #f0f0f0;
     padding-left: 20px;
-    border-radius: 12px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     font-size: 17px;
@@ -149,5 +158,12 @@ watch(gameDifficulty, () => {
 
 .level-text {
     margin-left: 15px;
+}
+
+.street-view-visibility {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 </style>
