@@ -258,7 +258,7 @@ async function startGame(): Promise<void> {
 .start-button {
     width: 100%;
     margin: 2px;
-
+    margin-top: 30px !important
 }
 
 
