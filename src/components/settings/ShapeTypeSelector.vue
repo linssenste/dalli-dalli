@@ -18,7 +18,7 @@
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-const shapeType=ref<'triangle'|'rectangle'|'hexagon'|'voronoi'>('voronoi');
+const shapeType=ref<'triangle'|'rectangle'|'hexagon'|'voronoi'|string>(((new URL(document.location as any)).searchParams).get('type')||'voronoi');
 const emit=defineEmits(['update'])
 
 watch(shapeType, () => {

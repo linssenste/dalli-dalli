@@ -80,8 +80,8 @@ import { ref, watch } from 'vue';
 
 const emit=defineEmits(['change'])
 
-const gameDifficulty=ref(1);
-const streetViewDifficulty=ref(1);
+const gameDifficulty=ref(parseInt(((new URL(document.location as any)).searchParams).get('difficulty')||'1'));
+const streetViewDifficulty=ref(parseInt(((new URL(document.location as any)).searchParams).get('terrain')||'1'));
 
 watch(streetViewDifficulty, () => {
     emit('change', {

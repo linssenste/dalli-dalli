@@ -15,7 +15,7 @@
 import { computed, ref, watch } from 'vue';
 
 const emit=defineEmits(['update'])
-const removeTiming=ref(2000);
+const removeTiming=ref(parseInt(((new URL(document.location as any)).searchParams).get('interval')||'2000'));
 
 
 

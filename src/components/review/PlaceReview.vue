@@ -117,6 +117,10 @@ props.roundId;
 }
 
 .round-stats {
+    position: absolute;
+    top: 0px;
+    z-index: 100;
+    width: calc(100% - 20px);
     height: 120px;
     padding: 10px;
 }
@@ -140,7 +144,7 @@ props.roundId;
 
 .round-distance-map {
     width: 100%;
-    height: calc(100% - 140px);
+    height: 100%
 }
 
 

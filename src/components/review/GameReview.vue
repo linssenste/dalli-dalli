@@ -74,7 +74,7 @@
                     </div> -->
 
                     <img v-on:click.stop.prevent="reviewIndex!=index? reviewIndex=index:reviewIndex=-1" draggable="false"
-                        :width="reviewIndex==index? 240:150" style="transition: all 150ms linear;"
+                        :height="reviewIndex==index? 180:120" style="transition: all 150ms linear;"
                         :src="data.settings.difficulty===3? place.image:place.images[place.imageId].src+'?auto=compress&cs=tinysrgb&h=300'" />
                     <div :style="`opacity: ${reviewIndex==index? 1:0}; width: ${reviewIndex==index? 200:120};`"
                         class="place-name"><span v-if="place.name!=null">{{place.name}}

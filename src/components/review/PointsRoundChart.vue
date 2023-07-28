@@ -29,7 +29,9 @@ props.score;
     height: 50px !important;
     position: relative;
 
-    background-color: #F0F0F0;
+    background-color: #F0F0F0CC;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border-radius: 25px !important;
 
     transition: all 0.2s ease-in-out;
@@ -40,7 +42,7 @@ props.score;
 }
 
 .points-progress-container:hover {
-    background-color: #E0E0E0;
+    /* background-color: #E0E0E0; */
     transition: all 0.2s ease-in-out;
 }
 

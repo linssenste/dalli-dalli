@@ -134,7 +134,7 @@ const checkStreetView=async (lat: string, lng: string) => {
 
         const pitch=Math.floor(Math.random()*(20-10+1)+10)
 
-        const response=await axios.get(`https://maps.googleapis.com/maps/api/streetview?size=640x640&fov=100&location=${lat},${lng}&heading=${heading}&pitch=${pitch}&key=${import.meta.env.VITE_API_KEY}`, { responseType: 'blob' })
+        const response=await axios.get(`https://maps.googleapis.com/maps/api/streetview?size=640x450&fov=100&location=${lat},${lng}&heading=${heading}&pitch=${pitch}&key=${import.meta.env.VITE_API_KEY}`, { responseType: 'blob' })
 
         if (response.status===200) {
             return {
@@ -195,11 +195,20 @@ async function startGame(): Promise<void> {
 
     try {
         let randomPlaces=[]
+        const url=new URL(window.location.href);
+        url.searchParams.set('interval', settings.value.interval.toString());
+        url.searchParams.set('difficulty', settings.value.difficulty.toString());
+        url.searchParams.set('shapes', settings.value.shapes.toString())
+        url.searchParams.set('type', settings.value.type)
+        url.searchParams.set('terrain', settings.value.terrain.toString())
+
+        history.pushState({}, '', url.toString());
         if (settings.value.difficulty===3) randomPlaces=await getRandomLocation(settings.value.terrain);
 
         else randomPlaces=await loadPhotographyGame(settings.value.difficulty);
         setTimeout(() => {
             // emit('loading', false)
+
 
             emit('start', { places: randomPlaces.map((p) => ({ ...p, hint: false, visibility: 0, guess: { lat: null, lng: null } })), settings: settings.value })
 

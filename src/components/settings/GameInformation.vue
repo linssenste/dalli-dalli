@@ -6,8 +6,10 @@
         </div>
 
 
-        <div style="text-align: justify; padding: 20px;  font-size: 16px;">
-
+        <div style="text-align: justify; padding: 20px;  font-size: 16px; margin-top: 15px;">
+            <span style="font-family: 'biro_script_standardregular'; font-size: 40px; line-height: 30px;">{{greeting}}!
+            </span>
+            <!-- <div styl>* Hello</div> -->
             <p>
                 In this game, a famous landmark from around the world is carefully under a mosaic of shapes. As each
                 shape is gradually removed, bits and pieces of the hidden image begin to peek out, challenging your
@@ -34,6 +36,58 @@
 
     </div>
 </template>
+
+
+<script lang="ts" setup>
+import { computed } from 'vue';
+let greetings=[
+    // previously provided greetings
+    "Hello", "Hi", "Hey", "Hola", "Que pasa", "Salut", "Ciao", "Buongiorno", "Hallo",
+    "Servus", "Heya", "Oi", "Ola", "Hej", "Hei", "Hiya", "Whats up", "Yo", "Hoi", "Goeiedag", "Ahoj", "Heus",
+
+    // additional greetings
+    "Zdravo", // Serbian
+    "Merhaba", // Turkish
+    "Salam", // Arabic, Persian
+    "Shalom", // Hebrew
+    "Namaste", // Hindi
+    "Sat sri akal", // Punjabi
+    "Konnichiwa", // Japanese
+    "Ni hao", // Mandarin Chinese
+    "Annyeonghaseyo", // Korean
+    "Sawasdee", // Thai
+    "Aloha", // Hawaiian
+    "Kumusta", // Filipino
+    "Selam", // Amharic, Tigrinya
+    "Jambo", // Swahili
+    "Hejira", // Maltese
+    "Buna", // Romanian
+    "Dzien dobry", // Polish
+    "Pryvit", // Ukrainian
+    "Sveiki", // Latvian
+    "Labas", // Lithuanian
+    "Tere", // Estonian
+    "God dag", // Norwegian, Swedish
+    "Goedendag", // Dutch
+    "Yassas", // Greek
+    "Szervusz", // Hungarian
+    "Pozdrav", // Croatian
+    "Zdravstvuyte", // Russian
+    "Sholem aleikhem", // Yiddish
+    "Barev", // Armenian
+    "Salamun alaykum", // Azerbaijani
+    "Marhaban", // Arabic
+    "Shlama", // Assyrian
+    "Niltze", // Nahuatl
+    "Habari", // Swahili
+];
+
+
+
+const greeting=computed(() => {
+    return greetings[Math.floor(Math.random()*greetings.length)];
+})
+</script>
 
 <style>
 .bmc-button img {
@@ -93,7 +147,7 @@
 
 
 .game-info-text {
-    width: 550px;
+    width: 520px;
     /* height: 600px; */
     background-color: transparent;
     position: relative;

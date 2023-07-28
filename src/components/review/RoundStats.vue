@@ -75,7 +75,9 @@ const distanceUnit=computed(() => {
     font-size: 17px;
     border-radius: 10px;
     width: fit-content;
-    background-color: #F0F0F0;
+    background-color: #F0F0F0CC;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     display: flex;
     align-items: center;
     padding-left: 25px;

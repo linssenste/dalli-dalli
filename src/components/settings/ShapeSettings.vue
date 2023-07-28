@@ -58,7 +58,7 @@ import ShapeTypeSelector from './ShapeTypeSelector.vue';
 
 const toggleShapeReveal=ref(false);
 
-const numTriangles=ref(50);
+const numTriangles=ref(parseInt(((new URL(document.location as any)).searchParams).get('shapes')||'20'));
 const triangleTimeout=ref<ReturnType<typeof setTimeout>|null>(null);
 const updatePreview=ref(false);
 
@@ -66,7 +66,7 @@ const emit=defineEmits(['update'])
 
 const settings=ref({
     interval: 0,
-    shapes: 20,
+    shapes: parseInt(((new URL(document.location as any)).searchParams).get('shapes')||'20'),
     type: 'voronoi'
 })
 
