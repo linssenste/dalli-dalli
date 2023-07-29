@@ -2,17 +2,24 @@
     <div class="settings-area">
 
 
-        <GameInformation />
+        <GameInformation v-if="!isMobile" />
         <div class="game-settings">
+            <div
+                style="width: 100%; position: relative; width: calc(100% - 16px); max-width: 450px;  margin: 0 auto; padding: 8px; padding-bottom: 15px; padding-top: 15px;">
 
-            <DifficultySettings v-on:change="updateSettingsEvent" />
-            <ShapeSettings v-on:update="updateSettingsEvent" />
+                <div v-if="isMobile" class="logo-container">
+                    <img draggable="false" class="logo" src="../../assets/game-logo.webp" width="300" height="112" />
+                </div>
 
-            <!-- start game button -->
-            <button class="start-button action-button" @click="startGame()">
-                <i class="fa-solid fa-play "></i>
-                <div>Start Game</div>
-            </button>
+                <DifficultySettings v-on:change="updateSettingsEvent" />
+                <ShapeSettings v-on:update="updateSettingsEvent" />
+
+                <!-- start game button -->
+                <button class="start-button action-button" @click="startGame()">
+                    <i class="fa-solid fa-play "></i>
+                    <div>Start Game</div>
+                </button>
+            </div>
 
 
         </div>
@@ -22,7 +29,7 @@
 
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed, onUnmounted } from 'vue';
 import ShapeSettings from './ShapeSettings.vue';
 import DifficultySettings from './DifficultySettings.vue';
 import axios from 'axios'
@@ -58,12 +65,25 @@ export interface GameSettings {
 
 
 const emit=defineEmits(['start', 'loading'])
+const windowWidth=ref(window.innerWidth);
 
+const updateWidth=() => {
+    windowWidth.value=window.innerWidth;
+}
 
 onMounted(() => {
     document.title=`GEODALLI`;
+    window.addEventListener('resize', updateWidth);
 })
 
+onUnmounted(() => {
+    window.removeEventListener('resize', updateWidth);
+});
+
+
+const isMobile=computed(() => {
+    return windowWidth.value<1000;
+})
 
 const settings=ref<GameSettings>({
     difficulty: 1,
@@ -94,6 +114,7 @@ function randomPositions(geolocations: [number, number, number, string][], count
 
     return positions;
 }
+
 
 
 
@@ -244,20 +265,31 @@ async function startGame(): Promise<void> {
 }
 
 .game-settings {
+
     position: relative;
     display: flex;
-    padding: 5px;
+    /* padding: 5px; */
     flex-direction: column;
     justify-content: space-between;
-    width: 100%;
-    max-width: 450px;
 
-    margin-top: 30px !important;
+    width: 50%;
+
+    overflow-y: scroll;
+    height: 100%;
+    /* margin-top: 30px !important; */
+}
+
+@media screen and (max-width: 1000px) {
+    .game-settings {
+        width: 100%;
+        height: 100%;
+    }
+
 }
 
 .start-button {
     width: 100%;
-    margin: 2px;
+
     margin-top: 30px !important
 }
 
@@ -270,6 +302,29 @@ async function startGame(): Promise<void> {
     align-items: start;
     width: 100%;
     min-height: 100%;
-    justify-content: space-evenly;
+    justify-content: start;
+    overflow: auto;
+    /* Enable scroll if necessary */
+}
+
+
+@media screen and (max-width: 1000px) {
+    .settings-area {
+        flex-direction: column;
+        justify-content: center;
+
+    }
+}
+
+.logo-container {
+    /* position: absolute; */
+    /* top: 0px;
+    left: calc(50%);
+    transform: translateX(-50%); */
+
+    margin-bottom: 30px;
+    font-size: 30px;
+    text-transform: uppercase;
+    line-height: 30px;
 }
 </style>

@@ -61,10 +61,13 @@ props.data;
     max-width: calc(100% - 600px)
 }
 
-.map-area {
-    width: 100%;
-    max-width: 600px;
+@media screen and (max-width: 800px) {
+    .dalli-area {
+        max-width: 100%;
+    }
 }
+
+
 
 .game-area {
     position: relative;
@@ -74,6 +77,14 @@ props.data;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
+}
+
+@media screen and (max-width: 800px) {
+    .game-area {
+        flex-direction: column;
+    }
+
 
 }
 </style>

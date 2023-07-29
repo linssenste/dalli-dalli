@@ -17,9 +17,8 @@
             <b>{{place.name}}</b>
         </div>
         <div class="container">
-            <div v-if="!zoomImageLoaded" class="loading-overlay" data-testid="loading-overlay">
-                <LoadingAnimation />
-            </div>
+
+            <LoadingOverlay v-if="!zoomImageLoaded" class="loading-overlay" data-testid="loading-overlay" />
 
             <vue-image-zoomer data-testid="image-zoom" v-on:regular-loaded="loadedImageEvent" :show-message="false"
                 :click-zoom="true" img-class="height" :regular="(locationImages[currentImageIndex].src)" />
@@ -42,6 +41,7 @@ import { GameLocation } from '../settings/GameSetup.vue';
 import LoadingAnimation from '../LoadingAnimation.vue';
 import { VueImageZoomer } from 'vue-image-zoomer'
 import 'vue-image-zoomer/dist/style.css';
+import LoadingOverlay from '../helper/LoadingOverlay.vue';
 const props=defineProps<{
     place: GameLocation,
 }>();

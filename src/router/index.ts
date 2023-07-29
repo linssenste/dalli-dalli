@@ -6,10 +6,6 @@ const routes = [
         path: "/:pathMatch(.*)*",
         component: GeoDalliView,
     },
-    {
-        path: "/config",
-        component: () => import("../views/ConfiguratorView.vue"),
-    },
 ];
 
 const router = createRouter({

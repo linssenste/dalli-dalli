@@ -264,9 +264,6 @@ function drawShapes() {
         polygon.index=index;
         polygon.percentage=percentage
 
-        // polygon.percentage = data
-
-
         polygon.on('mouseover', function (this: Konva.Line) {
             if (props.manual!=true) return
 
@@ -274,6 +271,25 @@ function drawShapes() {
             layer.draw();
         });
 
+        polygon.on('tap', function (this: any) {
+            if (props.manual!==true) return;
+
+            visiblePercentage.value+=this.percentage;
+            if (visiblePercentage.value>=100) {
+                visiblePercentage.value=100;
+            }
+
+            // Remove the shape from the shapes array
+            shapes.value.splice(this.index, 1);
+
+            if (layer.children.length<2&&props.repeat==true) {
+                generateShapes();
+                drawShapes()
+            }
+
+            this.remove();
+            layer.draw();
+        });
 
         polygon.on('click', function (this: any) {
             if (props.manual!==true) return;

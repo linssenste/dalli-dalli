@@ -10,7 +10,7 @@
                 <span v-if="gameDifficulty==0">tourist destinations</span>
                 <span v-else-if="gameDifficulty==1">well-known places</span>
                 <span v-else-if="gameDifficulty==2">hidden gems</span>
-                <span v-else>Street-View snapshots</span>
+                <span v-else>Google Street-View</span>
             </span>
 
         </div>
@@ -56,8 +56,7 @@
 
         <div v-if="gameDifficulty===3" class="street-view-visibility">
             <span
-                style="font-size: 17px; text-transform: uppercase; letter-spacing: .5px; color: #303030; font-weight: 500;">Street
-                view difficulty:</span>
+                style="font-size: 17px; text-transform: uppercase; letter-spacing: .5px; color: #303030; font-weight: 500;">Difficulty:</span>
             <div>
                 <button class="icon-button" :style="streetViewDifficulty!==1? 'color: #30303040':''"
                     v-on:click="streetViewDifficulty=1" style="margin: 5px;" data-testid="streetview-terrain-1"><i
@@ -112,6 +111,7 @@ watch(gameDifficulty, () => {
 .level-info {
     height: 60px;
     background-color: #f0f0f0;
+    color: black !important;
     padding-left: 20px;
     border-radius: 10px;
     display: flex;
@@ -135,6 +135,16 @@ watch(gameDifficulty, () => {
     margin: 1px;
     margin-top: 2px;
     font-size: 19px;
+}
+
+@media screen and (max-width: 500px) {
+
+
+    .difficulty-button i {
+        font-size: 17px;
+    }
+
+
 }
 
 .difficulty-button:hover {

@@ -9,7 +9,7 @@
                     :style="`background-color: ${roundId===i-1? '#BB2D1BAA!important':'#BB2D1B'}; pointer-events: ${roundId===i-1? 'none':'auto'}; width: calc((100%/${totalScore}) * ${data.places[i-1].score}); `"
                     class="chart-round-points">
                     <div v-if="roundId==-1"
-                        style="position: absolute; letter-spacing: 1px; color:white; right: 20px; top: 50%; transform: translateY(-50%); font-size: 17px; display: flex; flex-direction: row; align-items: center;">
+                        style="position: absolute; letter-spacing: 1px; color:white; right: 13px; top: 50%; transform: translateY(-50%); font-size: 17px; display: flex; flex-direction: row; align-items: center;">
                         <b>{{totalScore}}</b> <span style="font-weight: 500;  font-size: 17px; margin-left: 5px"></span>
                     </div>
                     <!-- <div v-if="roundId===i-1&&store.state.scoreList[i-1]>750"><span
