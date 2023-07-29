@@ -42,10 +42,10 @@
         <div class="image">
             <div class="canvas-timer">
                 <!-- Modify the ShapeCanvas component's width -->
-                <ShapeCanvas v-on:click="hasRemoved=true" v-on:update="data.places[roundId].visibility=$event"
-                    v-on:loaded="imageLoaded=true" :shapes="data.settings.shapes" :manual="data.settings.interval==0"
-                    :type="data.settings.type" :image="image" :remove="revealToggle" :preview="false"
-                    style="width: 100%;" />
+                <ShapeCanvas v-on:click="hasRemoved=true" v-on:touchend="hasRemoved=true"
+                    v-on:update="data.places[roundId].visibility=$event" v-on:loaded="imageLoaded=true"
+                    :shapes="data.settings.shapes" :manual="data.settings.interval==0" :type="data.settings.type"
+                    :image="image" :remove="revealToggle" :preview="false" style="width: 100%;" />
                 <TimerProgress v-if="imageLoaded&&data.settings.interval>0" :pause="pauseToggle"
                     style="width: calc(100% + 1px);" :interval="data.settings.interval"
                     v-on:update="revealToggle=!revealToggle" />

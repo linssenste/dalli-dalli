@@ -3,7 +3,7 @@
 
         <DalliKlick class="dalli-area" :data="data" :roundId="currentRoundId" v-on:loading="loadingEvent"
             v-on:guess="userGuessEvent" />
-        <MapSelector :data="data" :roundId="currentRoundId" v-on:submit="userGuessEvent" />
+        <!-- <MapSelector :data="data" :roundId="currentRoundId" v-on:submit="userGuessEvent" /> -->
     </div>
 
     <div v-else-if="gameMode===1" style="height: 100%; width: 100%; position: relative;;">
@@ -57,6 +57,7 @@ props.data;
 
 <style scoped>
 .dalli-area {
+    height: 100%;
     width: 100%;
     max-width: calc(100% - 600px)
 }
