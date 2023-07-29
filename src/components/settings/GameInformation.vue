@@ -4,15 +4,7 @@
         <div class="overview-text">
             <div class="fade-border">
             </div>
-
-
-
-
-            <div style="text-align: justify;  display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%; padding: 20px;  font-size: 16px; z-index: 100; width: 450px">
+            <div class="info-area">
                 <div class="logo-container">
                     <img draggable="false" class="logo" src="../../assets/game-logo.webp" width="300" height="112" />
                 </div>
@@ -202,5 +194,19 @@ const greeting=computed(() => {
     100% {
         background-position: -60px 0;
     }
+}
+
+
+.info-area {
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+    font-size: 16px;
+    z-index: 100;
+    width: 450px
 }
 </style>
