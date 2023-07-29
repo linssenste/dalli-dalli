@@ -1,19 +1,16 @@
 <template>
-    <div style="position: relative; padding-left: 20px; padding-right: 20px;">
+    <div style="position: relative; padding-left: 10px; padding-right: 10px;">
         <div class="chart-base" v-on:click="selectPointsEvent(-1)">
 
             <div :style="`width: calc((100%/25000) * ${totalScore}); min-width: 46px; background-color: ${totalScore===0? '#505050!important':'white'}`"
                 style="display: flex; flex-direction: row;  height: 100%; overflow: hidden;  border-radius: 23px; position: relative;">
-                <!-- store.state.scoreList[i-1] -->
+
                 <div v-for="i in 5" v-on:click.stop.prevent="selectPointsEvent(i-1)"
                     :style="`background-color: ${roundId===i-1? '#BB2D1BAA!important':'#BB2D1B'}; pointer-events: ${roundId===i-1? 'none':'auto'}; width: calc((100%/${totalScore}) * ${data.places[i-1].score}); `"
                     class="chart-round-points">
-                    <div v-if="roundId==-1"
-                        style="position: absolute; letter-spacing: 1px; color:white; right: 13px; top: 50%; transform: translateY(-50%); font-size: 17px; display: flex; flex-direction: row; align-items: center;">
-                        <b>{{totalScore}}</b> <span style="font-weight: 500;  font-size: 17px; margin-left: 5px"></span>
+                    <div v-if="roundId==-1" class="points">
+                        <b>{{totalScore}}</b>
                     </div>
-                    <!-- <div v-if="roundId===i-1&&store.state.scoreList[i-1]>750"><span
-                            v-if="store.state.scoreList[i-1]>2000">ROUND</span> {{roundId+1}}</div> -->
 
                 </div>
             </div>
@@ -24,13 +21,13 @@
 
         </div>
         <div
-            style="font-size: 16px; text-transform: uppercase; color: #808080; font-weight: 500; letter-spacing: 1px;  height: 24px; width: 100%;">
+            style="font-size: 16px; text-align: center; text-transform: uppercase; color: #808080; font-weight: 500; letter-spacing: 1px;  height: 24px; width: 100%;">
             <span v-if="roundId>=0&&roundId<5&&data.places[roundId].score===0">No
                 Points scored</span>
             <span v-else-if="roundId>=0&&roundId<5">{{data.places[roundId].score}}
                 POINTS <span style="color: #A0A0A0; margin-left: 10px;">
                     {{((data.places[roundId].score/totalScore)*100).toFixed(2)}}%</span></span>
-            <span v-else>Select round for detailed breakdown</span>
+            <span v-else>Select round for details</span>
         </div>
     </div>
 </template>
@@ -95,5 +92,26 @@ props.data;
 
 .chart-round-points:hover {
     background-color: #bb2d1bcc !important;
+}
+
+.points {
+    position: absolute;
+    letter-spacing: 1px;
+    color: white;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 17px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+    .points {
+        display: none;
+    }
+
+
 }
 </style>

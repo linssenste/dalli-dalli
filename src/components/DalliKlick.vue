@@ -17,7 +17,7 @@
 
                 <span style="font-weight: 500!important;"> <span v-if="!isMobile">Round <b>{{roundId+1}}</b> of
                         {{data.places.length}}</span><span v-else>{{roundId+1}}/{{data.places.length}}</span></span>
-                <span v-if="!isMobile" style="color: #BB2D1B!important">{{totalScore}} POINTS</span>
+                <span v-if="!isMobile" style="color: #BB2D1B!important; margin-left: 20px;">{{totalScore}} POINTS</span>
 
             </div>
 

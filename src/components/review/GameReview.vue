@@ -14,10 +14,11 @@
 
                 <ConfettiExplosion class="hidden-confetti" v-if="showConfetti" />
 
-                <img draggable="false" style="margin-bottom: 15px; margin-top: 12px;" class="logo"
+                <img v-if="!isMobile" draggable="false" style="margin-bottom: 15px; margin-top: 12px;" class="logo"
                     src="../../assets/game-logo.webp" width="275" height="102" />
 
-                <div id="value" style="font-size: 100px; color: #BB2D1B;  height: 125px; font-weight: 700; z-index: 100">
+                <div id="value" :style="isMobile? 'margin-top: 90px':''"
+                    style="font-size: 100px; color: #BB2D1B;  height: 125px; font-weight: 700; z-index: 100">
                     {{totalScore}}
                 </div>
                 <div
@@ -41,40 +42,37 @@
 
 
 
-        <div
-            style="display: flex;  height: 50px; flex-direction: row; justify-content: space-between; align-items: center;  margin: 30px; margin-top: 20px; margin-bottom: 20px;">
+        <div v-if="!isMobile"
+            style="position: relative;display: flex;  height: 50px; flex-direction: row; justify-content: space-between; align-items: center;  margin: 30px; margin-top: 20px; margin-bottom: 20px;">
             <div style="font-size: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
                 <span v-if="reviewIndex==-1" style="margin: 0 auto">Game Breakdown</span>
 
 
                 <span v-else>Round {{reviewIndex+1}}</span>
             </div>
-            <span v-if="reviewIndex==-1"
+            <span v-if="reviewIndex==-1&&!isMobile"
                 style="font-family: 'biro_script_standardregular'; font-size: 30px;">{{gamePhrase}}</span>
 
             <RoundStats v-else-if="data.places!=null&&reviewIndex>=0&&reviewIndex<5" :score="data.places[reviewIndex].score"
-                :place="data.places[reviewIndex]" style="gap: 20px" />
+                :place="data.places[reviewIndex]" />
 
 
         </div>
 
+        <RoundStats v-else-if="data.places!=null&&reviewIndex>=0&&reviewIndex<5" :score="data.places[reviewIndex].score"
+            :place="data.places[reviewIndex]" class="detail-stats" />
+
         <PointsBreakdownChart :data="data" :roundId="reviewIndex" v-on:selected="reviewIndex=$event" />
 
         <div v-if="data.places!=null" class="image-review">
-            <div v-for="(place, index) in data.places" class="image-area">
+            <div v-for="(place, index) in data.places" class="image-area" :id="`preview-image-${index}`">
                 <!-- {{place}} -->
                 <div :style="reviewIndex==index? 'color: #303030!important; font-weight: 600;':''"
                     style="position: relative;height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
 
-                    <!-- <div
-                        style="position: absolute; top: 0px; font-size: 18px; display: flex; flex-direction: row; align-items: center; justify-content: center; width: 100%;">
 
-                        {{index+1}}. <span v-if="store.state.settings.difficulty===3">{{place.latitude}}, {{
-                            place.longitude}}</span><span v-else>{{place.name}}</span>
-                    </div> -->
-
-                    <img v-on:click.stop.prevent="reviewIndex!=index? reviewIndex=index:reviewIndex=-1" draggable="false"
-                        :height="reviewIndex==index? 180:120" style="transition: all 150ms linear;"
+                    <img v-on:click.stop.prevent="choosePreviewImage(index)" draggable="false"
+                        :height="reviewIndex==index? 150:130" style="transition: all 150ms linear;"
                         :src="data.settings.difficulty===3? place.image:place.images[place.imageId].src+'?auto=compress&cs=tinysrgb&h=300'" />
                     <div :style="`opacity: ${reviewIndex==index? 1:0}; width: ${reviewIndex==index? 200:120};`"
                         class="place-name"><span v-if="place.name!=null">{{place.name}}
@@ -91,7 +89,7 @@
 
 
 <script lang="ts" setup>
-import { onMounted, ref, computed } from 'vue';
+import { onMounted, ref, computed, onUnmounted } from 'vue';
 
 import DistanceMap from '../maps/DistanceMap.vue';
 import PointsBreakdownChart from './PointsBreakdownChart.vue';
@@ -133,8 +131,27 @@ const totalScore=computed(() => {
     return score;
 });
 
-const gamePhrase=ref('Good job!')
+const gamePhrase=ref('Good job!');
+const windowWidth=ref(window.innerWidth);
+
+const updateWidth=() => {
+    windowWidth.value=window.innerWidth;
+}
+
+
+
+onUnmounted(() => {
+    window.removeEventListener('resize', updateWidth);
+});
+
+
+const isMobile=computed(() => {
+    return windowWidth.value<1000;
+})
+
+
 onMounted(() => {
+    window.addEventListener('resize', updateWidth);
     gamePhrase.value=generatePhrase(totalScore.value);
 
     const obj=document.getElementById("value");
@@ -158,6 +175,17 @@ onMounted(() => {
 })
 
 
+
+function choosePreviewImage(index: number) {
+
+
+    const resultingIndex=reviewIndex.value!=index? reviewIndex.value=index:reviewIndex.value=-1;
+
+    if (resultingIndex!=-1) {
+        const doc=document.getElementById(`preview-image-${index}`);
+        if (doc) doc.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
 function generatePhrase(score: number): string {
 
     let phrases;
@@ -194,6 +222,32 @@ props.data;
     background-color: red;
 
 }
+
+.detail-stats {
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto !important;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    height: 70px;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0px;
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+
 
 .round-map {
     width: 100%;
@@ -310,25 +364,48 @@ props.data;
 
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+
     justify-content: center;
     align-items: start;
 
-    // width: 100%;
+
+    max-width: 100%;
     /* background-color: red; */
     height: 100%;
 
     overflow: hidden;
     overflow-x: auto;
-    padding: 0;
-    margin: 0;
     margin-top: 10px;
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+@media screen and (max-width: 800px) {
+    .image-review {
+        justify-content: start;
+    }
 }
 
 .image-review img {
     margin: 5px;
-
     border-radius: 6px;
+}
+
+.image-review:first-child {
+    margin-left: 0px !important;
+}
+
+.image-review img:not(:last-child) {
+    margin-right: 10px;
 }
 
 

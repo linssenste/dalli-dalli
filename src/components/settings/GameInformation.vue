@@ -9,8 +9,8 @@
             </div>
 
 
-            <div style="text-align: justify; padding: 20px;  font-size: 16px; margin-top: 15px; z-index: 100; width: 450px">
-                <span style="font-family: 'biro_script_standardregular'; font-size: 40px; line-height: 30px;">{{greeting}}!
+            <div style="text-align: justify; padding: 20px;  font-size: 16px; margin-top: 25px; z-index: 100; width: 450px">
+                <span style="font-family: 'biro_script_standardregular'; font-size: 40px; line-height: 50px;">{{greeting}}!
                 </span>
                 <!-- <div styl>* Hello</div> -->
                 <p>
@@ -32,11 +32,12 @@
                     you in the right direction.
                 </p>
 
+                <!-- Place this tag where you want the button to render. -->
+                <github-button href="https://github.com/linssenste/dalli-dalli"
+                    data-color-scheme="no-preference: light_high_contrast; light: light; dark: dark;" data-size="large"
+                    data-show-count="true" aria-label="Star linssenste/dalli-dalli on GitHub">View on GitHub</github-button>
 
 
-                <a draggable="false" class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/linssenste"><img
-                        src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg" alt="Buy me a coffee!"><span
-                        style="margin-left:5px">Buy me a coffee!</span></a>
             </div>
         </div>
 
@@ -46,7 +47,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-
+import GithubButton from 'vue-github-button'
 
 let greetings=[
     // previously provided greetings
@@ -97,50 +98,7 @@ const greeting=computed(() => {
 })
 </script>
 
-<style>
-.bmc-button img {
-    width: 27px !important;
-    margin-bottom: 1px !important;
-    box-shadow: none !important;
-    border: none !important;
-    margin-right: 10px;
-    vertical-align: middle !important;
-}
-
-.bmc-button {
-    height: 40px !important;
-    font-family: 'biro_script_standardregular';
-    text-decoration: none !important;
-    display: flex !important;
-    color: black !important;
-    background-color: #F8DA5F !important;
-    border-radius: 10px !important;
-
-
-    padding-left: 20px;
-    padding-right: 20px;
-    font-size: 28px !important;
-    letter-spacing: 1px !important;
-    margin-top: 30px;
-    /* text-transform: uppercase !important; */
-    align-items: center;
-    width: fit-content;
-    transition: all 200ms;
-    border: 2px solid transparent
-}
-
-.bmc-button span {
-    margin-top: 8px;
-}
-
-.bmc-button:hover,
-.bmc-button:active,
-.bmc-button:focus {
-    text-decoration: none !important;
-    transition: all 200ms;
-    border: 2px solid #BABABA !important
-}
-</style>
+<style></style>
 <style scoped>
 .logo-container {
     /* position: absolute; */

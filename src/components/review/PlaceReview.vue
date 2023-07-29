@@ -10,7 +10,7 @@
         <div class="round-info-column">
 
             <div class="round-stats">
-                <PointsRoundChart :score="data.places[roundId].score" data-testid="chart-stat" />
+                <PointsRoundChart class="chart-stats" :score="data.places[roundId].score" data-testid="chart-stat" />
                 <RoundStats class="round-stats-cards" :place="data.places[roundId]" data-testid="card-stats" />
             </div>
 
@@ -102,15 +102,44 @@ props.roundId;
 }
 
 
+@media screen and (max-width: 1000px) {
+    .review-area {
+        flex-direction: column;
+    }
+}
+
 
 .image-wrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: calc(100% - 600px);
-    height: 100%;
+    height: 50%;
+    position: relative;
+
 }
 
+@media screen and (min-width: 1000px) {
+    .image-wrapper {
+        max-width: 100%;
+        height: 100%;
+    }
+
+}
+
+@media screen and (max-width: 1000px) {
+    .image-wrapper {
+        max-width: 100%;
+    }
+
+}
+
+
+.chart-stats {
+    max-width: calc(100% - 20px);
+    position: relative;
+    margin: 10px;
+}
 
 .image-area {
     flex-grow: 1;
@@ -120,9 +149,11 @@ props.roundId;
     position: absolute;
     top: 0px;
     z-index: 100;
-    width: calc(100% - 20px);
+    width: 100%;
+
+
     height: 120px;
-    padding: 10px;
+
 }
 
 .round-info-column {
@@ -132,14 +163,35 @@ props.roundId;
     position: relative;
 }
 
+@media screen and (max-width: 1000px) {
+    .round-info-column {
+        max-width: 100%;
+    }
+}
+
 .round-stats-cards {
     top: 0px;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto !important;
     display: flex;
     flex-direction: row;
-    margin-top: 15px;
+    margin-top: 5px;
+    height: 70px;
     align-items: center;
     justify-content: space-between;
     padding-bottom: 0px;
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .round-distance-map {

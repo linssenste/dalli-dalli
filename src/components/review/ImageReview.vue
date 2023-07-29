@@ -1,12 +1,12 @@
 <template>
     <div class="preview-image" v-if="locationImages!=null&&locationImages.length>0">
 
-        <a class="photo-info-link pexels-link" data-testid="pexels-link"><img
+        <a v-if="!isMobile" class="photo-info-link pexels-link" data-testid="pexels-link"><img
                 src="https://help.pexels.com/hc/en-us/article_attachments/900006864786/Logo_on_Transparent.png"
                 width="100" /></a>
 
-        <a data-testid="photographer-link" :href="locationImages[currentImageIndex].photographer_url" target="_blank"
-            class="photo-info-link photographer-link"><i class="fa-solid fa-image"
+        <a v-if="!isMobile" data-testid="photographer-link" :href="locationImages[currentImageIndex].photographer_url"
+            target="_blank" class="photo-info-link photographer-link"><i class="fa-solid fa-image"
                 style="margin-right: 10px;" />{{locationImages[currentImageIndex].photographer}}</a>
 
 
@@ -16,14 +16,20 @@
 
             <b>{{place.name}}</b>
         </div>
-        <div class="container">
+
+
+        <div v-if="isMobile" style="position: relative; width: 100%; ">
+            <img preload draggable="false" style="width: 100%"
+                :src="locationImages[currentImageIndex].src+'?auto=compress&cs=tinysrgb&h=560'" alt="" />
+        </div>
+        <div v-else class="container">
 
             <LoadingOverlay v-if="!zoomImageLoaded" class="loading-overlay" data-testid="loading-overlay" />
 
             <vue-image-zoomer data-testid="image-zoom" v-on:regular-loaded="loadedImageEvent" :show-message="false"
                 :click-zoom="true" img-class="height" :regular="(locationImages[currentImageIndex].src)" />
         </div>
-        <div class="preview-scroll-area" data-testid="preview-images">
+        <div v-if="!isMobile" class="preview-scroll-area" data-testid="preview-images">
             <div v-for="(image, index) in locationImages" v-on:click="currentImageIndex=index" class="other-image"
                 style="scroll-margin-right: 20px;" :id="`preview-image-${index}`">
                 <div class="overlay" :class="{ 'selected-overlay': index===currentImageIndex }"><i
@@ -36,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, onMounted, onUnmounted } from 'vue';
 import { GameLocation } from '../settings/GameSetup.vue';
 import LoadingAnimation from '../LoadingAnimation.vue';
 import { VueImageZoomer } from 'vue-image-zoomer'
@@ -47,6 +53,25 @@ const props=defineProps<{
 }>();
 
 
+const windowWidth=ref(window.innerWidth);
+
+const updateWidth=() => {
+    windowWidth.value=window.innerWidth;
+}
+
+onMounted(() => {
+    document.title=`GEODALLI`;
+    window.addEventListener('resize', updateWidth);
+})
+
+onUnmounted(() => {
+    window.removeEventListener('resize', updateWidth);
+});
+
+
+const isMobile=computed(() => {
+    return windowWidth.value<1000;
+})
 
 const currentImageIndex=ref<number>(0);
 watch(currentImageIndex, () => {
