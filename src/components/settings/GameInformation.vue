@@ -4,14 +4,23 @@
         <div class="overview-text">
             <div class="fade-border">
             </div>
-            <div class="logo-container">
-                <img draggable="false" class="logo" src="../../assets/game-logo.webp" width="300" height="112" />
-            </div>
 
 
-            <div style="text-align: justify; padding: 20px;  font-size: 16px; margin-top: 25px; z-index: 100; width: 450px">
-                <span style="font-family: 'biro_script_standardregular'; font-size: 40px; line-height: 50px;">{{greeting}}!
-                </span>
+
+
+            <div style="text-align: justify;  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%; padding: 20px;  font-size: 16px; z-index: 100; width: 450px">
+                <div class="logo-container">
+                    <img draggable="false" class="logo" src="../../assets/game-logo.webp" width="300" height="112" />
+                </div>
+
+                <div
+                    style="font-family: 'biro_script_standardregular'; font-size: 40px; line-height: 50px; margin-top: 25px; text-align: start; width: 100%;">
+                    {{greeting}}!
+                </div>
                 <!-- <div styl>* Hello</div> -->
                 <p>
                     In this game, a famous landmark from around the world is carefully under a mosaic of shapes. As each
@@ -33,7 +42,7 @@
                 </p>
 
                 <!-- Place this tag where you want the button to render. -->
-                <github-button href="https://github.com/linssenste/dalli-dalli"
+                <github-button href="https://github.com/linssenste/dalli-dalli" style="width: 100%; height: 28px"
                     data-color-scheme="no-preference: light_high_contrast; light: light; dark: dark;" data-size="large"
                     data-show-count="true" aria-label="Star linssenste/dalli-dalli on GitHub">View on GitHub</github-button>
 
@@ -105,7 +114,7 @@ const greeting=computed(() => {
     /* top: 0px;
     left: calc(50%);
     transform: translateX(-50%); */
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-bottom: 10px;
     font-size: 30px;
     text-transform: uppercase;
@@ -122,6 +131,8 @@ const greeting=computed(() => {
     /* height: 600px; */
     background-color: transparent;
     position: relative;
+
+
 
     /* margin-top: 30px !important; */
     /* border-radius: 10px; */

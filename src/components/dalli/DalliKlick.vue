@@ -62,9 +62,10 @@
 
 <script lang="ts" setup>
 import { computed, onMounted, watch, ref, onUnmounted } from 'vue';
-import { GameLocation, GameSettings } from '../components/settings/GameSettings.vue';
-import ShapeCanvas from './dalli/ShapeCanvas.vue';
-import TimerProgress from './dalli/TimerProgress.vue';
+import { GameLocation, GameSettings } from '../settings/GameSettings.vue';
+import ShapeCanvas from '../dalli/ShapeCanvas.vue';
+import TimerProgress from '../dalli/TimerProgress.vue';
+
 const props=defineProps<{
     data: { places: GameLocation[], settings: GameSettings },
     roundId: number

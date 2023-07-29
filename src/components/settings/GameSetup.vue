@@ -5,10 +5,11 @@
         <GameInformation v-if="!isMobile" />
         <div class="game-settings">
             <div
-                style="width: 100%; position: relative; width: calc(100% - 16px); max-width: 450px;  margin: 0 auto; padding: 8px; padding-bottom: 15px; padding-top: 15px;">
+                style="width: 100%; position: relative; width: calc(100% - 16px); max-width: 450px;  margin: auto; padding: 8px; padding-bottom: 15px; padding-top: 15px;">
 
                 <div v-if="isMobile" class="logo-container">
-                    <img draggable="false" class="logo" src="../../assets/game-logo.webp" width="300" height="112" />
+                    <img draggable="false" preload class="logo" src="../../assets/game-logo.webp" width="300"
+                        height="112" />
                 </div>
 
                 <DifficultySettings v-on:change="updateSettingsEvent" />

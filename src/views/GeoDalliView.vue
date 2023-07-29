@@ -11,7 +11,7 @@
 import { ref } from 'vue';
 import { GameLocation, GameSettings } from '../components/settings/GameSettings.vue';
 import GameSetup from '../components/settings/GameSetup.vue';
-import GameMode from '../components/GameMode.vue';
+import GameMode from '../components/dalli/GameMode.vue';
 import LoadingOverlay from '../components/helper/LoadingOverlay.vue';
 const gameModus=ref(0);
 const dalliGame=ref<{ places: GameLocation[], settings: GameSettings }|null>(null)

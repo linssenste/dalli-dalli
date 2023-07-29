@@ -114,15 +114,16 @@ props.roundId;
     flex-direction: column;
     width: 100%;
     max-width: calc(100% - 600px);
-    height: 50%;
+    height: 100%;
     position: relative;
 
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (max-width: 1000px) {
     .image-wrapper {
+        height: 50%;
         max-width: 100%;
-        height: 100%;
+
     }
 
 }

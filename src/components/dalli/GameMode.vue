@@ -3,18 +3,21 @@
 
         <DalliKlick class="dalli-area" :data="data" :roundId="currentRoundId" v-on:loading="loadingEvent"
             v-on:guess="userGuessEvent" />
+
+        <!-- open map on mobile device button -->
         <button v-if="isMobile" v-on:click="showMap=!showMap" class="reveal-map-button action-button">
             <i class="fa-solid fa-map" />Guess location</button>
 
         <transition name="slide-up-down" mode="out-in">
+
             <div v-show="!isMobile||showMap" :class="isMobile? 'mobile-map':'sidebar-map'">
+                <!-- close button on map mobile open -->
                 <button v-show="isMobile" v-on:click="showMap=false"
                     style="position: absolute; top: 17px; left: 15px; z-index: 10000!important; pointer-events: all;"
                     class="icon-button"><i class="fa-solid fa-xmark" /></button>
+
                 <MapSelector style="position: relative; width: 100%; height: 100%;" :data="data" :roundId="currentRoundId"
                     v-on:submit="userGuessEvent" />
-
-
             </div>
         </transition>
 
@@ -30,11 +33,11 @@
 </template>
 <script lang="ts" setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { GameLocation, GameSettings } from '../components/settings/GameSettings.vue';
+import { GameLocation, GameSettings } from '../settings/GameSettings.vue';
 import DalliKlick from './DalliKlick.vue';
-import MapSelector from './maps/MapSelector.vue';
-import PlaceReview from './review/PlaceReview.vue';
-import GameReview from './review/GameReview.vue';
+import MapSelector from '../maps/MapSelector.vue';
+import PlaceReview from '../review/PlaceReview.vue';
+import GameReview from '../review/GameReview.vue';
 
 const showMap=ref(false)
 const gameMode=ref(0)
