@@ -51,7 +51,8 @@
                     style="width: calc(100% + 1px);" :interval="data.settings.interval"
                     v-on:update="revealToggle=!revealToggle" />
                 <div v-else-if="!hasRemoved" class="manual-hint">
-                    Click on any shape or press space to remove shape</div>
+                    Click on any shape <span v-if="!isMobile">or press space</span> to remove <span
+                        v-if="!isMobile">shape</span></div>
             </div>
 
         </div>
@@ -90,6 +91,8 @@ const windowWidth=ref(window.innerWidth);
 const updateWidth=() => {
     windowWidth.value=window.innerWidth;
 }
+
+
 onMounted(() => {
 
     window.addEventListener('keydown', handleKeyboard)

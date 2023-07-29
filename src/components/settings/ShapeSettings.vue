@@ -36,8 +36,8 @@
             <div v-else-if="!updatePreview" data-testid="image-manual-text"
                 style="font-size: 14px; padding-top: 3px; color: #c0c0c0; font-weight: 500; text-align: center; width: 100%; text-transform: uppercase;">
                 Click
-                Shape or press
-                space to remove</div>
+                Shape <span v-if="!isMobile">or press
+                    space</span> to remove</div>
         </div>
 
         <ShapeTypeSelector data-testid="shape-type-selector" v-on:update="settings.type=$event" />
@@ -48,7 +48,7 @@
 
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 import ShapeCanvas from '../dalli/ShapeCanvas.vue';
 import RemovalIntervalSettings from './RemovalIntervalSettings.vue';
@@ -68,6 +68,25 @@ const settings=ref({
     interval: 0,
     shapes: parseInt(((new URL(document.location as any)).searchParams).get('shapes')||'20'),
     type: 'voronoi'
+})
+
+const windowWidth=ref(window.innerWidth);
+
+const updateWidth=() => {
+    windowWidth.value=window.innerWidth;
+}
+
+onMounted(() => {
+    window.addEventListener('resize', updateWidth);
+})
+
+onUnmounted(() => {
+    window.removeEventListener('resize', updateWidth);
+});
+
+
+const isMobile=computed(() => {
+    return windowWidth.value<1000;
 })
 
 
@@ -118,6 +137,7 @@ watch(numTriangles, () => {
     letter-spacing: .5px;
     top: 50%;
     left: 50%;
+    color: #303030;
     transform: translate(-50%, -50%);
 }
 

@@ -4,16 +4,19 @@
         <DalliKlick class="dalli-area" :data="data" :roundId="currentRoundId" v-on:loading="loadingEvent"
             v-on:guess="userGuessEvent" />
         <button v-if="isMobile" v-on:click="showMap=!showMap" class="reveal-map-button action-button">
-            <i class="fa-solid fa-map" />Select location</button>
+            <i class="fa-solid fa-map" />Guess location</button>
 
-        <!-- <transition name="slide-up-down" mode="out-in"> -->
-        <!-- <div v-show="!isMobile||showMap" :class="isMobile? 'mobile-map':'map'">
-                <button v-show="isMobile" v-on:click.stop.prevent="showMap=false"
+        <transition name="slide-up-down" mode="out-in">
+            <div v-show="!isMobile||showMap" :class="isMobile? 'mobile-map':'sidebar-map'">
+                <button v-show="isMobile" v-on:click="showMap=false"
                     style="position: absolute; top: 17px; left: 15px; z-index: 10000!important; pointer-events: all;"
-                    class="icon-button"><i class="fa-solid fa-xmark" /></button> -->
-        <MapSelector class="map" :data="data" :roundId="currentRoundId" v-on:submit="userGuessEvent" />
-        <!-- </div> -->
-        <!-- </transition> -->
+                    class="icon-button"><i class="fa-solid fa-xmark" /></button>
+                <MapSelector style="position: relative; width: 100%; height: 100%;" :data="data" :roundId="currentRoundId"
+                    v-on:submit="userGuessEvent" />
+
+
+            </div>
+        </transition>
 
     </div>
 
@@ -48,6 +51,7 @@ const updateWidth=() => {
 }
 
 onMounted(() => {
+    showMap.value=false
     window.addEventListener('resize', updateWidth);
 })
 
@@ -66,6 +70,8 @@ function loadingEvent(loadingStatus: boolean): void {
 function userGuessEvent(guessPosition: { lat: number, lng: number }): void {
     props.data.places[currentRoundId.value].guess=guessPosition;
     gameMode.value=1;
+    showMap.value=false;
+    document.activeElement?.blur();
 
 }
 
@@ -86,10 +92,12 @@ props.data;
 
 
 <style scoped>
-.map {
+.sidebar-map {
     position: relative;
     width: 100%;
+    height: 100%;
     max-width: 600px;
+    transition: none !important;
 }
 
 .dalli-area {
@@ -119,6 +127,7 @@ props.data;
 
 @media screen and (max-width: 1000px) {
     .game-area {
+
         flex-direction: column;
     }
 
