@@ -71,12 +71,13 @@ props.data;
 
 
 .game-area {
-    position: relative;
+    position: fixed;
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    overflow: hidden;
     justify-content: center;
 
 }
