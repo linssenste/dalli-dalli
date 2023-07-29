@@ -47,10 +47,10 @@ watch(() => props.interval, () => {
 
             } else {
 
-                counter.value-=5;
+                counter.value-=10;
             }
 
-        }, 1)
+        }, 10)
     }
 
 }, { immediate: true })
