@@ -2,12 +2,14 @@
     <div class="map-area" data-testid="selection-area" @mouseenter="mapFocusEvent(true)" @mouseleave="mapFocusEvent(false)">
 
 
+
+
         <!-- Country hint button -->
         <div v-on:click="data.places[roundId].hint=true" class="country-hint-button" data-testid="country-hint-button"
             :class="{ 'country-hint-button-active': data.places[roundId].hint }">
             <span v-if="data.places[roundId].hint==false">
                 <i class="fa-solid fa-flag"></i>Reveal
-                country flag </span>
+                flag </span>
             <div v-else class="country-flag"><span> Country:</span><img preload draggable="false"
                     :src="`http://purecatamphetamine.github.io/country-flag-icons/3x2/${data.places[roundId].countryId}.svg`" />
             </div>
@@ -23,6 +25,8 @@
                     :options="{ position: location, icon: markerIcon() }" />
             </template>
         </GoogleMap>
+
+
 
         <!-- submit guess button -->
         <button data-testid="guess-button" v-on:click="submitData" :class="{ 'disabled-button': location===null }"
@@ -49,6 +53,7 @@ const props=defineProps<{
     roundId: number,
     data: any
 }>();
+
 props.roundId;
 const markerIcon=() => ({
     path: google.maps.SymbolPath.CIRCLE,
@@ -59,7 +64,9 @@ const markerIcon=() => ({
 });
 
 
+
 const emit=defineEmits(['focus', 'submit'])
+
 
 function mapFocusEvent(isHovering: boolean): void {
     emit('focus', isHovering);
@@ -105,7 +112,7 @@ function setMarker(event: any) {
 .submit-button {
     position: absolute;
     bottom: 30px;
-    width: calc(100% - 60px);
+    width: calc(100% - 20px);
     left: 50%;
     transform: translateX(-50%);
 
@@ -149,7 +156,7 @@ function setMarker(event: any) {
 
 
     height: 50px;
-    width: 350px;
+    width: 220px;
     letter-spacing: .5px;
     background-color: #F0F0F0AA;
     backdrop-filter: blur(5px);

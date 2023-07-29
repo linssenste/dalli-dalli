@@ -1,5 +1,5 @@
 <template>
-    <LoadingOverlay v-if="loadingOverlay" class="game-mode-view" />
+    <LoadingOverlay v-if="loadingOverlay" class="loading-overlay" />
 
 
     <GameSetup v-if="gameModus===0||dalliGame==null" class="game-mode-view" v-on:loading="loadingOverlay=$event"
@@ -33,8 +33,16 @@ async function startGame(gameData: { places: GameLocation, settings: GameSetting
 .game-mode-view {
     width: 100%;
     height: 100%;
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 </style>

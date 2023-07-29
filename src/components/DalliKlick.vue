@@ -15,8 +15,9 @@
                 </div>
 
 
-                <span style="font-weight: 500!important;"> Round <b>{{roundId+1}}</b> of {{data.places.length}}</span>
-                <span style="color: #BB2D1B!important">{{totalScore}} POINTS</span>
+                <span style="font-weight: 500!important;"> <span v-if="!isMobile">Round <b>{{roundId+1}}</b> of
+                        {{data.places.length}}</span><span v-else>{{roundId+1}}/{{data.places.length}}</span></span>
+                <span v-if="!isMobile" style="color: #BB2D1B!important">{{totalScore}} POINTS</span>
 
             </div>
 
@@ -59,7 +60,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, watch, ref } from 'vue';
+import { computed, onMounted, watch, ref, onUnmounted } from 'vue';
 import { GameLocation, GameSettings } from '../components/settings/GameSettings.vue';
 import ShapeCanvas from './dalli/ShapeCanvas.vue';
 import TimerProgress from './dalli/TimerProgress.vue';
@@ -84,14 +85,27 @@ const totalScore=computed(() => {
     }
     return score;
 });
+const windowWidth=ref(window.innerWidth);
 
+const updateWidth=() => {
+    windowWidth.value=window.innerWidth;
+}
 onMounted(() => {
 
     window.addEventListener('keydown', handleKeyboard)
+    window.addEventListener('resize', updateWidth);
+
 })
 
+onUnmounted(() => {
+    window.removeEventListener('resize', updateWidth);
+});
 watch(revealToggle, () => {
     hasRemoved.value=true;
+})
+
+const isMobile=computed(() => {
+    return windowWidth.value<1000;
 })
 
 watch(imageLoaded, () => {
@@ -123,7 +137,7 @@ props.data;
 }
 
 .difficulty-info span {
-    margin-left: 20px;
+    margin-left: 10px;
     text-transform: uppercase;
     font-size: 17px;
     color: #505050 !important;
@@ -193,6 +207,7 @@ props.data;
     cursor: pointer;
     pointer-events: none;
     letter-spacing: .5px;
+    text-align: center;
     left: 50%;
     width: 100%;
     transform: translate(-50%, -50%);

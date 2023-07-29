@@ -160,6 +160,7 @@ const greeting=computed(() => {
     width: 100%;
     max-width: 50%;
     min-height: 112px;
+    color: black !important;
     /* height: 600px; */
     background-color: transparent;
     position: relative;
