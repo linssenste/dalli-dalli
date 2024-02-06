@@ -31,12 +31,14 @@ button {
     transition: all 150ms ease-in-out;
     cursor: pointer;
 
+
 }
 .icon-button:hover {
-    background-color: #e0e0e0!important;
+    background-color: #eaeaea!important;
     color: #303030;
     transition: all 150ms ease-in-out;
 }
+
 
 .icon-button i {
     position: absolute;
@@ -53,7 +55,6 @@ button {
     color: white!important;
     background-color: #BB2D1BCC!important;
 }
-
 
 
 .button-disabled {

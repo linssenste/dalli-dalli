@@ -30,7 +30,7 @@ let imageHeight: number=0;
 const emit=defineEmits(['update', 'loaded'])
 const props=defineProps<{
     image: string,
-    shapes: number, // replaces 'triangles'
+    shapes: number | string, // replaces 'triangles'
     type: 'triangle'|'rectangle'|'hexagon'|'voronoi',
     repeat?: boolean
     manual?: boolean, // prop to trigger manual shape removal
@@ -83,25 +83,34 @@ function handleKeyboard(e: KeyboardEvent): void {
 onMounted(async () => {
 
     window.addEventListener('resize', handleResize);
+
     // Initially, no image is loaded
     background.src=props.image;
     background.onload=function () {
+	
         emit('loaded')
 
         // Get parent dimensions
         const parent=document.getElementById('container');
         const parentWidth=parent? parent.offsetWidth:0;
+        const parentHeight=parent? parent.offsetHeight:0;
 
         // Calculate the image's aspect ratio
         const imageAspectRatio=background.width/background.height;
 
         // Initialize canvas dimensions to image dimensions
-        let canvasHeight=parentWidth/imageAspectRatio;
+        let canvasHeight= parentHeight
 
+		let canvasWidth = parentWidth;
+		if (background.height < background.width) {
+			canvasHeight = parentWidth/imageAspectRatio;
+		} else {
+			canvasWidth = parentHeight*imageAspectRatio
+		}
         // Create Konva stage
         stage=new Konva.Stage({
             container: 'container',
-            width: parentWidth,
+            width: canvasWidth,
             height: canvasHeight
         });
 
@@ -109,7 +118,7 @@ onMounted(async () => {
         layer=new Konva.Layer();
         stage.add(layer);
 
-        imageWidth=parentWidth;
+        imageWidth=canvasWidth;
         imageHeight=canvasHeight;
 
         totalImageArea.value=imageWidth*imageHeight; // calculate total image area
@@ -119,6 +128,9 @@ onMounted(async () => {
 
         window.addEventListener('keydown', handleKeyboard)
     }
+
+
+
 });
 
 
@@ -126,19 +138,27 @@ function handleResize() {
     if (!stage||!layer) return;
     // Get parent dimensions
     const parent=document.getElementById('container');
-    const parentWidth=parent? parent.offsetWidth:0;
+	const parentWidth=parent? parent.offsetWidth:0;
+        const parentHeight=parent? parent.offsetHeight:0;
 
-    // Calculate the image's aspect ratio
-    const imageAspectRatio=background.width/background.height;
+        // Calculate the image's aspect ratio
+        const imageAspectRatio=background.width/background.height;
 
-    // Initialize canvas dimensions to image dimensions
-    let canvasHeight=parentWidth/imageAspectRatio;
+        // Initialize canvas dimensions to image dimensions
+        let canvasHeight= parentHeight
+
+		let canvasWidth = parentWidth;
+		if (background.height < background.width) {
+			canvasHeight = parentWidth/imageAspectRatio;
+		} else {
+			canvasWidth = parentHeight*imageAspectRatio
+		}
 
     // Update the stage dimensions
-    stage.width(parentWidth);
+    stage.width(canvasWidth);
     stage.height(canvasHeight);
 
-    imageWidth=parentWidth;
+    imageWidth=canvasWidth;
     imageHeight=canvasHeight;
 
     totalImageArea.value=imageWidth*imageHeight; // update total image area
@@ -345,18 +365,14 @@ function removeShape() {
     }
 }
 
-
-
-
-
-
-
 </script>
 
 
 <style scoped>
 .dalli-area {
     position: relative;
+
+	display: flex;align-items: center; justify-content: center;
     border: none !important;
 
 }

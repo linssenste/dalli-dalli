@@ -30,8 +30,8 @@
 
         </div>
         <div style="height: 30px; ">
-            <TimerProgress :preview="true" data-testid="image-timer" v-if="settings.interval!=0&&!updatePreview"
-                v-on:update="toggleShapeReveal=!toggleShapeReveal" :interval="parseInt(String(settings.interval))"
+            <TimerProgress :pause="false" :preview="true" data-testid="image-timer" v-if="settings.interval!=0&&!updatePreview"
+                v-on:update="toggleShapeReveal=!toggleShapeReveal" :interval="settings.interval"
                 style="border-bottom-left-radius: 7px; border-bottom-right-radius: 7px; overflow: hidden;" />
             <div v-else-if="!updatePreview" data-testid="image-manual-text"
                 style="font-size: 14px; padding-top: 3px; color: #c0c0c0; font-weight: 500; text-align: center; width: 100%; text-transform: uppercase;">
@@ -41,7 +41,7 @@
         </div>
 
         <ShapeTypeSelector data-testid="shape-type-selector" v-on:update="settings.type=$event" />
-        <RemovalIntervalSettings data-testid="shape-removal-interval" v-on:update="settings.interval=$event" />
+        <RemovalIntervalSettings data-testid="shape-removal-interval" v-on:update="settings.interval=parseInt($event)" />
     </div>
 </template>
 

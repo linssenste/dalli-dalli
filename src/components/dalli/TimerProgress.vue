@@ -1,6 +1,6 @@
 <template>
-    <div v-if="interval>=1000" class="progress-area">
-        <div :key="interval" :style="`width: ${(counter/interval)*100}%`" class="progress-bar">
+    <div v-if="interval>=1000" class="progress-area" :style="`background-color: ${overlay ? '#d0d0d0' : '#F0F0F0'}`">
+        <div :key="interval" :style="`width: ${(counter/interval)*100}%; ${overlay ? 'background-color: #BB2D1B' : ''}`" class="progress-bar">
 
         </div>
 
@@ -15,7 +15,8 @@ import { ref, watch, onBeforeUnmount } from 'vue'
 const props=defineProps<{
     interval: number,
     pause: boolean,
-    preview?: boolean
+    preview?: boolean, 
+	overlay?: boolean
 }>();
 
 
@@ -30,6 +31,7 @@ onBeforeUnmount(() => {
 
 const counter=ref(props.interval);
 watch(() => props.interval, () => {
+	
     if (intervalHandler.value!=null) {
         clearInterval(intervalHandler.value);
         counter.value=props.interval
@@ -38,7 +40,6 @@ watch(() => props.interval, () => {
     else {
         // if (!props.preview) emit('update')
         intervalHandler.value=setInterval(() => {
-
             if (props.pause===true) return;
             if (counter.value<=0) {
 
