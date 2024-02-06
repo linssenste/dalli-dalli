@@ -9,7 +9,7 @@ const routes = [
     },
 
 	{
-        path: "/image",
+        path: "/viewer",
         component: DalliDalliView,
     },
 ];

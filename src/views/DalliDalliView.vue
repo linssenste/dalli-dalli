@@ -6,7 +6,7 @@
 
 
 				<a href="/">
-				<img height="80" class="game-logo" src="../assets/game-logo.webp" />
+				<img draggable="false" height="80" class="game-logo" src="../assets/game-logo.webp" />
 				</a>
 
 				
@@ -18,7 +18,7 @@
 					<!-- Input for image upload -->
 					<input hidden id="attach-image" type="file" @change="handleFileUpload" accept="image/*" />
 					<button v-on:click="uploadImageClick()" class="icon-button upload-button"><i
-						   v-if="uploadedImage == null" class="fa-solid fa-upload" /><i v-else class="fa-solid fa-image"
+						   v-if="uploadedImage == null" class="fa-solid fa-upload" title="Upload image" /><i v-else class="fa-solid fa-image"
 						   style="color: #BB2D1B" /></button>
 					<input v-model="link" v-on:blur="invalidUrl = false"
 						   :class="uploadedImage != null ? 'url-input-disabled' : ''" class="url-input"
@@ -26,8 +26,8 @@
 
 
 				</div>
-
-				<span v-if="invalidUrl && link.length > 0">Invalid image link</span>
+ 
+				<div v-if="invalidUrl && link.length > 0" style="margin-top: 5px; color: #BB2D1B; font-size: 15px;">Oh, that's not a valid image link </div>
 			
 				
 				<!-- start image viewer -->
@@ -271,9 +271,9 @@ function handleFileUpload(event: any): void {
 	overflow: hidden;
 
 	width: 100%;
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(6px);
 	/* Adjust the blur radius as needed */
-	-webkit-backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(6px);
 	height: 100%
 }
 
@@ -283,7 +283,7 @@ function handleFileUpload(event: any): void {
 	align-items: center;
 
 	width: 450px;
-	max-height: calc(100% - 100px);
+	max-height: 100%;
 	overflow: auto;
 	position: relative;
 	background-color: #ffffffcc;

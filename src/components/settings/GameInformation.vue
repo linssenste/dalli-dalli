@@ -33,6 +33,11 @@
                     you in the right direction.
                 </p>
 
+				<div style="width: 100%; margin-bottom: 20px; margin-top: 10px;">
+					<a href="/viewer">
+				<button  class="action-button" style="height: 40px; font-size: 15px; padding-right: 25px;"><i class="fa-solid fa-image"/>Dalli-Klick Viewer</button>
+				</a>
+			</div>
                 <!-- Place this tag where you want the button to render. -->
                 <github-button href="https://github.com/linssenste/dalli-dalli" style="width: 100%; height: 28px"
                     data-color-scheme="no-preference: light_high_contrast; light: light; dark: dark;" data-size="large"
