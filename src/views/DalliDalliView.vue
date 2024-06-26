@@ -6,10 +6,10 @@
 
 
 				<a href="/">
-				<img draggable="false" height="80" class="game-logo" src="../assets/game-logo.webp" />
+					<img draggable="false" height="80" class="game-logo" src="../assets/game-logo.webp" />
 				</a>
 
-				
+
 
 				<ShapeSettings style="width: 100%;" v-on:update="settings = $event" />
 
@@ -18,21 +18,22 @@
 					<!-- Input for image upload -->
 					<input hidden id="attach-image" type="file" @change="handleFileUpload" accept="image/*" />
 					<button v-on:click="uploadImageClick()" class="icon-button upload-button"><i
-						   v-if="uploadedImage == null" class="fa-solid fa-upload" title="Upload image" /><i v-else class="fa-solid fa-image"
-						   style="color: #BB2D1B" /></button>
+						   v-if="uploadedImage == null" class="fa-solid fa-upload" title="Upload image" /><i v-else
+						   class="fa-solid fa-image" style="color: #BB2D1B" /></button>
 					<input v-model="link" v-on:blur="invalidUrl = false"
 						   :class="uploadedImage != null ? 'url-input-disabled' : ''" class="url-input"
 						   placeholder="Add image by link" />
 
 
 				</div>
- 
-				<div v-if="invalidUrl && link.length > 0" style="margin-top: 5px; color: #BB2D1B; font-size: 15px;">Oh, that's not a valid image link </div>
-			
-				
+
+				<div v-if="invalidUrl && link.length > 0" style="margin-top: 5px; color: #BB2D1B; font-size: 15px;">Oh,
+					that's not a valid image link </div>
+
+
 				<!-- start image viewer -->
-				<button class="start-button action-button" :class="(!isValidUrl && !uploadedImage) ? 'button-disabled' : ''"
-						@click="showImage()">
+				<button class="start-button action-button"
+						:class="(!isValidUrl && !uploadedImage) ? 'button-disabled' : ''" @click="showImage()">
 					<i class="fa-solid fa-play "></i>
 					<div>Show Image</div>
 				</button>
@@ -43,7 +44,8 @@
 		<div v-else class="shape-canvas">
 
 			<!-- close button / go back to settings -->
-			<button class="icon-button close-button" v-on:click="setupMode = true"><i class="fa-solid fa-xmark" /></button>
+			<button class="icon-button close-button" v-on:click="setupMode = true"><i
+				   class="fa-solid fa-xmark" /></button>
 
 			<div v-if="settings.interval != 0" class="timer-pause-row">
 
@@ -61,13 +63,12 @@
 
 
 			<ShapeCanvas :shapes="settings.shapes" :manual="settings.interval == 0" :remove="toggleShapeReveal"
-						 :type="settings.type" :image="uploadedImage ?? link" :preview="false"
-						 class="image-canvas"/>
+						 :type="settings.type" :image="uploadedImage ?? link" :preview="false" class="image-canvas" />
 
 		</div>
 	</div>
 </template>
-  
+
 <script lang="ts" setup>
 import { computed, onMounted, ref, watch } from 'vue';
 import ShapeSettings from '../components/settings/ShapeSettings.vue';
@@ -77,7 +78,7 @@ import TimerProgress from '../components/dalli/TimerProgress.vue';
 const settings = ref({
 	interval: parseInt(((new URL(document.location as any)).searchParams).get('interval') ?? '0'),
 	shapes: parseInt(((new URL(document.location as any)).searchParams).get('shapes') ?? '20'),
-	type: (((new URL(document.location as any)).searchParams).get('type') ?? 'voronoi') as ('triangle'|'rectangle'|'hexagon'|'voronoi')
+	type: (((new URL(document.location as any)).searchParams).get('type') ?? 'voronoi') as ('triangle' | 'rectangle' | 'hexagon' | 'voronoi')
 });
 const pauseToggle = ref(false)
 const setupMode = ref(true);
@@ -203,7 +204,7 @@ function handleFileUpload(event: any): void {
 	}
 }
 </script>
-  
+
 <style scoped>
 .upload-button {
 	-webkit-box-shadow: none !important;
@@ -324,13 +325,15 @@ function handleFileUpload(event: any): void {
 
 
 .shape-canvas {
-	background-color: #F0F0F0;
+	background-color: transparent;
 	width: 100%;
 	height: 100%;
 
 }
+
 .image-canvas {
-	width: 100%; height: 100%; 
+	width: 100%;
+	height: 100%;
 }
 
 
@@ -357,5 +360,5 @@ function handleFileUpload(event: any): void {
 	top: 15px;
 	right: 15px;
 	z-index: 10000
-}</style>
-  
+}
+</style>
